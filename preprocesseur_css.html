@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Préprocesseur CSS (Sass/SCSS)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header>
+    <div>
+      <strong>📚 Documentation Angular &amp; NestJS</strong>
+    </div>
+    <nav class="navbar">
+      <a href="index.html">Accueil</a>
+      <a href="svg-icon-service.html">Service SVG Icons</a>
+      <a href="endpoint-securise.html">Endpoint Sécurisé</a>
+      <a href="preprocesseur_css.html" class="active">Préprocesseur CSS</a>
+      <a href="directives_scss.html">@ Directives SCSS</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h1>Préprocesseur CSS – Sass / SCSS</h1>
+      <p>
+        Sass (Syntactically Awesome Stylesheets) est un <strong>préprocesseur CSS</strong> qui permet d'écrire des feuilles de style plus maintenables et dynamiques grâce à des variables, fonctions, boucles, héritages, etc.
+      </p>
+      <p>
+        Dans sa syntaxe la plus répandue (<strong>SCSS</strong>), il est compatible avec la syntaxe CSS classique.
+      </p>
+    </section>
+
+    <section>
+      <h2>Interpolation avec <code>#{$variable}</code></h2>
+      <p>
+        Le <strong>#{...}</strong> en SCSS permet d'<strong>interpoler une variable Sass dans une chaîne</strong>. Cela est particulièrement utile pour :
+      </p>
+      <ul>
+        <li>Créer dynamiquement des noms de classes ou d’identifiants</li>
+        <li>Générer plusieurs propriétés CSS ou sélecteurs</li>
+      </ul>
+
+      <div class="file-title">Exemple 1 – Interpolation dans un nom de classe</div>
+      <pre><code>$theme: dark;
+
+.button-#{$theme} {
+  background-color: black;
+  color: white;
+}</code></pre>
+
+      <p>🔁 Génère :</p>
+      <pre><code>.button-dark {
+  background-color: black;
+  color: white;
+}</code></pre>
+
+      <div class="file-title">Exemple 2 – Interpolation dans une propriété</div>
+      <pre><code>$side: left;
+
+.margin-#{$side} {
+  margin-#{$side}: 20px;
+}</code></pre>
+
+      <p>🔁 Génère :</p>
+      <pre><code>.margin-left {
+  margin-left: 20px;
+}</code></pre>
+
+      <div class="file-title">Exemple 3 – Boucle + interpolation</div>
+      <pre><code>$themes: light, dark, blue;
+
+@each $theme in $themes {
+  .btn-#{$theme} {
+    background: url('/img/#{$theme}.png');
+  }
+}</code></pre>
+
+      <p>🔁 Génère :</p>
+      <pre><code>.btn-light {
+  background: url('/img/light.png');
+}
+.btn-dark {
+  background: url('/img/dark.png');
+}
+.btn-blue {
+  background: url('/img/blue.png');
+}</code></pre>
+    </section>
+
+    <section>
+      <h2>🧠 Résumé</h2>
+      <ul>
+        <li><code>#{$var}</code> permet d’injecter dynamiquement une valeur dans une chaîne</li>
+        <li>Utile dans les noms de classes, sélecteurs, propriétés CSS</li>
+        <li>Utilisable dans les boucles et les mixins</li>
+      </ul>
+      <p>
+        👉 Cette fonctionnalité rend SCSS très puissant pour créer des styles dynamiques et évolutifs.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © 2024 Documentation Angular &amp; NestJS — Site statique pédagogique
+  </footer>
+
+</body>
+</html>
