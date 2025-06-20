@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Directives @ en SCSS | Documentation Web</title>
+  <link rel="stylesheet" href="../../css/themes.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body class="theme-light">
+  <!-- Header -->
+  <header class="app-header">
+    <div class="app-title">Documentation Web Moderne</div>
+    <div class="app-header-actions">
+      <div class="theme-selector">
+        <button class="theme-button">
+          <i class="fas fa-palette"></i>
+          <span>Thème</span>
+        </button>
+        <div class="theme-dropdown">
+          <div class="theme-option" data-theme="light">
+            <div class="theme-color light"></div>
+            <span>Clair</span>
+          </div>
+          <div class="theme-option" data-theme="dark">
+            <div class="theme-color dark"></div>
+            <span>Sombre</span>
+          </div>
+          <div class="theme-option" data-theme="blue">
+            <div class="theme-color blue"></div>
+            <span>Bleu</span>
+          </div>
+          <div class="theme-option" data-theme="green">
+            <div class="theme-color green"></div>
+            <span>Vert</span>
+          </div>
+          <div class="theme-option" data-theme="purple">
+            <div class="theme-color purple"></div>
+            <span>Violet</span>
+          </div>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-content">
+        <div class="sidebar-category">
+          <div class="category-title">Présentation</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../../index.html">Accueil</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-category">
+          <div class="category-title">Angular</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../angular/svg-icon-service.html">Service SVG Icons</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-category">
+          <div class="category-title">NestJS</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../nestjs/endpoint-securise.html">Endpoint Sécurisé</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-category">
+          <div class="category-title">SCSS</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="preprocesseur-css.html">Préprocesseur CSS</a>
+            </li>
+            <li class="sidebar-item active">
+              <a href="directives-scss.html">Directives SCSS</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="app-content">
+      <div class="content-wrapper">
+        <div class="course-header">
+          <h1 class="course-title">Les directives <code>@</code> en SCSS</h1>
+          <p class="course-description">
+            Apprenez à utiliser les directives SCSS pour organiser, factoriser et dynamiser votre code CSS.
+          </p>
+        </div>
+
+        <div class="course-content">
+          <section class="course-section">
+            <h2 class="section-title">Introduction</h2>
+            <p>
+              SCSS propose une série de directives puissantes qui permettent d'organiser, de factoriser et de dynamiser votre code CSS. Voici les plus courantes :
+            </p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title"><code>@each</code> – Boucle sur une liste</h2>
+            <p>
+              Permet d'itérer sur une liste ou une map de valeurs.
+            </p>
+            <pre><code class="language-scss">$colors: red, green, blue;
+
+@each $color in $colors {
+  .text-#{$color} {
+    color: $color;
+  }
+}</code></pre>
+
+            <p>Génère :</p>
+            <pre><code class="language-css">.text-red   { color: red; }
+.text-green { color: green; }
+.text-blue  { color: blue; }</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title"><code>@mixin</code> & <code>@include</code> – Fonctions réutilisables</h2>
+            <p>
+              Un mixin permet de définir un bloc de code réutilisable avec ou sans paramètres.
+            </p>
+            <pre><code class="language-scss">@mixin rounded($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+.card {
+  @include rounded(12px);
+}</code></pre>
+
+            <p>Génère :</p>
+            <pre><code class="language-css">.card {
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+}</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title"><code>@if</code> / <code>@else</code> – Conditions logiques</h2>
+            <p>
+              Permet d'appliquer des styles en fonction de conditions.
+            </p>
+            <pre><code class="language-scss">$theme: dark;
+
+body {
+  @if $theme == dark {
+    background: #111;
+    color: #eee;
+  } @else {
+    background: #fff;
+    color: #111;
+  }
+}</code></pre>
+          </section>
+
+          <!-- ... les autres sections inchangées ... -->
+
+          <section class="course-section">
+            <h2 class="section-title">Résumé des directives</h2>
+            <ul>
+              <li><strong>@each</strong> : boucle sur liste</li>
+              <li><strong>@mixin / @include</strong> : fonctions personnalisées</li>
+              <li><strong>@if / @else</strong> : conditions logiques</li>
+              <li><strong>@media</strong> : responsive design</li>
+              <li><strong>@extend</strong> : héritage de style</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>© 2024 Documentation Angular & NestJS — Site pédagogique</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-scss.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="../../js/main.js"></script>
+</body>
+</html>

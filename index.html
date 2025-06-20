@@ -1,53 +1,168 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Documentation - Sommaire</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Documentation Développement Web Moderne</title>
+  <link rel="stylesheet" href="css/themes.css">
+  <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
 </head>
-<body>
-  <header>
-    <div>
-      <strong>📚 Documentation Angular &amp; NestJS</strong>
+<body class="theme-light">
+  <!-- Header -->
+  <header class="app-header">
+    <div class="app-title">Documentation Web Moderne</div>
+    <div class="app-header-actions">
+      <div class="theme-selector">
+        <button class="theme-button">
+          <i class="fas fa-palette"></i>
+          <span>Thème</span>
+        </button>
+        <div class="theme-dropdown">
+          <div class="theme-option" data-theme="light">
+            <div class="theme-color light"></div>
+            <span>Clair</span>
+          </div>
+          <div class="theme-option" data-theme="dark">
+            <div class="theme-color dark"></div>
+            <span>Sombre</span>
+          </div>
+          <div class="theme-option" data-theme="blue">
+            <div class="theme-color blue"></div>
+            <span>Bleu</span>
+          </div>
+          <div class="theme-option" data-theme="green">
+            <div class="theme-color green"></div>
+            <span>Vert</span>
+          </div>
+          <div class="theme-option" data-theme="purple">
+            <div class="theme-color purple"></div>
+            <span>Violet</span>
+          </div>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
     </div>
-    <nav class="navbar">
-      <a href="index.html" class="active">Accueil</a>
-      <a href="svg-icon-service.html">Service SVG Icons</a>
-      <a href="endpoint-securise.html">Endpoint Sécurisé</a>
-      <a href="preprocesseur_css.html">Preprocesseur CSS</a>
-    </nav>
   </header>
 
-  <main>
-    <section>
-      <h1>Bienvenue sur la documentation Angular &amp; NestJS</h1>
-      <ul>
-        <li>
-          <strong>Angular</strong>
-          <ul>
-            <li><a href="svg-icon-service.html">🧩 Service SVG Icons</a></li>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-content">
+        <div class="sidebar-category">
+          <div class="category-title">Présentation</div>
+          <ul class="category-items">
+            <li class="sidebar-item active">
+              <a href="index.html">Accueil</a>
+            </li>
           </ul>
-        </li>
-        <li>
-          <strong>NestJS</strong>
-          <ul>
-            <li><a href="endpoint-securise.html">📘 Endpoint Sécurisé</a></li>
+        </div>
+        
+        <div class="sidebar-category">
+          <div class="category-title">Angular</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="courses/angular/svg-icon-service.html">Service SVG Icons</a>
+            </li>
           </ul>
-        </li>
-        <li>
-          <strong>SCSS</strong>
-          <ul>
-            <li><a href="preprocesseur_css.html">🎨 Préprocesseur CSS (#{$var})</a></li>
-            <li><a href="directives_scss.html">🛠️ Directives @ (mixin, if, each...)</a></li>
+        </div>
+        
+        <div class="sidebar-category">
+          <div class="category-title">NestJS</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="courses/nestjs/endpoint-securise.html">Endpoint Sécurisé</a>
+            </li>
           </ul>
-        </li>
-      </ul>
-    </section>
-  </main>
+        </div>
+        
+        <div class="sidebar-category">
+          <div class="category-title">SCSS</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="courses/scss/preprocesseur-css.html">Préprocesseur CSS</a>
+            </li>
+            <li class="sidebar-item">
+              <a href="courses/scss/directives-scss.html">Directives SCSS</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </aside>
 
-  <footer>
-    © 2024 Documentation Angular &amp; NestJS — Site statique pédagogique
+    <!-- Main Content -->
+    <main class="app-content">
+      <div class="content-wrapper">
+        <div class="course-header">
+          <h1 class="course-title">Documentation Développement Web Moderne</h1>
+          <p class="course-description">
+            Bienvenue dans cette documentation dédiée aux technologies modernes du développement web.
+            Vous trouverez ici des guides pratiques sur Angular, NestJS et SCSS pour améliorer vos compétences de développement.
+          </p>
+        </div>
+
+        <div class="cards-grid">
+          <!-- Angular Card -->
+          <div class="category-card">
+            <div class="category-card-header">
+              <h2>Angular</h2>
+            </div>
+            <div class="category-card-content">
+              <ul class="course-list">
+                <li>
+                  <a href="courses/angular/svg-icon-service.html">Service SVG Icons</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- NestJS Card -->
+          <div class="category-card">
+            <div class="category-card-header">
+              <h2>NestJS</h2>
+            </div>
+            <div class="category-card-content">
+              <ul class="course-list">
+                <li>
+                  <a href="courses/nestjs/endpoint-securise.html">Endpoint Sécurisé</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- SCSS Card -->
+          <div class="category-card">
+            <div class="category-card-header">
+              <h2>SCSS</h2>
+            </div>
+            <div class="category-card-content">
+              <ul class="course-list">
+                <li>
+                  <a href="courses/scss/preprocesseur-css.html">Préprocesseur CSS</a>
+                </li>
+                <li>
+                  <a href="courses/scss/directives-scss.html">Directives SCSS</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>© 2024 Documentation Angular & NestJS — Site pédagogique</p>
   </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-scss.min.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
