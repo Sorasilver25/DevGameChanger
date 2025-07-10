@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Git - Guide complet du fichier .bashrc personnalisé | Documentation Web</title>
+  <link rel="stylesheet" href="../../css/themes.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <style>
+    .script-textarea {
+      width: 100%;
+      height: 400px;
+      font-family: var(--font-code);
+      font-size: 0.85rem;
+      background-color: var(--code-bg);
+      color: var(--code-text);
+      border: 1px solid var(--border);
+      border-radius: var(--border-radius);
+      padding: var(--spacing-md);
+      resize: vertical;
+      line-height: 1.4;
+    }
+    
+    .copy-button {
+      background-color: var(--primary);
+      color: var(--text-light);
+      border: none;
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      margin-top: var(--spacing-sm);
+      transition: background-color 0.3s ease;
+    }
+    
+    .copy-button:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    .command-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: var(--spacing-lg) 0;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+    }
+    
+    .command-table th,
+    .command-table td {
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+    
+    .command-table th {
+      background-color: var(--primary);
+      color: var(--text-light);
+      font-weight: 600;
+    }
+    
+    .command-table tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .command-table code {
+      background-color: var(--hover);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
+
+    .download-button {
+      display: inline-block;
+      background-color: var(--primary);
+      color: var(--text-light);
+      text-decoration: none;
+      padding: var(--spacing-sm) var(--spacing-md);
+      border-radius: var(--border-radius);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      margin-top: var(--spacing-sm);
+      transition: background-color 0.3s ease;
+    }
+
+    .download-button:hover {
+      background-color: var(--primary-dark);
+    }
+  </style>
+</head>
+<body class="theme-light">
+  <!-- Header -->
+  <header class="app-header">
+    <div class="app-title">Ludoc</div>
+    <div class="app-header-actions">
+      <div class="theme-selector">
+        <button class="theme-button">
+          <i class="fas fa-palette"></i>
+          <span>Thème</span>
+        </button>
+        <div class="theme-dropdown">
+          <div class="theme-option" data-theme="light">
+            <div class="theme-color light"></div>
+            <span>Clair</span>
+          </div>
+          <div class="theme-option" data-theme="dark">
+            <div class="theme-color dark"></div>
+            <span>Sombre</span>
+          </div>
+          <div class="theme-option" data-theme="blue">
+            <div class="theme-color blue"></div>
+            <span>Bleu</span>
+          </div>
+          <div class="theme-option" data-theme="green">
+            <div class="theme-color green"></div>
+            <span>Vert</span>
+          </div>
+          <div class="theme-option" data-theme="purple">
+            <div class="theme-color purple"></div>
+            <span>Violet</span>
+          </div>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-content">
+        <div class="sidebar-category">
+          <div class="category-title">Présentation</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../../index.html">Accueil</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-category">
+          <div class="category-title">Angular</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../angular/svg-icon-service.html">Service SVG Icons</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-category">
+          <div class="category-title">NestJS</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../nestjs/endpoint-securise.html">Endpoint Sécurisé</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-category">
+          <div class="category-title">SCSS</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../scss/preprocesseur-css.html">Préprocesseur CSS</a>
+            </li>
+            <li class="sidebar-item">
+              <a href="../scss/directives-scss.html">Directives SCSS</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-category">
+          <div class="category-title">Git</div>
+          <ul class="category-items">
+            <li class="sidebar-item active">
+              <a href="bashrc-git.html">Configuration .bashrc Git</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="app-content">
+      <div class="content-wrapper">
+        <div class="course-header">
+          <h1 class="course-title">Guide complet du fichier <code>.bashrc</code> personnalisé Git</h1>
+          <p class="course-description">
+            Découvrez comment optimiser votre workflow Git avec un fichier .bashrc personnalisé incluant des alias pratiques, l'affichage de la branche courante et l'auto-complétion.
+          </p>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">1. Présentation du script</h2>
+          <div class="course-content">
+            <p>Ce fichier <code>.bashrc</code> personnalisé a pour but :</p>
+            <ul>
+              <li>D'afficher la branche Git courante dans votre invite de commande.</li>
+              <li>De charger automatiquement <code>nvm</code> (Node Version Manager) si installé.</li>
+              <li>D'activer l'auto-complétion des commandes Git.</li>
+              <li>De définir plusieurs alias et fonctions pour simplifier et accélérer vos commandes Git courantes.</li>
+              <li>D'ajouter des alias pour éditer et recharger votre <code>.bashrc</code>, et lancer Docker Compose en mode développement.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">2. Affichage de la branche Git dans l'invite de commande</h2>
+          <div class="course-content">
+            <p>L'invite est personnalisée pour afficher :</p>
+            <pre><code>user@machine dossier_actuel (branche_git_actuelle)$ </code></pre>
+            <p>Cette invite vous permet de savoir immédiatement sur quelle branche vous travaillez.</p>
+            <p><strong>Comment cela fonctionne :</strong></p>
+            <ul>
+              <li>La fonction <code>parse_git_branch()</code> récupère le nom de la branche Git courante.</li>
+              <li>L'invite <code>PS1</code> inclut le résultat de cette fonction, coloré en rouge.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">3. Chargement automatique de NVM (Node Version Manager)</h2>
+          <div class="course-content">
+            <p>Si vous avez installé <code>nvm</code> dans <code>~/.nvm</code>, ce script va automatiquement :</p>
+            <ul>
+              <li>Charger <code>nvm.sh</code> pour activer la commande <code>nvm</code>.</li>
+              <li>Activer l'auto-complétion de <code>nvm</code> dans le shell.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">4. Auto-complétion Git</h2>
+          <div class="course-content">
+            <p>Si votre système dispose du fichier d'auto-complétion Git (<code>/usr/share/bash-completion/completions/git</code>), il est automatiquement chargé pour :</p>
+            <ul>
+              <li>Bénéficier de l'auto-complétion intelligente des commandes Git.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">5. Alias et fonctions personnalisés Git</h2>
+          <div class="course-content">
+            <table class="command-table">
+              <thead>
+                <tr>
+                  <th>Alias / Fonction</th>
+                  <th>Commande Git réelle</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>gs &lt;branche&gt;</code></td>
+                  <td><code>git switch &lt;branche&gt;</code></td>
+                  <td>Change de branche et mémorise la branche précédente pour pouvoir y revenir.</td>
+                </tr>
+                <tr>
+                  <td><code>ga</code></td>
+                  <td><code>git add .</code></td>
+                  <td>Ajoute tous les fichiers modifiés au staging.</td>
+                </tr>
+                <tr>
+                  <td><code>gb</code></td>
+                  <td><code>gs &lt;branche_précédente&gt;</code></td>
+                  <td>Retourne à la branche précédemment utilisée (si mémorisée).</td>
+                </tr>
+                <tr>
+                  <td><code>gc "message"</code></td>
+                  <td><code>git commit -m "message"</code></td>
+                  <td>Fait un commit avec le message donné.</td>
+                </tr>
+                <tr>
+                  <td><code>gp</code></td>
+                  <td><code>git push origin &lt;branche_courante&gt;</code></td>
+                  <td>Push la branche courante vers l'origine distante.</td>
+                </tr>
+                <tr>
+                  <td><code>gps</code></td>
+                  <td><code>git push --force-with-lease origin &lt;branche_courante&gt;</code></td>
+                  <td>Force push avec précaution sur la branche courante.</td>
+                </tr>
+                <tr>
+                  <td><code>gl</code></td>
+                  <td><code>git pull</code></td>
+                  <td>Met à jour la branche courante avec les derniers changements distants.</td>
+                </tr>
+                <tr>
+                  <td><code>gr</code></td>
+                  <td><code>git rebase develop</code></td>
+                  <td>Rebase la branche courante sur la branche <code>develop</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>gd</code></td>
+                  <td><code>git checkout develop</code></td>
+                  <td>Bascule directement sur la branche <code>develop</code>.</td>
+                </tr>
+                <tr>
+                  <td><code>gst</code></td>
+                  <td><code>git stash</code></td>
+                  <td>Met les modifications courantes de côté (stash).</td>
+                </tr>
+                <tr>
+                  <td><code>gsp</code></td>
+                  <td><code>git stash pop stash@{0}</code></td>
+                  <td>Restaure le dernier stash appliqué.</td>
+                </tr>
+                <tr>
+                  <td><code>rst</code></td>
+                  <td><code>git reset --mixed HEAD~1</code></td>
+                  <td>Reset non destructif au commit précédent (décoche le dernier commit sans effacer les modifications).</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <h3>Alias complémentaires utiles</h3>
+            <table class="command-table">
+              <thead>
+                <tr>
+                  <th>Alias</th>
+                  <th>Commande réelle</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>nb</code></td>
+                  <td><code>nano ~/.bashrc</code></td>
+                  <td>Ouvre le fichier <code>.bashrc</code> dans l'éditeur nano.</td>
+                </tr>
+                <tr>
+                  <td><code>sb</code></td>
+                  <td><code>source ~/.bashrc</code></td>
+                  <td>Recharge le fichier <code>.bashrc</code> pour appliquer les modifications.</td>
+                </tr>
+                <tr>
+                  <td><code>dc</code></td>
+                  <td><code>docker compose -f docker-compose-dev.yaml up -d</code></td>
+                  <td>Lance Docker Compose en mode détaché avec le fichier de dev.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">6. Auto-complétion personnalisée pour <code>gs</code></h2>
+          <div class="course-content">
+            <p>La fonction <code>_gs_completion()</code> permet d'avoir l'auto-complétion des noms de branches Git quand vous tapez <code>gs &lt;TAB&gt;</code>.</p>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">7. Contenu complet à copier dans votre <code>.bashrc</code></h2>
+          <div class="course-content">
+            <p>Copiez-collez ce code à la fin de votre fichier <code>~/.bashrc</code> :</p>
+            <textarea readonly id="scriptContent" class="script-textarea" spellcheck="false"># ----- Fonctions utilitaires Git -----
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+current_git_branch() {
+  git rev-parse --abbrev-ref HEAD 2>/dev/null
+}
+
+# ----- Invite personnalisée -----
+export PS1="\u@\h \[\e[32m\]\w \[\e[91m\]\$(parse_git_branch)\[\e[00m\]$ "
+
+# ----- NVM (Node Version Manager) -----
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# ----- Auto-complétion Git -----
+if [ -f /usr/share/bash-completion/completions/git ]; then
+  source /usr/share/bash-completion/completions/git
+fi
+
+# ----- Désaliaser pour éviter conflits -----
+unalias gs 2>/dev/null
+unalias ga 2>/dev/null
+unalias gc 2>/dev/null
+unalias gp 2>/dev/null
+unalias gps 2>/dev/null
+unalias gl 2>/dev/null
+unalias gr 2>/dev/null
+unalias gd 2>/dev/null
+unalias gst 2>/dev/null
+unalias gsp 2>/dev/null
+unalias rst 2>/dev/null
+
+# Variable pour stocker la branche précédente
+prev_branch=""
+
+# ----- Git command functions (avec echo explicite) -----
+
+# Fonction gs avec mémorisation de la branche précédente
+gs() {
+  local target_branch=$1
+  if [ -z "$target_branch" ]; then
+    echo -e "\e[31mErreur : aucune branche spécifiée.\e[0m"
+    echo "Utilisation : gs nom_de_branche"
+    return 1
+  fi
+
+  # Récupérer la branche courante avant changement
+  local current_branch
+  current_branch=$(current_git_branch)
+
+  if [ "$current_branch" != "$target_branch" ]; then
+    prev_branch="$current_branch"
+  fi
+
+  echo -e "Changement vers la branche : \e[93m$target_branch\e[0m"
+  git switch "$target_branch"
+}
+
+ga() {
+  echo -e "\e[32mAjout de tous les fichiers modifiés\e[0m"
+  git add .
+}
+
+# Alias pour revenir à la branche précédente
+gb() {
+  if [ -z "$prev_branch" ]; then
+    echo "Aucune branche précédente enregistrée."
+  else
+    echo "Retour à la branche précédente : $prev_branch"
+    gs "$prev_branch"
+  fi
+}
+
+gc() {
+  if [ -z "$1" ]; then
+    echo -e "\e[31mErreur : message de commit manquant.\e[0m"
+    echo "Usage : gc \"Message du commit\""
+  else
+    echo -e "\e[36mCommit avec message :\e[0m \"$1\""
+    git commit -m "$1"
+  fi
+}
+
+gp() {
+  branch=$(current_git_branch)
+  echo -e "\e[32mPush sur la branche : \e[93m$branch\e[0m"
+  git push origin "$branch"
+}
+
+gps() {
+  branch=$(current_git_branch)
+  echo -e "\e[31mForce push (with lease) sur : \e[93m$branch\e[0m"
+  git push --force-with-lease origin "$branch"
+}
+
+gl() {
+  branch=$(current_git_branch)
+  echo -e "\e[36mPull de la branche : \e[93m$branch\e[0m"
+  git pull
+}
+
+gr() {
+  echo -e "\e[35mRebase sur 'develop'\e[0m"
+  git rebase develop
+}
+
+gd() {
+  echo -e "\e[36mCheckout sur 'develop'\e[0m"
+  git checkout develop
+}
+
+gst() {
+  echo -e "\e[33mStash des modifications en cours\e[0m"
+  git stash
+}
+
+gsp() {
+  echo -e "\e[33mRestauration du dernier stash\e[0m"
+  git stash pop stash@{0}
+}
+
+rst() {
+  echo -e "\e[31mReset HEAD~1 (non destructif)\e[0m"
+  git reset --mixed HEAD~1
+}
+
+# ----- Auto-complétion pour gs (basée sur git switch) -----
+_gs_completion() {
+  # On utilise la complétion de git switch pour gs
+  local cur=${COMP_WORDS[COMP_CWORD]}
+  COMPREPLY=( $(compgen -W "$(git branch --format='%(refname:short)')" -- "$cur") )
+}
+complete -F _gs_completion gs
+
+# ----- Outils / raccourcis utiles -----
+alias nb='nano ~/.bashrc'
+alias sb='source ~/.bashrc && echo -e "\e[32m .bashrc rechargé avec succès\e[0m"'
+alias dc='docker compose -f docker-compose-dev.yaml up -d'</textarea>
+            <button class="copy-button" onclick="copyScript()">Copier le script</button>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">8. Explication détaillée du script</h2>
+          <div class="course-content">
+            <ol>
+              <li><strong>parse_git_branch()</strong> : récupère la branche Git courante et la met entre parenthèses (ex: <code>(main)</code>).</li>
+              <li><strong>current_git_branch()</strong> : récupère simplement le nom de la branche Git en cours sans décorations.</li>
+              <li><strong>PS1</strong> : définit l'invite de commande :
+                <ul>
+                  <li><code>\u</code> → utilisateur actuel.</li>
+                  <li><code>\h</code> → nom de la machine.</li>
+                  <li><code>\w</code> → répertoire courant.</li>
+                  <li><code>\$(parse_git_branch)</code> → branche Git colorée en rouge.</li>
+                  <li>La couleur verte pour le dossier et rouge pour la branche Git.</li>
+                </ul>
+              </li>
+              <li><strong>Chargement de NVM</strong> si disponible : lance le script de gestion des versions Node.js ainsi que son auto-complétion.</li>
+              <li><strong>Auto-complétion Git</strong> : charge le script d'auto-complétion pour git (si disponible sur votre système).</li>
+              <li><strong>Suppression des alias existants</strong> : évite les conflits d'alias éventuels (inutile si vous n'en aviez pas).</li>
+              <li><strong>Définition des alias Git personnalisés</strong> :
+                <ul>
+                  <li><code>gs</code> : switch de branche avec mémorisation de la branche précédente.</li>
+                  <li><code>ga</code> : git add .</li>
+                  <li><code>gb</code> : retour à la branche précédente.</li>
+                  <li><code>gc</code> : commit avec message.</li>
+                  <li><code>gp</code> : push branche courante.</li>
+                  <li><code>gps</code> : push forcé avec précaution.</li>
+                  <li><code>gl</code> : pull.</li>
+                  <li><code>gr</code> : rebase sur develop.</li>
+                  <li><code>gd</code> : checkout develop.</li>
+                  <li><code>gst</code> : stash.</li>
+                  <li><code>gsp</code> : stash pop.</li>
+                  <li><code>rst</code> : reset dernier commit mais conserve les modifs.</li>
+                </ul>
+              </li>
+              <li><strong>Alias complémentaires</strong> :
+                <ul>
+                  <li><code>nb</code> : ouvre ~/.bashrc dans nano.</li>
+                  <li><code>sb</code> : recharge ~/.bashrc dans la session active.</li>
+                  <li><code>dc</code> : lance docker compose avec un fichier de dev.</li>
+                </ul>
+              </li>
+              <li><strong>Auto-complétion personnalisée <code>gs</code></strong> : complète automatiquement les noms de branches git en tapant <code>gs TAB</code>.</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">9. Télécharger la Cheatsheet Git</h2>
+          <div class="course-content">
+            <p>Vous pouvez télécharger le Cheatsheet Git en cliquant sur le bouton ci-dessous :</p>
+            <a href="../../img/Cheatsheet_git.png" download class="download-button">Télécharger le Cheatsheet</a>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>© 2025 Ludoc — Site pédagogique</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-scss.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="../../js/main.js"></script>
+  <script>
+    function copyScript() {
+      const textarea = document.getElementById('scriptContent');
+      textarea.select();
+      textarea.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(textarea.value).then(function() {
+        alert('Script copié dans le presse-papiers !');
+      }, function(err) {
+        // Fallback pour les navigateurs plus anciens
+        document.execCommand('copy');
+        alert('Script copié dans le presse-papiers !');
+      });
+    }
+  </script>
+</body>
+</html>

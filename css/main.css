@@ -405,6 +405,8 @@ pre code {
   margin-top: auto;
   margin-left: var(--sidebar-width);
   transition: background-color 0.3s ease, margin-left 0.3s ease;
+  position: sticky;
+  bottom: 0;
 }
 
 /* Responsive */
