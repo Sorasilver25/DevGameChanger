@@ -559,6 +559,73 @@ alias dc='docker compose -f docker-compose-dev.yaml up -d'</textarea>
             <a href="../../img/Cheatsheet_git.png" download class="download-button">Télécharger le Cheatsheet</a>
           </div>
         </div>
+
+        <div class="course-section">
+          <h2 class="section-title">10. Commandes utiles pour les projets</h2>
+          <h3>Alias utiles pour Node Package Manager (NPM)</h3>
+          <div class="course-content">
+            <pre><code>fe() {
+  (cd /epsilon/apps/frontend && npm run "$@")
+}
+fb() {
+  (cd /epsilon/apps/backend && npm run "$@")
+}
+
+# Exemple d'utilisation :
+
+#npm frontend
+fe lint
+fe tests
+fe build
+fe serve
+
+#npm backend
+fb lint
+fb tests
+fb build
+fb serve
+
+</code></pre>
+          </div>
+        <div class="course-content">
+          <table class="command-table">
+            <thead>
+              <tr>
+                <th>Alias</th>
+                <th>Commande réelle</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>ni</code></td>
+                <td><code>npm install</code></td>
+                <td>Installe les dépendances du projet.</td>
+              </tr>
+              <tr>
+                <td><code>ns</code></td>
+                <td><code>npm start</code></td>
+                <td>Démarre le projet.</td>
+              </tr>
+              <tr>
+                <td><code>nt</code></td>
+                <td><code>npm test</code></td>
+                <td>Lance les tests du projet.</td>
+              </tr>
+              <tr>
+                <td><code>nb</code></td>
+                <td><code>npm run build</code></td>
+                <td>Construit le projet pour la production.</td>
+              </tr>
+              <tr>
+                <td><code>nl</code></td>
+                <td><code>npm list</code></td>
+                <td>Liste les dépendances installées.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
       </div>
     </main>
   </div>
