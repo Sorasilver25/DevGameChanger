@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comprendre le Asynchrone avec async/await en JavaScript, Angular et NestJS</title>
+  <link rel="stylesheet" href="../../css/themes.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body class="theme-light">
+  <!-- Header -->
+  <header class="app-header">
+    <div class="app-title">Ludoc</div>
+    <div class="app-header-actions">
+      <div class="theme-selector">
+        <button class="theme-button">
+          <i class="fas fa-palette"></i>
+          <span>Thème</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-content">
+        <div class="sidebar-category">
+          <div class="category-title">JavaScript</div>
+          <ul class="category-items">
+            <li class="sidebar-item active">
+              <a href="async-await.html">Comprendre le Asynchrone avec async/await</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="app-content">
+      <div class="content-wrapper">
+        <div class="course-header">
+          <h1 class="course-title">Comprendre le Asynchrone avec async/await en JavaScript, Angular et NestJS</h1>
+          <p class="course-description">
+            Dans les applications modernes, beaucoup d'opérations sont asynchrones : requêtes HTTP, lecture de fichiers, accès à une base de données, temporisation, etc. Pour gérer cela, JavaScript a introduit plusieurs mécanismes (callbacks, Promises, puis async/await) afin de ne pas bloquer le fil d'exécution.
+          </p>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Qu’est-ce qu’un code asynchrone ?</h2>
+          <div class="course-content">
+            <p>Un code synchrone exécute les instructions ligne par ligne, en attendant la fin de chaque opération avant de passer à la suivante.</p>
+            <pre><code class="language-javascript">console.log("Début");
+let data = readFileSync("monfichier.txt");
+console.log(data);
+console.log("Fin");</code></pre>
+            <p>Un code asynchrone, au contraire, ne bloque pas : il délègue certaines tâches et continue l’exécution.</p>
+            <pre><code class="language-javascript">console.log("Début");
+readFileAsync("monfichier.txt", (data) => {
+  console.log(data);
+});
+console.log("Fin");</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Promise, async et await : le trio moderne</h2>
+          <div class="course-content">
+            <p>Une Promise est un objet représentant une valeur future (disponible plus tard).</p>
+            <pre><code class="language-javascript">const promesse = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("Fini !"), 2000);
+});</code></pre>
+            <p>async/await : syntaxe simplifiée pour utiliser les Promises</p>
+            <pre><code class="language-javascript">async function maFonction() {
+  const result = await promesse;
+  console.log(result); // "Fini !"
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Exemple en Angular : appel HTTP avec async/await</h2>
+          <div class="course-content">
+            <pre><code class="language-javascript">@Injectable({ providedIn: 'root' })
+export class UserService {
+  constructor(private http: HttpClient) {}
+
+  async getUser(id: string): Promise<User> {
+    return await firstValueFrom(this.http.get<User>(`/api/users/${id}`));
+  }
+}</code></pre>
+            <pre><code class="language-javascript">async ngOnInit() {
+  this.user = await this.userService.getUser("123");
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Exemple en NestJS : appel à une base ou API</h2>
+          <div class="course-content">
+            <pre><code class="language-javascript">@Injectable()
+export class UserService {
+  constructor(private readonly prisma: PrismaService) {}
+
+  async getUserById(id: string): Promise<User> {
+    return await this.prisma.user.findUnique({ where: { id } });
+  }
+}</code></pre>
+            <pre><code class="language-javascript">@Controller('users')
+export class UserController {
+  constructor(private readonly userService: UserService) {}
+
+  @Get(':id')
+  async getUser(@Param('id') id: string) {
+    const user = await this.userService.getUserById(id);
+    return user;
+  }
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">try...catch avec async/await</h2>
+          <div class="course-content">
+            <pre><code class="language-javascript">async function fetchData() {
+  try {
+    const data = await api.getData();
+    console.log(data);
+  } catch (error) {
+    console.error("Erreur lors de l’appel :", error.message);
+  }
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Résumé</h2>
+          <div class="course-content">
+            <table class="command-table">
+              <thead>
+                <tr>
+                  <th>Élément</th>
+                  <th>Rôle</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>async</code></td>
+                  <td>Indique que la fonction renvoie une Promise</td>
+                </tr>
+                <tr>
+                  <td><code>await</code></td>
+                  <td>Attend le résultat d'une Promise</td>
+                </tr>
+                <tr>
+                  <td><code>Promise</code></td>
+                  <td>Représente une valeur disponible plus tard</td>
+                </tr>
+                <tr>
+                  <td><code>try/catch</code></td>
+                  <td>Capture les erreurs d’exécution</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>© 2025 Ludoc — Site pédagogique</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comprendre le principe du Bubble Up avec try...catch en JavaScript</title>
+  <link rel="stylesheet" href="../../css/themes.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body class="theme-light">
+  <!-- Header -->
+  <header class="app-header">
+    <div class="app-title">Ludoc</div>
+    <div class="app-header-actions">
+      <div class="theme-selector">
+        <button class="theme-button">
+          <i class="fas fa-palette"></i>
+          <span>Thème</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-content">
+        <div class="sidebar-category">
+          <div class="category-title">Bonnes Pratiques</div>
+          <ul class="category-items">
+            <li class="sidebar-item active">
+              <a href="bubble-up-try-catch.html">Comprendre le principe du Bubble Up avec try...catch</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="app-content">
+      <div class="content-wrapper">
+        <div class="course-header">
+          <h1 class="course-title">Comprendre le principe du Bubble Up avec try...catch en JavaScript</h1>
+          <p class="course-description">
+            Dans le développement d'applications JavaScript, la gestion des erreurs est un aspect essentiel pour garantir une expérience utilisateur fluide et une application stable. Ce cours se concentre sur un comportement fondamental lié au bloc try...catch : le bubble up (ou remontée des erreurs).
+          </p>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Introduction</h2>
+          <div class="course-content">
+            <p>Comprendre cette notion permet de mieux structurer ses applications, éviter les erreurs silencieuses et centraliser la gestion des exceptions.</p>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Objectifs pédagogiques</h2>
+          <div class="course-content">
+            <ul>
+              <li>Comprendre le comportement d’une erreur non capturée immédiatement.</li>
+              <li>Décrire le mécanisme de "remontée" (bubble up) d’une erreur dans la pile d’appels.</li>
+              <li>Implémenter une stratégie efficace de gestion d’erreurs dans une application JavaScript.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Définitions clés</h2>
+          <div class="course-content">
+            <ul>
+              <li><strong>Erreur (Error)</strong> : Objet généré lorsqu’une situation inattendue ou bloquante survient pendant l’exécution du code.</li>
+              <li><strong>try...catch</strong> : Bloc permettant d’essayer un morceau de code (try) et de capturer toute erreur générée (catch).</li>
+              <li><strong>Bubble up</strong> : Mécanisme naturel par lequel une erreur "remonte" la pile d’exécution jusqu’à ce qu’elle soit interceptée par un bloc catch.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Exemple illustratif</h2>
+          <div class="course-content">
+            <pre><code class="language-javascript">function lireFichier() {
+  throw new Error("Impossible de lire le fichier !");
+}
+
+function traiterFichier() {
+  lireFichier(); // pas de try...catch ici
+}
+
+function lancerTraitement() {
+  try {
+    traiterFichier();
+  } catch (e) {
+    console.log("Erreur interceptée :", e.message);
+  }
+}
+
+lancerTraitement();</code></pre>
+            <p>Ce qui se passe :</p>
+            <ul>
+              <li><code>lancerTraitement()</code> appelle <code>traiterFichier()</code>.</li>
+              <li><code>traiterFichier()</code> appelle <code>lireFichier()</code>.</li>
+              <li><code>lireFichier()</code> provoque une erreur avec <code>throw</code>.</li>
+              <li>Aucune des fonctions intermédiaires n’intercepte cette erreur.</li>
+              <li>L’erreur "bulle" jusqu’à la fonction <code>lancerTraitement()</code>, qui la capture.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Bonnes pratiques</h2>
+          <div class="course-content">
+            <ul>
+              <li>Éviter de multiplier les blocs try...catch à tous les niveaux : cela rend le code verbeux et difficile à maintenir.</li>
+              <li>Préférer capturer les erreurs au plus haut niveau logique (ex: dans un contrôleur ou une fonction principale).</li>
+              <li>Toujours afficher ou enregistrer l’erreur pour faciliter le débogage (console.error, logs, etc).</li>
+              <li>Utiliser <code>finally</code> pour exécuter du code quel que soit le résultat (try ou catch).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Variante avec async/await</h2>
+          <div class="course-content">
+            <pre><code class="language-javascript">async function chargerRessource() {
+  throw new Error("Erreur de chargement");
+}
+
+async function main() {
+  try {
+    await chargerRessource();
+  } catch (e) {
+    console.error("Erreur asynchrone :", e.message);
+  }
+}
+
+main();</code></pre>
+            <p>Même en asynchrone, le principe de bubble up reste le même : si tu ne catch pas une erreur awaitée, elle remonte jusqu'à un bloc supérieur.</p>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Résumé</h2>
+          <div class="course-content">
+            <table class="command-table">
+              <thead>
+                <tr>
+                  <th>Élément</th>
+                  <th>Rôle</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>throw</code></td>
+                  <td>Déclenche une erreur</td>
+                </tr>
+                <tr>
+                  <td><code>try</code></td>
+                  <td>Contient le code "à risque"</td>
+                </tr>
+                <tr>
+                  <td><code>catch</code></td>
+                  <td>Capture et gère l’erreur</td>
+                </tr>
+                <tr>
+                  <td>Bubble up</td>
+                  <td>Laisse l’erreur remonter jusqu’à un bloc catch approprié</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>© 2025 Ludoc — Site pédagogique</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+</body>
+</html>
