@@ -313,6 +313,29 @@ body {
   opacity: 0.9;
 }
 
+.last-update {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: var(--spacing-md);
+  padding: 8px 16px;
+  background: var(--hover);
+  border-left: 3px solid var(--primary);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+}
+
+.last-update i {
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+.last-update strong {
+  color: var(--primary);
+  font-weight: 600;
+}
+
 /* Cards Grid on Homepage */
 .cards-grid {
   display: grid;
@@ -411,6 +434,45 @@ body {
   border-radius: 12px;
   margin-bottom: 12px;
   border: 1px solid var(--primary-light);
+}
+
+.card-badges {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.badge-new {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #667eea;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.badge-new i {
+  font-size: 0.7rem;
+}
+
+.badge-updated {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #48bb78;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
 }
 
 .course-list {
@@ -552,6 +614,19 @@ pre code {
   position: sticky;
   bottom: 0;
   font-size: 0.85rem;
+  z-index: 3;
+}
+
+.app-footer a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+.app-footer a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
 }
 
 /* Responsive */
