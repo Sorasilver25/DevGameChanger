@@ -13,7 +13,10 @@
 <body class="theme-light">
   <!-- Header -->
   <header class="app-header">
-    <div class="app-title">Ludoc</div>
+    <a href="index.html" class="app-title">
+      <i class="fas fa-home"></i>
+      <span>Ludoc</span>
+    </a>
     <div class="app-header-actions">
       <div class="theme-selector">
         <button class="theme-button">
@@ -79,6 +82,15 @@
             </li>
           </ul>
         </div>
+
+        <div class="sidebar-category">
+          <div class="category-title">Docker</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="courses/docker/docker-swarm.html">Docker Swarm</a>
+            </li>
+          </ul>
+        </div>
         
         <div class="sidebar-category">
           <div class="category-title">SCSS</div>
@@ -105,7 +117,7 @@
           <div class="category-title">JavaScript</div>
           <ul class="category-items">
             <li class="sidebar-item">
-              <a href="courses/js/async-await.html">Comprendre le Asynchrone avec async/await</a>
+              <a href="courses/js/async-await.html">Async/Await</a>
             </li>
           </ul>
         </div>
@@ -114,7 +126,7 @@
           <div class="category-title">Bonnes Pratiques</div>
           <ul class="category-items">
             <li class="sidebar-item">
-              <a href="courses/bp/bubble-up-try-catch.html">Comprendre le principe du Bubble Up avec try...catch</a>
+              <a href="courses/bp/bubble-up-try-catch.html">Bubble Up Try/Catch</a>
             </li>
           </ul>
         </div>
@@ -134,11 +146,12 @@
 
         <div class="cards-grid">
           <!-- Angular Card -->
-          <div class="category-card">
+          <div class="category-card" data-category="angular">
             <div class="category-card-header">
-              <h2>Angular</h2>
+              <h2><i class="fab fa-angular"></i> Angular</h2>
             </div>
             <div class="category-card-content">
+              <span class="course-count">1 cours</span>
               <ul class="course-list">
                 <li>
                   <a href="courses/angular/svg-icon-service.html">Service SVG Icons</a>
@@ -148,11 +161,12 @@
           </div>
 
           <!-- NestJS Card -->
-          <div class="category-card">
+          <div class="category-card" data-category="nestjs">
             <div class="category-card-header">
-              <h2>NestJS</h2>
+              <h2><i class="fas fa-server"></i> NestJS</h2>
             </div>
             <div class="category-card-content">
+              <span class="course-count">1 cours</span>
               <ul class="course-list">
                 <li>
                   <a href="courses/nestjs/endpoint-securise.html">Endpoint Sécurisé</a>
@@ -161,12 +175,28 @@
             </div>
           </div>
 
-          <!-- SCSS Card -->
-          <div class="category-card">
+          <!-- Docker Card -->
+          <div class="category-card" data-category="docker">
             <div class="category-card-header">
-              <h2>SCSS</h2>
+              <h2><i class="fab fa-docker"></i> Docker</h2>
             </div>
             <div class="category-card-content">
+              <span class="course-count">1 cours</span>
+              <ul class="course-list">
+                <li>
+                  <a href="courses/docker/docker-swarm.html">Docker Swarm</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- SCSS Card -->
+          <div class="category-card" data-category="scss">
+            <div class="category-card-header">
+              <h2><i class="fab fa-sass"></i> SCSS</h2>
+            </div>
+            <div class="category-card-content">
+              <span class="course-count">2 cours</span>
               <ul class="course-list">
                 <li>
                   <a href="courses/scss/preprocesseur-css.html">Préprocesseur CSS</a>
@@ -179,14 +209,45 @@
           </div>
 
           <!-- Git Card -->
-          <div class="category-card">
+          <div class="category-card" data-category="git">
             <div class="category-card-header">
-              <h2>Git</h2>
+              <h2><i class="fab fa-git-alt"></i> Git</h2>
             </div>
             <div class="category-card-content">
+              <span class="course-count">1 cours</span>
               <ul class="course-list">
                 <li>
                   <a href="courses/git/bashrc-git.html">Configuration .bashrc Git</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- JavaScript Card -->
+          <div class="category-card" data-category="javascript">
+            <div class="category-card-header">
+              <h2><i class="fab fa-js-square"></i> JavaScript</h2>
+            </div>
+            <div class="category-card-content">
+              <span class="course-count">1 cours</span>
+              <ul class="course-list">
+                <li>
+                  <a href="courses/js/async-await.html">Async/Await</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Bonnes Pratiques Card -->
+          <div class="category-card" data-category="bp">
+            <div class="category-card-header">
+              <h2><i class="fas fa-check-circle"></i> Bonnes Pratiques</h2>
+            </div>
+            <div class="category-card-content">
+              <span class="course-count">1 cours</span>
+              <ul class="course-list">
+                <li>
+                  <a href="courses/bp/bubble-up-try-catch.html">Bubble Up Try/Catch</a>
                 </li>
               </ul>
             </div>

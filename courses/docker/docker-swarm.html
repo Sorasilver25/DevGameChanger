@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docker - Docker Swarm | Documentation Web</title>
+  <link rel="stylesheet" href="../../css/themes.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body class="theme-light">
+  <!-- Header -->
+  <header class="app-header">
+    <a href="../../index.html" class="app-title">
+      <i class="fas fa-home"></i>
+      <span>Ludoc</span>
+    </a>
+    <div class="app-header-actions">
+      <div class="theme-selector">
+        <button class="theme-button">
+          <i class="fas fa-palette"></i>
+          <span>Thème</span>
+        </button>
+        <div class="theme-dropdown">
+          <div class="theme-option" data-theme="light">
+            <div class="theme-color light"></div>
+            <span>Clair</span>
+          </div>
+          <div class="theme-option" data-theme="dark">
+            <div class="theme-color dark"></div>
+            <span>Sombre</span>
+          </div>
+          <div class="theme-option" data-theme="blue">
+            <div class="theme-color blue"></div>
+            <span>Bleu</span>
+          </div>
+          <div class="theme-option" data-theme="green">
+            <div class="theme-color green"></div>
+            <span>Vert</span>
+          </div>
+          <div class="theme-option" data-theme="purple">
+            <div class="theme-color purple"></div>
+            <span>Violet</span>
+          </div>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-content">
+        <div class="sidebar-category">
+          <div class="category-title">Présentation</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../../index.html">Accueil</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-category">
+          <div class="category-title">Angular</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../angular/svg-icon-service.html">Service SVG Icons</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-category">
+          <div class="category-title">NestJS</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../nestjs/endpoint-securise.html">Endpoint Sécurisé</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-category">
+          <div class="category-title">Docker</div>
+          <ul class="category-items">
+            <li class="sidebar-item active">
+              <a href="docker-swarm.html">Docker Swarm</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-category">
+          <div class="category-title">SCSS</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../scss/preprocesseur-css.html">Préprocesseur CSS</a>
+            </li>
+            <li class="sidebar-item">
+              <a href="../scss/directives-scss.html">Directives SCSS</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-category">
+          <div class="category-title">Git</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../git/bashrc-git.html">Configuration .bashrc Git</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-category">
+          <div class="category-title">JavaScript</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../js/async-await.html">Async/Await</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-category">
+          <div class="category-title">Bonnes Pratiques</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../bp/bubble-up-try-catch.html">Bubble Up Try/Catch</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="app-content">
+      <div class="content-wrapper">
+        <div class="course-header">
+          <h1 class="course-title">Docker Swarm - Orchestration de Conteneurs</h1>
+          <p class="course-description">
+            Découvrez Docker Swarm, l'outil d'orchestration natif de Docker pour déployer et gérer des applications conteneurisées en cluster, 
+            avec haute disponibilité, répartition de charge et mise à l'échelle automatique.
+          </p>
+        </div>
+
+        <div class="course-content">
+          <section class="course-section">
+            <h2 class="section-title">Qu'est-ce que Docker Swarm ?</h2>
+            <p>
+              <strong>Docker Swarm</strong> est un outil d'orchestration de conteneurs intégré à Docker. Il permet de transformer 
+              plusieurs hôtes Docker en un cluster unifié, offrant ainsi la possibilité de :
+            </p>
+            <ul>
+              <li><strong>Déployer des services</strong> répartis sur plusieurs nœuds</li>
+              <li><strong>Gérer la haute disponibilité</strong> avec réplication automatique</li>
+              <li><strong>Équilibrer la charge</strong> entre les conteneurs</li>
+              <li><strong>Mettre à l'échelle</strong> les applications facilement</li>
+              <li><strong>Effectuer des mises à jour</strong> sans interruption de service (rolling updates)</li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Architecture Docker Swarm</h2>
+            <p>Un cluster Swarm est composé de deux types de nœuds :</p>
+            <ul>
+              <li><strong>Manager nodes</strong> : gèrent l'état du cluster, prennent les décisions d'orchestration et maintiennent le consensus (via Raft)</li>
+              <li><strong>Worker nodes</strong> : exécutent les tâches (conteneurs) assignées par les managers</li>
+            </ul>
+            <p>
+              Les managers peuvent aussi exécuter des tâches, mais il est recommandé de les dédier à la gestion en production.
+            </p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Initialiser un Swarm</h2>
+            <p>Pour créer un nouveau cluster Swarm sur une machine, utilisez :</p>
+            <pre><code class="language-bash"># Initialiser Swarm sur le nœud actuel (devient manager)
+docker swarm init
+
+# Avec une adresse IP spécifique
+docker swarm init --advertise-addr 192.168.1.100</code></pre>
+            <p>
+              Cette commande affiche un token permettant à d'autres nœuds de rejoindre le cluster en tant que workers.
+            </p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Ajouter des Nœuds au Cluster</h2>
+            <p>Pour qu'un nœud rejoigne le cluster en tant que worker :</p>
+            <pre><code class="language-bash"># Sur le nouveau nœud
+docker swarm join --token SWMTKN-1-xxx... 192.168.1.100:2377</code></pre>
+            <p>Pour ajouter un nœud manager :</p>
+            <pre><code class="language-bash"># Récupérer le token manager depuis un manager existant
+docker swarm join-token manager
+
+# Sur le nouveau nœud
+docker swarm join --token SWMTKN-1-yyy... 192.168.1.100:2377</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Déployer un Service</h2>
+            <p>Un <strong>service</strong> dans Swarm définit l'image du conteneur et les paramètres d'exécution :</p>
+            <pre><code class="language-bash"># Créer un service simple
+docker service create --name mon-app --replicas 3 --publish 8080:80 nginx:latest
+
+# Paramètres :
+# --name : nom du service
+# --replicas : nombre d'instances (conteneurs)
+# --publish : mapping de ports (host:container)
+# nginx:latest : image Docker à utiliser</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Gérer les Services</h2>
+            <p>Commandes essentielles pour gérer les services :</p>
+            <pre><code class="language-bash"># Lister les services
+docker service ls
+
+# Inspecter un service
+docker service inspect mon-app
+
+# Voir les tâches (conteneurs) d'un service
+docker service ps mon-app
+
+# Mettre à l'échelle un service
+docker service scale mon-app=5
+
+# Mettre à jour un service (nouvelle image)
+docker service update --image nginx:1.21 mon-app
+
+# Supprimer un service
+docker service rm mon-app</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Rolling Updates</h2>
+            <p>
+              Docker Swarm permet des mises à jour progressives sans interruption de service. 
+              Vous pouvez contrôler le rythme et le comportement des mises à jour :
+            </p>
+            <pre><code class="language-bash"># Mise à jour avec contrôle
+docker service update \
+  --image mon-app:v2 \
+  --update-parallelism 2 \
+  --update-delay 10s \
+  mon-app
+
+# Paramètres :
+# --update-parallelism : nombre de tâches à mettre à jour simultanément
+# --update-delay : délai entre chaque lot de mises à jour</code></pre>
+            <p>En cas d'échec, Docker peut automatiquement revenir en arrière (rollback) :</p>
+            <pre><code class="language-bash"># Rollback manuel
+docker service rollback mon-app</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Utiliser Docker Stack</h2>
+            <p>
+              Pour des applications multi-services, utilisez <strong>Docker Stack</strong> avec un fichier docker-compose.yml :
+            </p>
+            <pre><code class="language-yaml">version: '3.8'
+
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    deploy:
+      replicas: 3
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+    networks:
+      - frontend
+
+  api:
+    image: mon-api:latest
+    ports:
+      - "3000:3000"
+    deploy:
+      replicas: 2
+    networks:
+      - frontend
+      - backend
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_PASSWORD: secret
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+volumes:
+  db-data:
+
+networks:
+  frontend:
+  backend:</code></pre>
+            <p>Déployer la stack :</p>
+            <pre><code class="language-bash"># Déployer une stack
+docker stack deploy -c docker-compose.yml mon-stack
+
+# Lister les stacks
+docker stack ls
+
+# Lister les services d'une stack
+docker stack services mon-stack
+
+# Supprimer une stack
+docker stack rm mon-stack</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Réseaux et Load Balancing</h2>
+            <p>
+              Docker Swarm crée automatiquement un réseau overlay entre les nœuds et un load balancer interne (ingress) 
+              qui répartit le trafic entre les réplicas :
+            </p>
+            <pre><code class="language-bash"># Créer un réseau overlay
+docker network create --driver overlay mon-reseau
+
+# Attacher un service à un réseau
+docker service create --name mon-app --network mon-reseau nginx:latest</code></pre>
+            <p>
+              L'<strong>ingress routing mesh</strong> permet d'accéder à un service via n'importe quel nœud du cluster, 
+              même si le conteneur ne s'exécute pas sur ce nœud.
+            </p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Secrets et Configs</h2>
+            <p>Docker Swarm offre des primitives pour gérer les données sensibles et les configurations :</p>
+            <pre><code class="language-bash"># Créer un secret
+echo "mon-mot-de-passe" | docker secret create db_password -
+
+# Créer un secret depuis un fichier
+docker secret create mon_certificat ./cert.pem
+
+# Lister les secrets
+docker secret ls
+
+# Utiliser un secret dans un service
+docker service create \
+  --name mon-app \
+  --secret db_password \
+  mon-image:latest</code></pre>
+            <p>Pour les configurations (non sensibles) :</p>
+            <pre><code class="language-bash"># Créer une config
+docker config create nginx_config nginx.conf
+
+# Utiliser une config dans un service
+docker service create \
+  --name web \
+  --config source=nginx_config,target=/etc/nginx/nginx.conf \
+  nginx:latest</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Gestion du Cluster</h2>
+            <p>Commandes utiles pour gérer le cluster :</p>
+            <pre><code class="language-bash"># Lister les nœuds du cluster
+docker node ls
+
+# Inspecter un nœud
+docker node inspect nom-du-noeud
+
+# Promouvoir un worker en manager
+docker node promote nom-du-noeud
+
+# Rétrograder un manager en worker
+docker node demote nom-du-noeud
+
+# Drainer un nœud (le mettre en maintenance)
+docker node update --availability drain nom-du-noeud
+
+# Réactiver un nœud
+docker node update --availability active nom-du-noeud
+
+# Quitter le swarm (depuis un worker)
+docker swarm leave
+
+# Quitter le swarm (depuis un manager)
+docker swarm leave --force</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Contraintes et Placement</h2>
+            <p>Vous pouvez contrôler sur quels nœuds les conteneurs sont déployés :</p>
+            <pre><code class="language-bash"># Ajouter un label à un nœud
+docker node update --label-add type=database nom-du-noeud
+
+# Créer un service avec contraintes
+docker service create \
+  --name db \
+  --constraint 'node.labels.type == database' \
+  postgres:13
+
+# Contraintes courantes :
+# node.role == manager
+# node.role == worker
+# node.hostname == server-01
+# node.labels.environment == production</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Monitoring et Logs</h2>
+            <p>Surveiller l'état du cluster et des services :</p>
+            <pre><code class="language-bash"># Voir les logs d'un service
+docker service logs mon-app
+
+# Suivre les logs en temps réel
+docker service logs -f mon-app
+
+# Voir les événements du cluster
+docker events --filter type=service
+
+# Statistiques des conteneurs
+docker stats</code></pre>
+            <p>
+              Pour une solution complète de monitoring, vous pouvez déployer des outils comme 
+              <strong>Prometheus</strong>, <strong>Grafana</strong>, ou la stack ELK.
+            </p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Bonnes Pratiques</h2>
+            <ul>
+              <li><strong>Utilisez au moins 3 managers</strong> pour la haute disponibilité (tolérance de panne d'un manager)</li>
+              <li><strong>Séparez les rôles</strong> : managers pour la gestion, workers pour l'exécution</li>
+              <li><strong>Utilisez des secrets</strong> pour les données sensibles plutôt que des variables d'environnement</li>
+              <li><strong>Définissez des limites de ressources</strong> (CPU, mémoire) pour éviter qu'un service monopolise les ressources</li>
+              <li><strong>Testez les rolling updates</strong> en production avec un faible parallélisme</li>
+              <li><strong>Configurez le rollback automatique</strong> en cas d'échec</li>
+              <li><strong>Utilisez des health checks</strong> pour que Swarm puisse détecter et remplacer les conteneurs défaillants</li>
+              <li><strong>Sauvegardez régulièrement</strong> l'état du cluster (notamment pour les managers)</li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Exemple Complet</h2>
+            <p>Voici un exemple de déploiement d'une application web complète avec Docker Swarm :</p>
+            <pre><code class="language-bash"># 1. Initialiser le swarm
+docker swarm init
+
+# 2. Créer les réseaux
+docker network create --driver overlay frontend
+docker network create --driver overlay backend
+
+# 3. Créer un secret pour la base de données
+echo "motdepasse-securise" | docker secret create db_password -
+
+# 4. Déployer la base de données
+docker service create \
+  --name postgres \
+  --network backend \
+  --secret db_password \
+  --env POSTGRES_PASSWORD_FILE=/run/secrets/db_password \
+  --mount type=volume,source=db-data,target=/var/lib/postgresql/data \
+  --constraint 'node.role == manager' \
+  postgres:13
+
+# 5. Déployer l'API
+docker service create \
+  --name api \
+  --network frontend \
+  --network backend \
+  --replicas 3 \
+  --secret db_password \
+  mon-api:latest
+
+# 6. Déployer le frontend
+docker service create \
+  --name web \
+  --network frontend \
+  --publish 80:80 \
+  --replicas 2 \
+  nginx:latest
+
+# 7. Vérifier le déploiement
+docker service ls
+docker service ps web
+docker service ps api
+docker service ps postgres</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Résumé</h2>
+            <p>Docker Swarm est une solution d'orchestration puissante et simple à utiliser pour :</p>
+            <ul>
+              <li><strong>Créer des clusters</strong> Docker multi-nœuds</li>
+              <li><strong>Déployer et gérer des services</strong> avec haute disponibilité</li>
+              <li><strong>Mettre à l'échelle</strong> facilement les applications</li>
+              <li><strong>Effectuer des mises à jour</strong> sans interruption (rolling updates)</li>
+              <li><strong>Gérer les secrets</strong> et configurations de manière sécurisée</li>
+              <li><strong>Équilibrer la charge</strong> automatiquement entre les réplicas</li>
+            </ul>
+            <p>
+              Bien que Kubernetes soit devenu le standard pour l'orchestration à grande échelle, 
+              Docker Swarm reste une excellente option pour des déploiements de taille petite à moyenne, 
+              offrant une courbe d'apprentissage plus douce et une intégration native avec Docker.
+            </p>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>© 2025 Ludoc — Site pédagogique</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+  <script src="../../js/main.js"></script>
+</body>
+</html>
