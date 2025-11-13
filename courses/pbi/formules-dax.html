@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formules DAX Power BI - Guide Complet</title>
+  <link rel="stylesheet" href="../../css/themes.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body class="theme-light">
+  <!-- Header -->
+  <header class="app-header">
+    <a href="../../index.html" class="app-title">
+      <i class="fas fa-home"></i>
+      <span>Ludoc</span>
+    </a>
+    <div class="app-header-actions">
+      <div class="theme-selector">
+        <button class="theme-button">
+          <i class="fas fa-palette"></i>
+          <span>Thème</span>
+        </button>
+        <div class="theme-dropdown">
+          <div class="theme-option" data-theme="light">
+            <div class="theme-color light"></div>
+            <span>Clair</span>
+          </div>
+          <div class="theme-option" data-theme="dark">
+            <div class="theme-color dark"></div>
+            <span>Sombre</span>
+          </div>
+          <div class="theme-option" data-theme="blue">
+            <div class="theme-color blue"></div>
+            <span>Bleu</span>
+          </div>
+          <div class="theme-option" data-theme="green">
+            <div class="theme-color green"></div>
+            <span>Vert</span>
+          </div>
+          <div class="theme-option" data-theme="purple">
+            <div class="theme-color purple"></div>
+            <span>Violet</span>
+          </div>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-content">
+        <div class="sidebar-category">
+          <div class="category-title">Présentation</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../../index.html">Accueil</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-category">
+          <div class="category-title">Angular</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../angular/svg-icon-service.html">Service SVG Icons</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-category">
+          <div class="category-title">NestJS</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../nestjs/endpoint-securise.html">Endpoint Sécurisé</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-category">
+          <div class="category-title">Docker</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../docker/docker-swarm.html">Docker Swarm</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-category">
+          <div class="category-title">SCSS</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../scss/preprocesseur-css.html">Préprocesseur CSS</a>
+            </li>
+            <li class="sidebar-item">
+              <a href="../scss/directives-scss.html">Directives SCSS</a>
+            </li>
+          </ul>
+        </div>
+        
+        <div class="sidebar-category">
+          <div class="category-title">Git</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../git/bashrc-git.html">Configuration .bashrc Git</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-category">
+          <div class="category-title">JavaScript</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../js/async-await.html">Async/Await</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-category">
+          <div class="category-title">Bonnes Pratiques</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../bp/bubble-up-try-catch.html">Bubble Up Try/Catch</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-category">
+          <div class="category-title">SQL</div>
+          <ul class="category-items">
+            <li class="sidebar-item">
+              <a href="../sql/requetes-sql.html">Requêtes SQL</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sidebar-category">
+          <div class="category-title">Power BI</div>
+          <ul class="category-items">
+            <li class="sidebar-item active">
+              <a href="formules-dax.html">Formules DAX</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="app-content">
+      <div class="content-wrapper">
+        <div class="course-header">
+          <h1 class="course-title">Formules DAX Power BI</h1>
+          <p class="course-description">
+            Guide complet des formules DAX (Data Analysis Expressions) pour Power BI : fonctions d'agrégation, calculs avancés, contexte de filtre et relations entre tables
+          </p>
+          <div class="last-update">
+            <i class="far fa-clock"></i>
+            <span>Dernière mise à jour : <strong>13.11.2025</strong></span>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Introduction à Power BI et DAX</h2>
+          <div class="course-content">
+            <p>DAX (Data Analysis Expressions) est un langage de formules utilisé dans Power BI, Power Pivot et Analysis Services pour créer des calculs personnalisés.</p>
+
+            <h3>Workflow Power BI</h3>
+            <ol>
+              <li><strong>Importer les données</strong> : Connectez-vous à vos sources de données (Excel, SQL, API, etc.)</li>
+              <li><strong>Transformer les données</strong> : Nettoyez et préparez vos données dans Power Query</li>
+              <li><strong>Créer des relations</strong> : Établissez des liens entre les tables en glissant une colonne sur une autre dans la "Vue de modèle"</li>
+              <li><strong>Créer des mesures DAX</strong> : Ajoutez des calculs personnalisés avec DAX</li>
+              <li><strong>Visualiser</strong> : Créez des graphiques et tableaux de bord interactifs</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Fonctions d'agrégation de base</h2>
+          <div class="course-content">
+            <h3>SUM - Somme des valeurs</h3>
+            <p>Additionne directement les valeurs d'une colonne.</p>
+            <pre><code class="language-dax">Ventes = SUM(Sales[Sales])</code></pre>
+
+            <h3>AVERAGE - Moyenne</h3>
+            <pre><code class="language-dax">Prix Moyen = AVERAGE(Produit[Prix])</code></pre>
+
+            <h3>COUNT et DISTINCTCOUNT</h3>
+            <pre><code class="language-dax">-- Compte le nombre total de lignes
+Nombre Total = COUNT(Commandes[ID])
+
+-- Compte le nombre de valeurs uniques
+Nombre de commandes = DISTINCTCOUNT(Commandes[Numéro Commande])</code></pre>
+
+            <h3>MIN et MAX</h3>
+            <pre><code class="language-dax">Prix Minimum = MIN(Produit[Prix])
+Prix Maximum = MAX(Produit[Prix])</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">CALCULATE - Modifier le contexte de filtre</h2>
+          <div class="course-content">
+            <p>CALCULATE est l'une des fonctions les plus puissantes de DAX. Elle permet de modifier le contexte de filtre d'un calcul.</p>
+
+            <h3>Syntaxe de base</h3>
+            <pre><code class="language-dax">CALCULATE(
+    expression,
+    filtre1,
+    filtre2,
+    ...
+)</code></pre>
+
+            <h3>Exemples pratiques</h3>
+            <pre><code class="language-dax">-- Ventes pour un pays spécifique
+Ventes France = CALCULATE(
+    SUM(Sales[Sales]), 
+    Sales[Country] = "France"
+)
+
+-- Ventes pour plusieurs pays
+Ventes FR + GE = CALCULATE(
+    [Ventes], 
+    Sales[Country] = "France" || Sales[Country] = "Germany"
+)
+
+-- Ventes excluant un pays
+Ventes hors Mexico = CALCULATE(
+    [Ventes], 
+    NOT Sales[Country] = "Mexico"
+)
+
+-- Ventes supérieures à un seuil
+Ventes > 50k = CALCULATE(
+    [Ventes], 
+    Sales[Sales] > 50000
+)
+
+-- Ventes pour une année spécifique
+Ventes en 2021 = CALCULATE(
+    [Ventes], 
+    Sales[Year] = 2021
+)</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">ALL - Ignorer les filtres</h2>
+          <div class="course-content">
+            <p>ALL supprime tous les filtres d'une table ou d'une colonne spécifique.</p>
+
+            <h3>Calcul du total général</h3>
+            <pre><code class="language-dax">-- Ventes tous pays (ignore le filtre du pays)
+Ventes tous pays = CALCULATE(
+    [Ventes], 
+    ALL(Sales[Country])
+)</code></pre>
+
+            <h3>Calcul de pourcentage</h3>
+            <pre><code class="language-dax">-- Pourcentage des ventes par rapport au total
+% Ventes = DIVIDE(
+    [Ventes], 
+    [Ventes tous pays],
+    0
+)
+
+-- Pourcentage pour une année spécifique
+% Ventes en 2021 = CALCULATE(
+    [% Ventes], 
+    Sales[Year] = 2021
+)</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">DIVIDE - Division sécurisée</h2>
+          <div class="course-content">
+            <p>DIVIDE évite les erreurs de division par zéro en retournant une valeur alternative.</p>
+
+            <h3>Syntaxe</h3>
+            <pre><code class="language-dax">DIVIDE(
+    numérateur,
+    dénominateur,
+    valeur_alternative
+)</code></pre>
+
+            <h3>Exemples</h3>
+            <pre><code class="language-dax">-- Panier moyen
+Panier moyen = DIVIDE(
+    [Chiffre d'affaires], 
+    [Nombre de commandes],
+    0
+)
+
+-- Marge en pourcentage
+Marge % = DIVIDE(
+    [Profit], 
+    [Chiffre d'affaires],
+    0
+) * 100</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">SUMX - Itération ligne par ligne</h2>
+          <div class="course-content">
+            <p><strong>Différence entre SUM et SUMX :</strong></p>
+            <ul>
+              <li><strong>SUM</strong> : Additionne directement les valeurs d'une colonne existante</li>
+              <li><strong>SUMX</strong> : Parcourt une table ligne par ligne, effectue un calcul sur chaque ligne, puis additionne les résultats</li>
+            </ul>
+
+            <h3>Calculs complexes avec SUMX</h3>
+            <pre><code class="language-dax">-- Chiffre d'affaires calculé ligne par ligne
+Chiffre d'affaires = SUMX(
+    Commandes,
+    [Chiffre d'affaires (hors rabais)] - [Rabais accordés]
+)
+
+-- Coût total avec relation vers une autre table
+Coût total = SUMX(
+    Commandes,
+    Commandes[Quantité] * RELATED(Produit[Prix Unitaire])
+)
+
+-- Calcul avec plusieurs colonnes
+CA Total = SUMX(
+    Ventes,
+    Ventes[Quantité] * Ventes[Prix Unitaire] * (1 - Ventes[Remise])
+)</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">RELATED - Relations entre tables</h2>
+          <div class="course-content">
+            <p>RELATED récupère une valeur depuis une table liée (côté "un" de la relation).</p>
+
+            <h3>Utilisation de RELATED</h3>
+            <pre><code class="language-dax">-- Récupère la catégorie du produit dans la table Commandes
+Catégorie = RELATED(Produit[Catégorie])
+
+-- Calcul avec données de table liée
+Prix Total = SUMX(
+    Commandes,
+    Commandes[Quantité] * RELATED(Produit[Prix])
+)</code></pre>
+
+            <div class="info-box">
+              <strong>Note :</strong> RELATED fonctionne du côté "plusieurs" vers le côté "un" de la relation. Pour aller dans l'autre sens, utilisez RELATEDTABLE.
+            </div>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">RANKX - Classement</h2>
+          <div class="course-content">
+            <p>RANKX classe les éléments selon une mesure.</p>
+
+            <h3>Classement des catégories par chiffre d'affaires</h3>
+            <pre><code class="language-dax">Rang (CA) = RANKX(
+    ALLSELECTED(Produit[Catégorie]), 
+    [Chiffre d'affaires]
+)
+
+-- Classement dense (sans sauts)
+Rang Dense = RANKX(
+    ALL(Produit[Nom]),
+    [Ventes],
+    ,
+    DESC,
+    DENSE
+)</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Fonctions de temps (Time Intelligence)</h2>
+          <div class="course-content">
+            <p>Les fonctions de temps permettent d'effectuer des calculs sur différentes périodes.</p>
+
+            <h3>Calculs année précédente</h3>
+            <pre><code class="language-dax">-- Ventes année précédente
+Ventes N-1 = CALCULATE(
+    [Ventes],
+    SAMEPERIODLASTYEAR(Calendrier[Date])
+)
+
+-- Variation vs année précédente
+Variation YoY = [Ventes] - [Ventes N-1]
+Variation YoY % = DIVIDE([Variation YoY], [Ventes N-1], 0)</code></pre>
+
+            <h3>Cumul année en cours</h3>
+            <pre><code class="language-dax">-- Total depuis le début de l'année
+YTD = TOTALYTD([Ventes], Calendrier[Date])</code></pre>
+
+            <h3>Moyenne mobile</h3>
+            <pre><code class="language-dax">-- Moyenne des 3 derniers mois
+Moyenne 3M = CALCULATE(
+    AVERAGE(Ventes[Montant]),
+    DATESINPERIOD(
+        Calendrier[Date],
+        LASTDATE(Calendrier[Date]),
+        -3,
+        MONTH
+    )
+)</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Exemples de mesures complètes</h2>
+          <div class="course-content">
+            <h3>Analyse des ventes</h3>
+            <pre><code class="language-dax">-- Chiffre d'affaires avec remise
+CA = SUMX(
+    Commandes,
+    [Chiffre d'affaires (hors rabais)] - [Rabais accordés]
+)
+
+-- Coût total des produits vendus
+Coût total = SUMX(
+    Commandes,
+    Commandes[Quantité] * RELATED(Produit[Prix Unitaire])
+)
+
+-- Profit
+Profit = [Chiffre d'affaires] - [Coût total]
+
+-- Marge bénéficiaire
+Marge = DIVIDE([Profit], [Chiffre d'affaires], 0)
+
+-- Nombre de commandes uniques
+Nombre de commandes = DISTINCTCOUNT(Commandes[Numéro Commande])
+
+-- Panier moyen
+Panier moyen = DIVIDE(
+    [Chiffre d'affaires], 
+    [Nombre de commandes],
+    0
+)</code></pre>
+
+            <h3>Analyse par catégorie</h3>
+            <pre><code class="language-dax">-- CA pour une catégorie spécifique
+CA (Technology) = CALCULATE(
+    [Chiffre d'affaires], 
+    Produit[Catégorie] = "Technology"
+)
+
+-- Part de marché de la catégorie
+Part Technology % = DIVIDE(
+    [CA (Technology)],
+    CALCULATE([Chiffre d'affaires], ALL(Produit[Catégorie])),
+    0
+) * 100</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Opérateurs DAX</h2>
+          <div class="course-content">
+            <table class="command-table">
+              <thead>
+                <tr>
+                  <th>Opérateur</th>
+                  <th>Description</th>
+                  <th>Exemple</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>=</code></td>
+                  <td>Égal à</td>
+                  <td><code>Sales[Country] = "France"</code></td>
+                </tr>
+                <tr>
+                  <td><code>&lt;&gt;</code></td>
+                  <td>Différent de</td>
+                  <td><code>Sales[Status] &lt;&gt; "Cancelled"</code></td>
+                </tr>
+                <tr>
+                  <td><code>&gt;</code>, <code>&lt;</code></td>
+                  <td>Supérieur, Inférieur</td>
+                  <td><code>Sales[Amount] > 1000</code></td>
+                </tr>
+                <tr>
+                  <td><code>&gt;=</code>, <code>&lt;=</code></td>
+                  <td>Supérieur ou égal, Inférieur ou égal</td>
+                  <td><code>Sales[Quantity] >= 10</code></td>
+                </tr>
+                <tr>
+                  <td><code>||</code></td>
+                  <td>OU logique</td>
+                  <td><code>Country = "FR" || Country = "DE"</code></td>
+                </tr>
+                <tr>
+                  <td><code>&&</code></td>
+                  <td>ET logique</td>
+                  <td><code>Price > 100 && Stock > 0</code></td>
+                </tr>
+                <tr>
+                  <td><code>NOT</code></td>
+                  <td>Négation</td>
+                  <td><code>NOT Sales[Country] = "Mexico"</code></td>
+                </tr>
+                <tr>
+                  <td><code>&</code></td>
+                  <td>Concaténation de texte</td>
+                  <td><code>[Nom] & " " & [Prénom]</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Résumé des fonctions DAX essentielles</h2>
+          <div class="course-content">
+            <table class="command-table">
+              <thead>
+                <tr>
+                  <th>Fonction</th>
+                  <th>Description</th>
+                  <th>Usage</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>SUM</code></td>
+                  <td>Somme d'une colonne</td>
+                  <td>Agrégation simple</td>
+                </tr>
+                <tr>
+                  <td><code>SUMX</code></td>
+                  <td>Somme avec calcul ligne par ligne</td>
+                  <td>Calculs complexes</td>
+                </tr>
+                <tr>
+                  <td><code>CALCULATE</code></td>
+                  <td>Modifie le contexte de filtre</td>
+                  <td>Filtres dynamiques</td>
+                </tr>
+                <tr>
+                  <td><code>DIVIDE</code></td>
+                  <td>Division sécurisée</td>
+                  <td>Évite division par zéro</td>
+                </tr>
+                <tr>
+                  <td><code>RELATED</code></td>
+                  <td>Récupère valeur table liée</td>
+                  <td>Relations entre tables</td>
+                </tr>
+                <tr>
+                  <td><code>ALL</code></td>
+                  <td>Supprime tous les filtres</td>
+                  <td>Totaux généraux</td>
+                </tr>
+                <tr>
+                  <td><code>DISTINCTCOUNT</code></td>
+                  <td>Compte valeurs uniques</td>
+                  <td>Compter éléments distincts</td>
+                </tr>
+                <tr>
+                  <td><code>RANKX</code></td>
+                  <td>Classement des valeurs</td>
+                  <td>Top N, classements</td>
+                </tr>
+                <tr>
+                  <td><code>SAMEPERIODLASTYEAR</code></td>
+                  <td>Période équivalente année N-1</td>
+                  <td>Comparaisons temporelles</td>
+                </tr>
+                <tr>
+                  <td><code>TOTALYTD</code></td>
+                  <td>Cumul année en cours</td>
+                  <td>Totaux cumulés</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Bonnes pratiques DAX</h2>
+          <div class="course-content">
+            <ul>
+              <li><strong>Utiliser des mesures plutôt que des colonnes calculées</strong> quand c'est possible (meilleures performances)</li>
+              <li><strong>Nommer clairement vos mesures</strong> : utilisez des noms descriptifs et évitez les ambiguïtés</li>
+              <li><strong>Créer des mesures de base réutilisables</strong> : construisez des mesures complexes à partir de mesures simples</li>
+              <li><strong>Utiliser DIVIDE au lieu de /</strong> pour éviter les erreurs de division par zéro</li>
+              <li><strong>Organiser vos mesures dans des tables dédiées</strong> pour faciliter la navigation</li>
+              <li><strong>Documenter les formules complexes</strong> avec des commentaires</li>
+              <li><strong>Optimiser les relations</strong> : assurez-vous que les relations entre tables sont correctement définies</li>
+              <li><strong>Utiliser des variables VAR</strong> pour rendre le code plus lisible et performant</li>
+            </ul>
+
+            <h3>Exemple avec variables</h3>
+            <pre><code class="language-dax">Marge % = 
+VAR VentesTotales = [Chiffre d'affaires]
+VAR CoûtTotal = [Coût total]
+VAR ProfitNet = VentesTotales - CoûtTotal
+RETURN
+    DIVIDE(ProfitNet, VentesTotales, 0) * 100</code></pre>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>© 2025 Ludoc — Site pédagogique | Créé par <a href="https://animyfolio.netlify.app/" target="_blank" rel="noopener noreferrer">Adrien Niceto</a></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="../../js/main.js"></script>
+</body>
+</html>
