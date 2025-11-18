@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DataFrames avec Pandas - Manipulation de données en Python</title>
+  <link rel="stylesheet" href="../../css/themes.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body class="theme-light">
+  <!-- Header -->
+  <header class="app-header">
+    <a href="../../index.html" class="app-title">
+      <i class="fas fa-home"></i>
+      <span>Ludoc</span>
+    </a>
+    <div class="app-header-actions">
+      <div class="theme-selector">
+        <button class="theme-button">
+          <i class="fas fa-palette"></i>
+          <span>Thème</span>
+        </button>
+        <div class="theme-dropdown">
+          <div class="theme-option" data-theme="light">
+            <div class="theme-color light"></div>
+            <span>Clair</span>
+          </div>
+          <div class="theme-option" data-theme="dark">
+            <div class="theme-color dark"></div>
+            <span>Sombre</span>
+          </div>
+          <div class="theme-option" data-theme="blue">
+            <div class="theme-color blue"></div>
+            <span>Bleu</span>
+          </div>
+          <div class="theme-option" data-theme="green">
+            <div class="theme-color green"></div>
+            <span>Vert</span>
+          </div>
+          <div class="theme-option" data-theme="purple">
+            <div class="theme-color purple"></div>
+            <span>Violet</span>
+          </div>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-content">
+        <!-- Navigation -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-home"></i>
+            <span>Navigation</span>
+          </div>
+          <div class="sidebar-category">
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../../index.html"><span>Accueil</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Frontend Development -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-code"></i>
+            <span>Frontend Development</span>
+          </div>
+          
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-angular"></i>
+              <span>Angular</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../angular/svg-icon-service.html">Service SVG Icons</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-sass"></i>
+              <span>SCSS</span>
+              <span class="category-count">2</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../scss/preprocesseur-css.html">Préprocesseur CSS</a>
+              </li>
+              <li class="sidebar-item">
+                <a href="../scss/directives-scss.html">Directives SCSS</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Backend Development -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-server"></i>
+            <span>Backend Development</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-node"></i>
+              <span>NestJS</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../nestjs/endpoint-securise.html">Endpoint Sécurisé</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-python"></i>
+              <span>Python</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item active">
+                <a href="dataframes-pandas.html">DataFrames Pandas</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-js-square"></i>
+              <span>JavaScript</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../js/async-await.html">Async/Await</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Data & Analytics -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-chart-bar"></i>
+            <span>Data & Analytics</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-database"></i>
+              <span>SQL</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../sql/requetes-sql.html">Requêtes SQL</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-chart-line"></i>
+              <span>Power BI</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../pbi/formules-dax.html">Formules DAX</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- DevOps & Tools -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-tools"></i>
+            <span>DevOps & Tools</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-docker"></i>
+              <span>Docker</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../docker/docker-swarm.html">Docker Swarm</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-git-alt"></i>
+              <span>Git</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../git/bashrc-git.html">Configuration .bashrc Git</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Best Practices -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-star"></i>
+            <span>Best Practices</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-check-circle"></i>
+              <span>Bonnes Pratiques</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../bp/bubble-up-try-catch.html">Bubble Up Try/Catch</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="app-content">
+      <div class="content-wrapper">
+        <div class="course-header">
+          <h1 class="course-title">DataFrames avec Pandas</h1>
+          <p class="course-description">
+            Guide complet sur la manipulation de données avec Pandas : création de DataFrames, lecture de fichiers CSV, 
+            filtrage, agrégation et requêtes SQL sur les DataFrames
+          </p>
+          <div class="last-update">
+            <i class="far fa-clock"></i>
+            <span>Dernière mise à jour : <strong>18.11.2025</strong></span>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Introduction à Pandas</h2>
+          <div class="course-content">
+            <p>Pandas est une bibliothèque Python puissante pour la manipulation et l'analyse de données. Le DataFrame est sa structure de données principale, similaire à une table SQL ou un tableur Excel.</p>
+
+            <h3>Installation de Pandas</h3>
+            <pre><code class="language-bash">pip install pandas</code></pre>
+
+            <h3>Import de base</h3>
+            <pre><code class="language-python">import pandas as pd
+import numpy as np</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Création de DataFrames</h2>
+          <div class="course-content">
+            <h3>À partir d'un dictionnaire</h3>
+            <pre><code class="language-python"># Création d'un DataFrame simple
+data = {
+    'Nom': ['Alice', 'Bob', 'Charlie', 'Diana', 'Ethan'],
+    'Age': [25, 30, 35, 28, 42],
+    'Ville': ['Paris', 'Lyon', 'Paris', 'Marseille', 'Lyon'],
+    'Salaire': [45000, 52000, 61000, 48000, 75000]
+}
+
+df = pd.DataFrame(data)
+print(df)</code></pre>
+
+            <h3>À partir d'une liste de dictionnaires</h3>
+            <pre><code class="language-python">employes = [
+    {'Nom': 'Alice', 'Age': 25, 'Departement': 'IT'},
+    {'Nom': 'Bob', 'Age': 30, 'Departement': 'RH'},
+    {'Nom': 'Charlie', 'Age': 35, 'Departement': 'IT'}
+]
+
+df = pd.DataFrame(employes)
+print(df)</code></pre>
+
+            <h3>À partir d'un tableau NumPy</h3>
+            <pre><code class="language-python">import numpy as np
+
+# Création avec NumPy
+data = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+df = pd.DataFrame(data, columns=['A', 'B', 'C'])
+print(df)</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Lecture de fichiers CSV</h2>
+          <div class="course-content">
+            <h3>Lecture simple d'un CSV</h3>
+            <pre><code class="language-python"># Lecture d'un fichier CSV
+df = pd.read_csv('donnees.csv')
+
+# Afficher les premières lignes
+print(df.head())
+
+# Afficher les 10 premières lignes
+print(df.head(10))</code></pre>
+
+            <h3>Lecture avec options avancées</h3>
+            <pre><code class="language-python"># Lecture avec séparateur personnalisé
+df = pd.read_csv('donnees.csv', sep=';')
+
+# Lecture avec spécification de l'encodage
+df = pd.read_csv('donnees.csv', encoding='utf-8')
+
+# Lecture avec colonnes spécifiques
+df = pd.read_csv('donnees.csv', usecols=['Nom', 'Age', 'Salaire'])
+
+# Lecture avec index personnalisé
+df = pd.read_csv('donnees.csv', index_col='ID')
+
+# Lecture en ignorant les premières lignes
+df = pd.read_csv('donnees.csv', skiprows=2)
+
+# Lecture d'un nombre limité de lignes
+df = pd.read_csv('donnees.csv', nrows=1000)</code></pre>
+
+            <h3>Gestion des valeurs manquantes</h3>
+            <pre><code class="language-python"># Spécifier les valeurs à considérer comme NaN
+df = pd.read_csv('donnees.csv', na_values=['NA', 'N/A', ''])
+
+# Lire sans en-têtes
+df = pd.read_csv('donnees.csv', header=None)
+
+# Spécifier les noms des colonnes
+df = pd.read_csv('donnees.csv', names=['Col1', 'Col2', 'Col3'])</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Exploration des DataFrames</h2>
+          <div class="course-content">
+            <h3>Informations générales</h3>
+            <pre><code class="language-python"># Afficher les premières lignes
+df.head()
+
+# Afficher les dernières lignes
+df.tail()
+
+# Informations sur le DataFrame
+df.info()
+
+# Statistiques descriptives
+df.describe()
+
+# Forme du DataFrame (lignes, colonnes)
+print(df.shape)
+
+# Liste des colonnes
+print(df.columns)
+
+# Types de données
+print(df.dtypes)
+
+# Nombre de valeurs non nulles
+print(df.count())
+
+# Valeurs uniques dans une colonne
+print(df['Ville'].unique())
+
+# Nombre de valeurs uniques
+print(df['Ville'].nunique())</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Sélection et Filtrage</h2>
+          <div class="course-content">
+            <h3>Sélection de colonnes</h3>
+            <pre><code class="language-python"># Sélectionner une colonne (retourne une Series)
+noms = df['Nom']
+
+# Sélectionner plusieurs colonnes (retourne un DataFrame)
+subset = df[['Nom', 'Age', 'Salaire']]
+
+# Sélectionner avec loc (par label)
+df.loc[:, 'Nom']
+
+# Sélectionner avec iloc (par position)
+df.iloc[:, 0]</code></pre>
+
+            <h3>Filtrage de lignes</h3>
+            <pre><code class="language-python"># Filtrer par condition simple
+df_paris = df[df['Ville'] == 'Paris']
+
+# Filtrer par condition numérique
+df_seniors = df[df['Age'] > 30]
+
+# Filtrage avec plusieurs conditions (ET)
+df_filtered = df[(df['Age'] > 25) & (df['Salaire'] > 50000)]
+
+# Filtrage avec plusieurs conditions (OU)
+df_filtered = df[(df['Ville'] == 'Paris') | (df['Ville'] == 'Lyon')]
+
+# Filtrage avec isin (dans une liste)
+villes_cibles = ['Paris', 'Lyon', 'Marseille']
+df_filtered = df[df['Ville'].isin(villes_cibles)]
+
+# Filtrage avec NOT
+df_not_paris = df[~(df['Ville'] == 'Paris')]
+
+# Filtrage sur les valeurs nulles
+df_sans_null = df[df['Salaire'].notna()]</code></pre>
+
+            <h3>Sélection par position</h3>
+            <pre><code class="language-python"># Première ligne
+df.iloc[0]
+
+# Premières 5 lignes
+df.iloc[:5]
+
+# Lignes 10 à 20
+df.iloc[10:20]
+
+# Lignes et colonnes spécifiques
+df.iloc[0:5, 0:3]</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Requêtes SQL sur DataFrames</h2>
+          <div class="course-content">
+            <p>Pandas permet d'exécuter des requêtes SQL directement sur les DataFrames grâce à la bibliothèque <code>pandasql</code>.</p>
+
+            <h3>Installation de pandasql</h3>
+            <pre><code class="language-bash">pip install pandasql</code></pre>
+
+            <h3>Utilisation de pandasql</h3>
+            <pre><code class="language-python">from pandasql import sqldf
+
+# Fonction helper pour simplifier les requêtes
+pysqldf = lambda q: sqldf(q, globals())
+
+# Exemple de données
+data = {
+    'Nom': ['Alice', 'Bob', 'Charlie', 'Diana', 'Ethan', 'Fiona'],
+    'Age': [25, 30, 35, 28, 42, 29],
+    'Ville': ['Paris', 'Lyon', 'Paris', 'Marseille', 'Lyon', 'Paris'],
+    'Salaire': [45000, 52000, 61000, 48000, 75000, 51000],
+    'Departement': ['IT', 'RH', 'IT', 'Marketing', 'Finance', 'IT']
+}
+
+df = pd.DataFrame(data)</code></pre>
+
+            <h3>SELECT simple</h3>
+            <pre><code class="language-python"># Sélectionner toutes les colonnes
+query = "SELECT * FROM df"
+result = pysqldf(query)
+print(result)
+
+# Sélectionner des colonnes spécifiques
+query = "SELECT Nom, Age, Salaire FROM df"
+result = pysqldf(query)
+print(result)</code></pre>
+
+            <h3>WHERE - Filtrage</h3>
+            <pre><code class="language-python"># Filtrer par ville
+query = """
+SELECT Nom, Age, Ville 
+FROM df 
+WHERE Ville = 'Paris'
+"""
+result = pysqldf(query)
+print(result)
+
+# Filtrer par âge
+query = """
+SELECT * FROM df 
+WHERE Age > 30
+"""
+result = pysqldf(query)
+print(result)
+
+# Filtrage multiple
+query = """
+SELECT Nom, Salaire, Ville 
+FROM df 
+WHERE Age > 25 AND Salaire > 50000
+"""
+result = pysqldf(query)
+print(result)</code></pre>
+
+            <h3>ORDER BY - Tri</h3>
+            <pre><code class="language-python"># Tri croissant par salaire
+query = """
+SELECT Nom, Salaire 
+FROM df 
+ORDER BY Salaire ASC
+"""
+result = pysqldf(query)
+print(result)
+
+# Tri décroissant par âge
+query = """
+SELECT * FROM df 
+ORDER BY Age DESC
+"""
+result = pysqldf(query)
+print(result)
+
+# Tri multiple
+query = """
+SELECT * FROM df 
+ORDER BY Ville ASC, Salaire DESC
+"""
+result = pysqldf(query)
+print(result)</code></pre>
+
+            <h3>GROUP BY - Agrégation</h3>
+            <pre><code class="language-python"># Compter le nombre d'employés par ville
+query = """
+SELECT Ville, COUNT(*) as Nombre
+FROM df 
+GROUP BY Ville
+"""
+result = pysqldf(query)
+print(result)
+
+# Salaire moyen par ville
+query = """
+SELECT Ville, AVG(Salaire) as SalaireMoyen
+FROM df 
+GROUP BY Ville
+"""
+result = pysqldf(query)
+print(result)
+
+# Statistiques par département
+query = """
+SELECT 
+    Departement,
+    COUNT(*) as Effectif,
+    AVG(Age) as AgeMoyen,
+    AVG(Salaire) as SalaireMoyen,
+    MAX(Salaire) as SalaireMax,
+    MIN(Salaire) as SalaireMin
+FROM df 
+GROUP BY Departement
+"""
+result = pysqldf(query)
+print(result)</code></pre>
+
+            <h3>HAVING - Filtrage après agrégation</h3>
+            <pre><code class="language-python"># Villes avec plus de 1 employé
+query = """
+SELECT Ville, COUNT(*) as Nombre
+FROM df 
+GROUP BY Ville
+HAVING COUNT(*) > 1
+"""
+result = pysqldf(query)
+print(result)
+
+# Départements avec salaire moyen > 50000
+query = """
+SELECT Departement, AVG(Salaire) as SalaireMoyen
+FROM df 
+GROUP BY Departement
+HAVING AVG(Salaire) > 50000
+"""
+result = pysqldf(query)
+print(result)</code></pre>
+
+            <h3>Jointures SQL entre DataFrames</h3>
+            <pre><code class="language-python"># Création de deux DataFrames
+employes = pd.DataFrame({
+    'ID': [1, 2, 3, 4],
+    'Nom': ['Alice', 'Bob', 'Charlie', 'Diana'],
+    'DeptID': [101, 102, 101, 103]
+})
+
+departements = pd.DataFrame({
+    'DeptID': [101, 102, 103],
+    'NomDept': ['IT', 'RH', 'Marketing'],
+    'Budget': [500000, 200000, 300000]
+})
+
+# INNER JOIN
+query = """
+SELECT e.Nom, e.ID, d.NomDept, d.Budget
+FROM employes e
+INNER JOIN departements d ON e.DeptID = d.DeptID
+"""
+result = pysqldf(query)
+print(result)
+
+# LEFT JOIN
+query = """
+SELECT e.Nom, d.NomDept
+FROM employes e
+LEFT JOIN departements d ON e.DeptID = d.DeptID
+"""
+result = pysqldf(query)
+print(result)</code></pre>
+
+            <h3>Sous-requêtes</h3>
+            <pre><code class="language-python"># Employés avec salaire supérieur à la moyenne
+query = """
+SELECT Nom, Salaire
+FROM df
+WHERE Salaire > (SELECT AVG(Salaire) FROM df)
+ORDER BY Salaire DESC
+"""
+result = pysqldf(query)
+print(result)
+
+# Top employés par département
+query = """
+SELECT Nom, Departement, Salaire
+FROM df
+WHERE Salaire IN (
+    SELECT MAX(Salaire) 
+    FROM df 
+    GROUP BY Departement
+)
+"""
+result = pysqldf(query)
+print(result)</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Opérations d'agrégation avec Pandas</h2>
+          <div class="course-content">
+            <p>Pandas offre aussi des méthodes natives pour effectuer des agrégations sans SQL.</p>
+
+            <h3>GROUP BY avec Pandas</h3>
+            <pre><code class="language-python"># Grouper par ville et compter
+df.groupby('Ville').size()
+
+# Salaire moyen par ville
+df.groupby('Ville')['Salaire'].mean()
+
+# Plusieurs agrégations
+df.groupby('Ville').agg({
+    'Salaire': ['mean', 'max', 'min'],
+    'Age': 'mean'
+})
+
+# Agrégation avec renommage
+df.groupby('Departement').agg(
+    Effectif=('Nom', 'count'),
+    SalaireMoyen=('Salaire', 'mean'),
+    AgeMax=('Age', 'max')
+)</code></pre>
+
+            <h3>Opérations statistiques</h3>
+            <pre><code class="language-python"># Moyenne
+df['Salaire'].mean()
+
+# Médiane
+df['Salaire'].median()
+
+# Écart-type
+df['Salaire'].std()
+
+# Somme
+df['Salaire'].sum()
+
+# Min et Max
+df['Salaire'].min()
+df['Salaire'].max()
+
+# Quantiles
+df['Salaire'].quantile([0.25, 0.5, 0.75])
+
+# Corrélation
+df[['Age', 'Salaire']].corr()</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Modification des DataFrames</h2>
+          <div class="course-content">
+            <h3>Ajouter des colonnes</h3>
+            <pre><code class="language-python"># Ajouter une colonne calculée
+df['SalaireAnnuel'] = df['Salaire'] * 12
+
+# Ajouter une colonne conditionnelle
+df['Categorie'] = df['Age'].apply(
+    lambda x: 'Senior' if x > 35 else 'Junior'
+)
+
+# Avec np.where
+df['Bonus'] = np.where(df['Salaire'] > 55000, 5000, 2000)</code></pre>
+
+            <h3>Modifier des valeurs</h3>
+            <pre><code class="language-python"># Modifier une valeur spécifique
+df.loc[0, 'Salaire'] = 50000
+
+# Modifier plusieurs valeurs
+df.loc[df['Ville'] == 'Paris', 'Salaire'] *= 1.1
+
+# Remplacer des valeurs
+df['Ville'].replace('Paris', 'Paris Ile-de-France', inplace=True)</code></pre>
+
+            <h3>Supprimer des éléments</h3>
+            <pre><code class="language-python"># Supprimer une colonne
+df.drop('SalaireAnnuel', axis=1, inplace=True)
+
+# Supprimer plusieurs colonnes
+df.drop(['Col1', 'Col2'], axis=1, inplace=True)
+
+# Supprimer des lignes par index
+df.drop([0, 1, 2], axis=0, inplace=True)
+
+# Supprimer les doublons
+df.drop_duplicates(inplace=True)
+
+# Supprimer les lignes avec valeurs manquantes
+df.dropna(inplace=True)</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Export de DataFrames</h2>
+          <div class="course-content">
+            <h3>Export vers CSV</h3>
+            <pre><code class="language-python"># Export simple
+df.to_csv('output.csv', index=False)
+
+# Export avec séparateur personnalisé
+df.to_csv('output.csv', sep=';', index=False)
+
+# Export avec encodage
+df.to_csv('output.csv', encoding='utf-8', index=False)</code></pre>
+
+            <h3>Export vers Excel</h3>
+            <pre><code class="language-python"># Export vers Excel (nécessite openpyxl)
+df.to_excel('output.xlsx', sheet_name='Données', index=False)
+
+# Export multiple sheets
+with pd.ExcelWriter('output.xlsx') as writer:
+    df1.to_excel(writer, sheet_name='Sheet1')
+    df2.to_excel(writer, sheet_name='Sheet2')</code></pre>
+
+            <h3>Export vers JSON</h3>
+            <pre><code class="language-python"># Export JSON
+df.to_json('output.json', orient='records', indent=2)</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Résumé des principales fonctions</h2>
+          <div class="course-content">
+            <table class="command-table">
+              <thead>
+                <tr>
+                  <th>Fonction</th>
+                  <th>Description</th>
+                  <th>Exemple</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>pd.read_csv()</code></td>
+                  <td>Lire un fichier CSV</td>
+                  <td><code>df = pd.read_csv('data.csv')</code></td>
+                </tr>
+                <tr>
+                  <td><code>df.head(n)</code></td>
+                  <td>Afficher les n premières lignes</td>
+                  <td><code>df.head(5)</code></td>
+                </tr>
+                <tr>
+                  <td><code>df.info()</code></td>
+                  <td>Informations sur le DataFrame</td>
+                  <td><code>df.info()</code></td>
+                </tr>
+                <tr>
+                  <td><code>df.describe()</code></td>
+                  <td>Statistiques descriptives</td>
+                  <td><code>df.describe()</code></td>
+                </tr>
+                <tr>
+                  <td><code>df[condition]</code></td>
+                  <td>Filtrer les lignes</td>
+                  <td><code>df[df['Age'] > 30]</code></td>
+                </tr>
+                <tr>
+                  <td><code>df.groupby()</code></td>
+                  <td>Grouper les données</td>
+                  <td><code>df.groupby('Ville').mean()</code></td>
+                </tr>
+                <tr>
+                  <td><code>df.sort_values()</code></td>
+                  <td>Trier les données</td>
+                  <td><code>df.sort_values('Salaire')</code></td>
+                </tr>
+                <tr>
+                  <td><code>df.merge()</code></td>
+                  <td>Joindre deux DataFrames</td>
+                  <td><code>df1.merge(df2, on='ID')</code></td>
+                </tr>
+                <tr>
+                  <td><code>df.to_csv()</code></td>
+                  <td>Exporter vers CSV</td>
+                  <td><code>df.to_csv('out.csv')</code></td>
+                </tr>
+                <tr>
+                  <td><code>sqldf(query)</code></td>
+                  <td>Requête SQL sur DataFrame</td>
+                  <td><code>sqldf("SELECT * FROM df")</code></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Bonnes pratiques</h2>
+          <div class="course-content">
+            <ul>
+              <li><strong>Utiliser <code>inplace=False</code> par défaut</strong> pour éviter les modifications accidentelles</li>
+              <li><strong>Vérifier les types de données</strong> après lecture avec <code>df.dtypes</code></li>
+              <li><strong>Gérer les valeurs manquantes</strong> avant les analyses avec <code>dropna()</code> ou <code>fillna()</code></li>
+              <li><strong>Utiliser <code>copy()</code></strong> pour créer des copies indépendantes : <code>df_copy = df.copy()</code></li>
+              <li><strong>Optimiser la mémoire</strong> en spécifiant les types appropriés lors de la lecture</li>
+              <li><strong>Utiliser <code>chunksize</code></strong> pour lire de gros fichiers par morceaux</li>
+              <li><strong>Profiter de la vectorisation</strong> plutôt que des boucles Python</li>
+              <li><strong>Documenter les transformations</strong> pour maintenir la traçabilité des données</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>© 2025 Ludoc — Site pédagogique | Créé par <a href="https://animyfolio.netlify.app/" target="_blank" rel="noopener noreferrer">Adrien Niceto</a></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="../../js/main.js"></script>
+</body>
+</html>

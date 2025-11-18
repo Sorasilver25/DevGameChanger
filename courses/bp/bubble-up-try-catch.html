@@ -56,97 +56,192 @@
     <!-- Sidebar -->
     <aside class="app-sidebar">
       <div class="sidebar-content">
-        <div class="sidebar-category">
-          <div class="category-title">Présentation</div>
-          <ul class="category-items">
-            <li class="sidebar-item">
-              <a href="../../index.html">Accueil</a>
-            </li>
-          </ul>
-        </div>
-        
-        <div class="sidebar-category">
-          <div class="category-title">Angular</div>
-          <ul class="category-items">
-            <li class="sidebar-item">
-              <a href="../angular/svg-icon-service.html">Service SVG Icons</a>
-            </li>
-          </ul>
-        </div>
-        
-        <div class="sidebar-category">
-          <div class="category-title">NestJS</div>
-          <ul class="category-items">
-            <li class="sidebar-item">
-              <a href="../nestjs/endpoint-securise.html">Endpoint Sécurisé</a>
-            </li>
-          </ul>
+        <!-- Navigation -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-home"></i>
+            <span>Navigation</span>
+          </div>
+          <div class="sidebar-category">
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../../index.html"><span>Accueil</span></a>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div class="sidebar-category">
-          <div class="category-title">Docker</div>
-          <ul class="category-items">
-            <li class="sidebar-item">
-              <a href="../docker/docker-swarm.html">Docker Swarm</a>
-            </li>
-          </ul>
-        </div>
-        
-        <div class="sidebar-category">
-          <div class="category-title">SCSS</div>
-          <ul class="category-items">
-            <li class="sidebar-item">
-              <a href="../scss/preprocesseur-css.html">Préprocesseur CSS</a>
-            </li>
-            <li class="sidebar-item">
-              <a href="../scss/directives-scss.html">Directives SCSS</a>
-            </li>
-          </ul>
-        </div>
-        
-        <div class="sidebar-category">
-          <div class="category-title">Git</div>
-          <ul class="category-items">
-            <li class="sidebar-item">
-              <a href="../git/bashrc-git.html">Configuration .bashrc Git</a>
-            </li>
-          </ul>
+        <!-- Frontend Development -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-code"></i>
+            <span>Frontend Development</span>
+          </div>
+          
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-angular"></i>
+              <span>Angular</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../angular/svg-icon-service.html">Service SVG Icons</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-sass"></i>
+              <span>SCSS</span>
+              <span class="category-count">2</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../scss/preprocesseur-css.html">Préprocesseur CSS</a>
+              </li>
+              <li class="sidebar-item">
+                <a href="../scss/directives-scss.html">Directives SCSS</a>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div class="sidebar-category">
-          <div class="category-title">JavaScript</div>
-          <ul class="category-items">
-            <li class="sidebar-item">
-              <a href="../js/async-await.html">Async/Await</a>
-            </li>
-          </ul>
+        <!-- Backend Development -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-server"></i>
+            <span>Backend Development</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-node"></i>
+              <span>NestJS</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../nestjs/endpoint-securise.html">Endpoint Sécurisé</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-python"></i>
+              <span>Python</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../python/dataframes-pandas.html">DataFrames Pandas</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-js-square"></i>
+              <span>JavaScript</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../js/async-await.html">Async/Await</a>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div class="sidebar-category">
-          <div class="category-title">Bonnes Pratiques</div>
-          <ul class="category-items">
-            <li class="sidebar-item active">
-              <a href="bubble-up-try-catch.html">Bubble Up Try/Catch</a>
-            </li>
-          </ul>
+        <!-- Data & Analytics -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-chart-bar"></i>
+            <span>Data & Analytics</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-database"></i>
+              <span>SQL</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../sql/requetes-sql.html">Requêtes SQL</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-chart-line"></i>
+              <span>Power BI</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../pbi/formules-dax.html">Formules DAX</a>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div class="sidebar-category">
-          <div class="category-title">SQL</div>
-          <ul class="category-items">
-            <li class="sidebar-item">
-              <a href="../sql/requetes-sql.html">Requêtes SQL</a>
-            </li>
-          </ul>
+        <!-- DevOps & Tools -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-tools"></i>
+            <span>DevOps & Tools</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-docker"></i>
+              <span>Docker</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../docker/docker-swarm.html">Docker Swarm</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-git-alt"></i>
+              <span>Git</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../git/bashrc-git.html">Configuration .bashrc Git</a>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        <div class="sidebar-category">
-          <div class="category-title">Power BI</div>
-          <ul class="category-items">
-            <li class="sidebar-item">
-              <a href="../pbi/formules-dax.html">Formules DAX</a>
-            </li>
-          </ul>
+        <!-- Best Practices -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-star"></i>
+            <span>Best Practices</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-check-circle"></i>
+              <span>Bonnes Pratiques</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item active">
+                <a href="bubble-up-try-catch.html">Bubble Up Try/Catch</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </aside>
