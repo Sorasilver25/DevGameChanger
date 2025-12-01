@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lerna — Gestion de monorepos JavaScript | Documentation</title>
+  <link rel="stylesheet" href="../../css/themes.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body class="theme-light">
+  <header class="app-header">
+    <a href="../../index.html" class="app-title">
+      <i class="fas fa-home"></i>
+      <span>Ludoc</span>
+    </a>
+    <div class="app-header-actions">
+      <div class="theme-selector">
+        <button class="theme-button">
+          <i class="fas fa-palette"></i>
+          <span>Thème</span>
+        </button>
+        <div class="theme-dropdown">
+          <div class="theme-option" data-theme="light">
+            <div class="theme-color light"></div>
+            <span>Clair</span>
+          </div>
+          <div class="theme-option" data-theme="dark">
+            <div class="theme-color dark"></div>
+            <span>Sombre</span>
+          </div>
+          <div class="theme-option" data-theme="blue">
+            <div class="theme-color blue"></div>
+            <span>Bleu</span>
+          </div>
+          <div class="theme-option" data-theme="green">
+            <div class="theme-color green"></div>
+            <span>Vert</span>
+          </div>
+          <div class="theme-option" data-theme="purple">
+            <div class="theme-color purple"></div>
+            <span>Violet</span>
+          </div>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <aside class="app-sidebar">
+      <div class="sidebar-content">
+        <!-- Navigation -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-home"></i>
+            <span>Navigation</span>
+          </div>
+          <div class="sidebar-category">
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../../index.html"><span>Accueil</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Frontend Development -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-code"></i>
+            <span>Frontend Development</span>
+          </div>
+          
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-angular"></i>
+              <span>Angular</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../angular/svg-icon-service.html">Service SVG Icons</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-sass"></i>
+              <span>SCSS</span>
+              <span class="category-count">2</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../scss/preprocesseur-css.html">Préprocesseur CSS</a>
+              </li>
+              <li class="sidebar-item">
+                <a href="../scss/directives-scss.html">Directives SCSS</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Backend Development -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-server"></i>
+            <span>Backend Development</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-node"></i>
+              <span>NestJS</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../nestjs/endpoint-securise.html">Endpoint Sécurisé</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-python"></i>
+              <span>Python</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../python/dataframes-pandas.html">DataFrames Pandas</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-js-square"></i>
+              <span>JavaScript</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../js/async-await.html">Async/Await</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Data & Analytics -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-chart-bar"></i>
+            <span>Data & Analytics</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-database"></i>
+              <span>SQL</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../sql/requetes-sql.html">Requêtes SQL</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-chart-line"></i>
+              <span>Power BI</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../pbi/formules-dax.html">Formules DAX</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- DevOps & Tools -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-tools"></i>
+            <span>DevOps & Tools</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-docker"></i>
+              <span>Docker</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../docker/docker-swarm.html">Docker Swarm</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-git-alt"></i>
+              <span>Git</span>
+              <span class="category-count">2</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../git/bashrc-git.html">Configuration .bashrc Git</a>
+              </li>
+              <li class="sidebar-item">
+                <a href="../husky/husky.html">Husky — Hooks Git</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-cubes"></i>
+              <span>Monorepos</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item active">
+                <a href="lerna.html">Lerna</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Best Practices -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-star"></i>
+            <span>Best Practices</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-check-circle"></i>
+              <span>Bonnes Pratiques</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../bp/bubble-up-try-catch.html">Bubble Up Try/Catch</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="app-content">
+      <div class="content-wrapper">
+        <div class="course-header">
+          <h1 class="course-title">Lerna — Gestion de monorepos JavaScript</h1>
+          <p class="course-description">
+            Découvrez Lerna, l'outil de gestion de monorepos JavaScript qui simplifie le développement de projets multi-packages. 
+            Versioning, publication et gestion des dépendances inter-packages.
+          </p>
+          <div class="last-update">
+            <i class="far fa-clock"></i>
+            <span>Dernière mise à jour : <strong>01.12.2025</strong></span>
+          </div>
+        </div>
+
+        <div class="course-content">
+          <section class="course-section">
+            <h2 class="section-title">Qu'est-ce que Lerna ?</h2>
+            <p>
+              <strong>Lerna</strong> est un outil de gestion de projets JavaScript organisés en monorepo. 
+              Un monorepo contient plusieurs packages (bibliothèques, applications) dans un seul dépôt Git, 
+              permettant de partager du code, des dépendances et des outils de build entre projets.
+            </p>
+            <p>Lerna facilite :</p>
+            <ul>
+              <li><strong>Le versioning automatique</strong> des packages avec gestion sémantique</li>
+              <li><strong>La publication coordonnée</strong> de plusieurs packages sur npm</li>
+              <li><strong>La gestion des dépendances</strong> entre packages du monorepo</li>
+              <li><strong>L'exécution de commandes</strong> dans tous les packages ou de manière sélective</li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Installation et initialisation</h2>
+            <p>Pour démarrer avec Lerna dans un nouveau projet :</p>
+            <pre><code class="language-bash"># Installation globale (optionnelle)
+npm install -g lerna
+
+# Ou en local dans le projet
+npm install lerna --save-dev
+
+# Initialiser Lerna dans le dépôt
+npx lerna init
+
+# Cela crée :
+# - lerna.json (configuration)
+# - packages/ (dossier pour les packages)
+# - package.json (racine du monorepo)</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Structure d'un monorepo Lerna</h2>
+            <pre><code class="language-plaintext">mon-monorepo/
+├── lerna.json
+├── package.json
+└── packages/
+    ├── package-a/
+    │   ├── package.json
+    │   └── src/
+    ├── package-b/
+    │   ├── package.json
+    │   └── src/
+    └── package-c/
+        ├── package.json
+        └── src/</code></pre>
+            <p>Chaque sous-dossier dans <code>packages/</code> est un package npm indépendant avec son propre <code>package.json</code>.</p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Configuration — lerna.json</h2>
+            <pre><code class="language-json">{
+  "version": "independent",
+  "npmClient": "npm",
+  "packages": [
+    "packages/*"
+  ],
+  "command": {
+    "publish": {
+      "conventionalCommits": true,
+      "message": "chore(release): publish"
+    }
+  }
+}</code></pre>
+            <p><strong>Modes de versioning :</strong></p>
+            <ul>
+              <li><strong>Fixed mode</strong> (par défaut) : tous les packages partagent la même version</li>
+              <li><strong>Independent mode</strong> (<code>"version": "independent"</code>) : chaque package a sa propre version</li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Commandes principales</h2>
+            
+            <h3>Bootstrapper les packages</h3>
+            <p>Installer les dépendances de tous les packages et créer les liens symboliques entre eux :</p>
+            <pre><code class="language-bash">lerna bootstrap
+
+# Lerna va :
+# - npm install dans chaque package
+# - Créer des symlinks pour les dépendances internes</code></pre>
+
+            <h3>Exécuter une commande dans tous les packages</h3>
+            <pre><code class="language-bash"># Exécuter npm run test dans tous les packages
+lerna run test
+
+# Exécuter une commande spécifique
+lerna exec -- npm run build
+
+# Cibler un package spécifique
+lerna run test --scope=package-a</code></pre>
+
+            <h3>Ajouter une dépendance</h3>
+            <pre><code class="language-bash"># Ajouter lodash à tous les packages
+lerna add lodash
+
+# Ajouter lodash uniquement à package-a
+lerna add lodash --scope=package-a
+
+# Ajouter package-a comme dépendance de package-b
+lerna add package-a --scope=package-b</code></pre>
+
+            <h3>Versionning et publication</h3>
+            <pre><code class="language-bash"># Créer une nouvelle version (bump version)
+lerna version
+
+# Publier les packages sur npm
+lerna publish
+
+# Version + publication en une commande
+lerna publish --conventional-commits</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Gestion des dépendances inter-packages</h2>
+            <p>Lerna permet aux packages de se référencer mutuellement :</p>
+            <pre><code class="language-json">// Dans packages/package-b/package.json
+{
+  "name": "package-b",
+  "version": "1.0.0",
+  "dependencies": {
+    "package-a": "^1.0.0"
+  }
+}</code></pre>
+            <p>Lors du <code>lerna bootstrap</code>, un lien symbolique est créé pour que <code>package-b</code> utilise la version locale de <code>package-a</code>.</p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Workflows avec Lerna</h2>
+            
+            <h3>Workflow de développement</h3>
+            <pre><code class="language-bash"># 1. Cloner le dépôt
+git clone &lt;repo&gt;
+cd mon-monorepo
+
+# 2. Installer les dépendances
+npm install
+lerna bootstrap
+
+# 3. Développer dans les packages
+cd packages/package-a
+npm run dev
+
+# 4. Tester tous les packages
+lerna run test
+
+# 5. Builder tous les packages
+lerna run build</code></pre>
+
+            <h3>Workflow de publication</h3>
+            <pre><code class="language-bash"># 1. S'assurer que tout est à jour
+git pull
+lerna bootstrap
+
+# 2. Vérifier les changements
+lerna changed
+
+# 3. Créer une nouvelle version
+lerna version --conventional-commits
+
+# 4. Publier sur npm
+lerna publish from-git</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Bonnes pratiques</h2>
+            <ul>
+              <li><strong>Utiliser le mode independent</strong> si les packages évoluent à des rythmes différents</li>
+              <li><strong>Adopter Conventional Commits</strong> pour générer automatiquement les changelogs et versions</li>
+              <li><strong>Configurer Husky + lint-staged</strong> au niveau racine pour valider le code avant commit</li>
+              <li><strong>Utiliser des workspaces</strong> (npm workspaces ou yarn workspaces) en complément pour optimiser l'installation</li>
+              <li><strong>Centraliser les scripts communs</strong> dans le <code>package.json</code> racine</li>
+              <li><strong>Documenter les interdépendances</strong> entre packages dans un README</li>
+              <li><strong>Tester l'intégration</strong> entre packages avant publication</li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Lerna avec npm/yarn workspaces</h2>
+            <p>Lerna s'intègre bien avec les workspaces natifs :</p>
+            <pre><code class="language-json">// package.json racine
+{
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "lerna": "^7.0.0"
+  }
+}</code></pre>
+            <p>Avantages :</p>
+            <ul>
+              <li>Installation plus rapide des dépendances (hoisting automatique)</li>
+              <li>Moins de duplication des <code>node_modules</code></li>
+              <li>Utiliser <code>npm install</code> au lieu de <code>lerna bootstrap</code></li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Cas d'usage de Lerna</h2>
+            <ul>
+              <li><strong>Bibliothèques UI</strong> : plusieurs composants React/Vue partagés (ex: Material-UI)</li>
+              <li><strong>Outils CLI</strong> : plusieurs packages complémentaires (ex: Babel)</li>
+              <li><strong>Microservices frontend</strong> : applications Angular/React avec modules partagés</li>
+              <li><strong>Plugins & extensions</strong> : core + plugins dans le même repo</li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Alternatives à Lerna</h2>
+            <p>D'autres outils de gestion de monorepos existent :</p>
+            <ul>
+              <li><strong>Nx</strong> : plus puissant, avec cache de build et optimisations avancées</li>
+              <li><strong>Turborepo</strong> : très rapide avec cache distribué</li>
+              <li><strong>pnpm workspaces</strong> : gestionnaire de paquets avec support monorepo natif</li>
+              <li><strong>Yarn workspaces</strong> : intégré à Yarn (v1+)</li>
+            </ul>
+            <p>Lerna reste pertinent pour sa simplicité et sa compatibilité avec l'écosystème npm.</p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Résumé</h2>
+            <p>Lerna est l'outil idéal pour :</p>
+            <ul>
+              <li>Gérer plusieurs packages npm dans un seul dépôt</li>
+              <li>Automatiser le versioning et la publication</li>
+              <li>Partager du code entre projets de manière structurée</li>
+              <li>Simplifier la maintenance de bibliothèques multi-packages</li>
+            </ul>
+            <p>Commandes essentielles :</p>
+            <pre><code class="language-bash">lerna init          # Initialiser un monorepo
+lerna bootstrap     # Installer les dépendances
+lerna add &lt;pkg&gt;     # Ajouter une dépendance
+lerna run &lt;cmd&gt;     # Exécuter une commande
+lerna version       # Bumper les versions
+lerna publish       # Publier sur npm</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Ressources</h2>
+            <ul>
+              <li><a href="https://lerna.js.org/" target="_blank" rel="noopener noreferrer">Documentation officielle Lerna</a></li>
+              <li><a href="https://github.com/lerna/lerna" target="_blank" rel="noopener noreferrer">Lerna sur GitHub</a></li>
+              <li><a href="https://www.startechup.com/fr/blog/what-is-lerna/" target="_blank" rel="noopener noreferrer">Guide complet Lerna (StarTechUp)</a></li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer class="app-footer">
+    <p>© 2025 Ludoc — Site pédagogique | Créé par <a href="https://animyfolio.netlify.app/" target="_blank" rel="noopener noreferrer">Adrien Niceto</a></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+  <script src="../../js/main.js"></script>
+</body>
+</html>
