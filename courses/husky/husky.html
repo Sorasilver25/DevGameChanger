@@ -3,15 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Comprendre le principe du Bubble Up avec try...catch en JavaScript</title>
+  <title>Husky — Hooks Git automatiques (lint, tests) | Documentation</title>
   <link rel="stylesheet" href="../../css/themes.css">
   <link rel="stylesheet" href="../../css/main.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <style>
+    .course-header .course-title code { font-size: 0.95em; }
+    pre code { font-family: var(--font-code); font-size: 0.9rem; }
+  </style>
 </head>
 <body class="theme-light">
-  <!-- Header -->
   <header class="app-header">
     <a href="../../index.html" class="app-title">
       <i class="fas fa-home"></i>
@@ -53,7 +56,6 @@
   </header>
 
   <div class="app-container">
-    <!-- Sidebar -->
     <aside class="app-sidebar">
       <div class="sidebar-content">
         <!-- Navigation -->
@@ -132,14 +134,11 @@
             <div class="category-title">
               <i class="fab fa-python"></i>
               <span>Python</span>
-              <span class="category-count">2</span>
+              <span class="category-count">1</span>
             </div>
             <ul class="category-items">
               <li class="sidebar-item">
                 <a href="../python/dataframes-pandas.html">DataFrames Pandas</a>
-              </li>
-              <li class="sidebar-item">
-                <a href="../python/validation-pydantic.html">Validation Pydantic</a>
               </li>
             </ul>
           </div>
@@ -222,8 +221,8 @@
               <li class="sidebar-item">
                 <a href="../git/bashrc-git.html">Configuration .bashrc Git</a>
               </li>
-              <li class="sidebar-item">
-                <a href="../husky/husky.html">Husky — Hooks Git</a>
+              <li class="sidebar-item active">
+                <a href="husky.html">Husky — Hooks Git</a>
               </li>
             </ul>
           </div>
@@ -256,8 +255,8 @@
               <span class="category-count">1</span>
             </div>
             <ul class="category-items">
-              <li class="sidebar-item active">
-                <a href="bubble-up-try-catch.html">Bubble Up Try/Catch</a>
+              <li class="sidebar-item">
+                <a href="../bp/bubble-up-try-catch.html">Bubble Up Try/Catch</a>
               </li>
             </ul>
           </div>
@@ -265,157 +264,168 @@
       </div>
     </aside>
 
-    <!-- Main Content -->
     <main class="app-content">
       <div class="content-wrapper">
         <div class="course-header">
-          <h1 class="course-title">Bubble Up avec Try/Catch</h1>
-          <p class="course-description">
-            Comprendre le principe du Bubble Up avec try...catch en JavaScript
-          </p>
-          <p class="course-description">
-            Dans le développement d'applications JavaScript, la gestion des erreurs est un aspect essentiel pour garantir une expérience utilisateur fluide et une application stable. Ce cours se concentre sur un comportement fondamental lié au bloc try...catch : le bubble up (ou remontée des erreurs).
-          </p>
+          <h1 class="course-title">Husky — Hooks Git automatiques pour lint & tests</h1>
+          <p class="course-description">Utiliser Husky pour exécuter automatiquement des linters, tests ou scripts au bon moment (pre-commit, pre-push). Installation, automatisation et bonnes pratiques.</p>
           <div class="last-update">
             <i class="far fa-clock"></i>
-            <span>Dernière mise à jour : <strong>20.09.2025</strong></span>
+            <span>Dernière mise à jour : <strong>01.12.2025</strong></span>
           </div>
         </div>
 
         <div class="course-section">
-          <h2 class="section-title">Introduction</h2>
+          <h2 class="section-title">1. Quel est le rôle de Husky ?</h2>
           <div class="course-content">
-            <p>Comprendre cette notion permet de mieux structurer ses applications, éviter les erreurs silencieuses et centraliser la gestion des exceptions.</p>
-          </div>
-        </div>
-
-        <div class="course-section">
-          <h2 class="section-title">Objectifs pédagogiques</h2>
-          <div class="course-content">
+            <p>Husky permet d'ajouter des Git hooks (scripts exécutés lors d'événements Git comme <code>pre-commit</code>, <code>pre-push</code>, <code>commit-msg</code>, etc.) au niveau du projet. Plutôt que d'éditer manuellement les hooks dans <code>.git/hooks</code>, Husky gère des hooks versionnés dans le dépôt (dossier <code>.husky/</code>) et les active automatiquement lors de l'installation des dépendances.</p>
+            <p>Usage typique :</p>
             <ul>
-              <li>Comprendre le comportement d’une erreur non capturée immédiatement.</li>
-              <li>Décrire le mécanisme de "remontée" (bubble up) d’une erreur dans la pile d’appels.</li>
-              <li>Implémenter une stratégie efficace de gestion d’erreurs dans une application JavaScript.</li>
+              <li>Exécuter un linter (ESLint, Prettier) sur les fichiers <em>staged</em> avant commit.</li>
+              <li>Lancer les tests rapides avant un push.</li>
+              <li>Valider le message de commit (<code>commit-msg</code>).</li>
             </ul>
           </div>
         </div>
 
         <div class="course-section">
-          <h2 class="section-title">Définitions clés</h2>
+          <h2 class="section-title">2. Installation rapide</h2>
           <div class="course-content">
-            <ul>
-              <li><strong>Erreur (Error)</strong> : Objet généré lorsqu’une situation inattendue ou bloquante survient pendant l’exécution du code.</li>
-              <li><strong>try...catch</strong> : Bloc permettant d’essayer un morceau de code (try) et de capturer toute erreur générée (catch).</li>
-              <li><strong>Bubble up</strong> : Mécanisme naturel par lequel une erreur "remonte" la pile d’exécution jusqu’à ce qu’elle soit interceptée par un bloc catch.</li>
-            </ul>
+            <p>Exemples d'installation avec <code>npm</code> ou <code>yarn</code> :</p>
+            <pre><code># Avec npm
+npm install husky --save-dev
+
+# Activer husky (crée le dossier .husky/)
+npx husky install
+
+# Ajouter le script 'prepare' dans package.json pour que husky s'installe automatiquement après npm install
+# package.json -> "scripts": { "prepare": "husky install" }
+
+# Créer un hook pre-commit qui lance lint-staged
+npx husky add .husky/pre-commit "npx --no -- lint-staged"
+
+# Exemple: hook pre-push pour lancer les tests rapides
+npx husky add .husky/pre-push "npm test --silent"
+</code></pre>
+            <p>Remarque : l'option <code>--no</code> utilisée avec <code>npx</code> évite d'utiliser une version globale si elle existe.</p>
           </div>
         </div>
 
         <div class="course-section">
-          <h2 class="section-title">Exemple illustratif</h2>
+          <h2 class="section-title">3. Exemple de configuration avec <code>lint-staged</code></h2>
           <div class="course-content">
-            <pre><code class="language-javascript">function lireFichier() {
-  throw new Error("Impossible de lire le fichier !");
-}
+            <p>Pour ne linters que les fichiers qui vont être committés, utilisez <code>lint-staged</code> :</p>
+            <pre><code># Installation
+npm install lint-staged --save-dev
 
-function traiterFichier() {
-  lireFichier(); // pas de try...catch ici
-}
-
-function lancerTraitement() {
-  try {
-    traiterFichier();
-  } catch (e) {
-    console.log("Erreur interceptée :", e.message);
+# package.json (extrait)
+{
+  "scripts": {
+    "prepare": "husky install",
+    "lint": "eslint . --ext .js,.ts",
+    "format": "prettier --write"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
   }
 }
+</code></pre>
+            <p>Avec cette configuration, le hook créé précédemment (<code>.husky/pre-commit</code>) exécutera <code>lint-staged</code> et ne passera le commit que si les règles sont respectées.</p>
+          </div>
+        </div>
 
-lancerTraitement();</code></pre>
-            <p>Ce qui se passe :</p>
+        <div class="course-section">
+          <h2 class="section-title">4. Exemple de hook <code>.husky/pre-commit</code></h2>
+          <div class="course-content">
+            <pre><code>#!/usr/bin/env sh
+. "$(dirname "$0")/_/husky.sh"
+
+npx --no -- lint-staged
+</code></pre>
+            <p>Le premier bloc (la ligne <code>. "$(dirname "$0")/_/husky.sh"</code>) est nécessaire pour charger l'environnement Husky. Le reste du fichier contient la commande à exécuter.</p>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">5. Bonnes pratiques</h2>
+          <div class="course-content">
             <ul>
-              <li><code>lancerTraitement()</code> appelle <code>traiterFichier()</code>.</li>
-              <li><code>traiterFichier()</code> appelle <code>lireFichier()</code>.</li>
-              <li><code>lireFichier()</code> provoque une erreur avec <code>throw</code>.</li>
-              <li>Aucune des fonctions intermédiaires n’intercepte cette erreur.</li>
-              <li>L’erreur "bulle" jusqu’à la fonction <code>lancerTraitement()</code>, qui la capture.</li>
+              <li><strong>Garder les hooks rapides :</strong> les hooks ralentissent le workflow si trop lourds. Lancer uniquement des actions rapides (fix, lint, tests unitaires rapides).</li>
+              <li><strong>Utiliser <code>lint-staged</code> :</strong> ne linters que les fichiers staged pour un feedback instantané.</li>
+              <li><strong>Préparer un script <code>prepare</code> :</strong> ajouter <code>"prepare": "husky install"</code> dans <code>package.json</code> pour que Husky s'active automatiquement après <code>npm install</code>.</li>
+              <li><strong>Ne pas dupliquer la logique CI :</strong> Husky est un garde-fou local ; continuez d'avoir la même validation côté CI pour l'assurance qualité.</li>
+              <li><strong>Prévoir des options de contournement :</strong> documenter l'utilisation de <code>--no-verify</code> pour des cas exceptionnels et rappeler les conséquences.</li>
+              <li><strong>Versionner les hooks :</strong> les scripts dans <code>.husky/</code> sont versionnés avec le dépôt — évitez d'écrire des hooks non traçables.</li>
+              <li><strong>Logs et messages clairs :</strong> afficher des messages d'erreur explicites pour que les développeurs comprennent et corrigent vite.</li>
             </ul>
           </div>
         </div>
 
         <div class="course-section">
-          <h2 class="section-title">Bonnes pratiques</h2>
+          <h2 class="section-title">6. Scénarios courants</h2>
           <div class="course-content">
             <ul>
-              <li>Éviter de multiplier les blocs try...catch à tous les niveaux : cela rend le code verbeux et difficile à maintenir.</li>
-              <li>Préférer capturer les erreurs au plus haut niveau logique (ex: dans un contrôleur ou une fonction principale).</li>
-              <li>Toujours afficher ou enregistrer l’erreur pour faciliter le débogage (console.error, logs, etc).</li>
-              <li>Utiliser <code>finally</code> pour exécuter du code quel que soit le résultat (try ou catch).</li>
+              <li><strong>pre-commit</strong> → <code>npx lint-staged</code> (fix + format) : empêche de committer du code mal formaté.</li>
+              <li><strong>pre-push</strong> → <code>npm test --silent</code> : détecte les régressions avant push.</li>
+              <li><strong>commit-msg</strong> → validation du format du message (Conventional Commits).</li>
             </ul>
           </div>
         </div>
 
         <div class="course-section">
-          <h2 class="section-title">Variante avec async/await</h2>
+          <h2 class="section-title">7. Commandes utiles — Récapitulatif</h2>
           <div class="course-content">
-            <pre><code class="language-javascript">async function chargerRessource() {
-  throw new Error("Erreur de chargement");
-}
+            <pre><code># Installer husky et lint-staged
+npm install husky lint-staged --save-dev
 
-async function main() {
-  try {
-    await chargerRessource();
-  } catch (e) {
-    console.error("Erreur asynchrone :", e.message);
-  }
-}
+# Activer husky (ou ajouter dans "prepare" puis npm install)
+npx husky install
 
-main();</code></pre>
-            <p>Même en asynchrone, le principe de bubble up reste le même : si tu ne catch pas une erreur awaitée, elle remonte jusqu'à un bloc supérieur.</p>
+# Ajouter un pre-commit
+npx husky add .husky/pre-commit "npx --no -- lint-staged"
+
+# Ajouter un pre-push
+npx husky add .husky/pre-push "npm test --silent"
+</code></pre>
           </div>
         </div>
 
         <div class="course-section">
-          <h2 class="section-title">Résumé</h2>
+          <h2 class="section-title">8. Limitations et alternatives</h2>
           <div class="course-content">
-            <table class="command-table">
-              <thead>
-                <tr>
-                  <th>Élément</th>
-                  <th>Rôle</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><code>throw</code></td>
-                  <td>Déclenche une erreur</td>
-                </tr>
-                <tr>
-                  <td><code>try</code></td>
-                  <td>Contient le code "à risque"</td>
-                </tr>
-                <tr>
-                  <td><code>catch</code></td>
-                  <td>Capture et gère l’erreur</td>
-                </tr>
-                <tr>
-                  <td>Bubble up</td>
-                  <td>Laisse l’erreur remonter jusqu’à un bloc catch approprié</td>
-                </tr>
-              </tbody>
-            </table>
+            <p>Husky agit localement et aide à améliorer la qualité du code côté développeur. Cependant :</p>
+            <ul>
+              <li>Il ne remplace pas la CI : gardez des contrôles côté serveur.</li>
+              <li>Les hooks peuvent être contournés par <code>--no-verify</code> ; documentez et contrôlez cet usage dans l'équipe.</li>
+              <li>Pour des workflows plus centralisés, envisager des check-runs CI ou des merge checks côté plateforme (GitHub/GitLab).</li>
+            </ul>
           </div>
         </div>
+
+        <div class="course-section">
+          <h2 class="section-title">9. Ressources</h2>
+          <div class="course-content">
+            <ul>
+              <li><a href="https://typicode.github.io/husky/" target="_blank" rel="noopener noreferrer">Documentation officielle Husky</a></li>
+              <li><a href="https://github.com/okonet/lint-staged" target="_blank" rel="noopener noreferrer">lint-staged</a></li>
+            </ul>
+          </div>
+        </div>
+
       </div>
     </main>
   </div>
 
-  <!-- Footer -->
   <footer class="app-footer">
-    <p>© 2025 Ludoc — Site pédagogique | Créé par <a href="https://animyfolio.netlify.app/" target="_blank" rel="noopener noreferrer">Adrien Niceto</a></p>
+    <p>© 2025 Ludoc — Site pédagogique</p>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
   <script src="../../js/main.js"></script>
 </body>
 </html>
