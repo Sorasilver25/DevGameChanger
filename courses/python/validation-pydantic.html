@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validation de données avec Pydantic - Python</title>
+  <link rel="stylesheet" href="../../css/themes.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body class="theme-light">
+  <!-- Header -->
+  <header class="app-header">
+    <a href="../../index.html" class="app-title">
+      <i class="fas fa-home"></i>
+      <span>Ludoc</span>
+    </a>
+    <div class="app-header-actions">
+      <div class="theme-selector">
+        <button class="theme-button">
+          <i class="fas fa-palette"></i>
+          <span>Thème</span>
+        </button>
+        <div class="theme-dropdown">
+          <div class="theme-option" data-theme="light">
+            <div class="theme-color light"></div>
+            <span>Clair</span>
+          </div>
+          <div class="theme-option" data-theme="dark">
+            <div class="theme-color dark"></div>
+            <span>Sombre</span>
+          </div>
+          <div class="theme-option" data-theme="blue">
+            <div class="theme-color blue"></div>
+            <span>Bleu</span>
+          </div>
+          <div class="theme-option" data-theme="green">
+            <div class="theme-color green"></div>
+            <span>Vert</span>
+          </div>
+          <div class="theme-option" data-theme="purple">
+            <div class="theme-color purple"></div>
+            <span>Violet</span>
+          </div>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-content">
+        <!-- Navigation -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-home"></i>
+            <span>Navigation</span>
+          </div>
+          <div class="sidebar-category">
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../../index.html"><span>Accueil</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Frontend Development -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-code"></i>
+            <span>Frontend Development</span>
+          </div>
+          
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-angular"></i>
+              <span>Angular</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../angular/svg-icon-service.html">Service SVG Icons</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-sass"></i>
+              <span>SCSS</span>
+              <span class="category-count">2</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../scss/preprocesseur-css.html">Préprocesseur CSS</a>
+              </li>
+              <li class="sidebar-item">
+                <a href="../scss/directives-scss.html">Directives SCSS</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Backend Development -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-server"></i>
+            <span>Backend Development</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-node"></i>
+              <span>NestJS</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../nestjs/endpoint-securise.html">Endpoint Sécurisé</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-python"></i>
+              <span>Python</span>
+              <span class="category-count">2</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="dataframes-pandas.html">DataFrames Pandas</a>
+              </li>
+              <li class="sidebar-item active">
+                <a href="validation-pydantic.html">Validation Pydantic</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-js-square"></i>
+              <span>JavaScript</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../js/async-await.html">Async/Await</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Data & Analytics -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-chart-bar"></i>
+            <span>Data & Analytics</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-database"></i>
+              <span>SQL</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../sql/requetes-sql.html">Requêtes SQL</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-chart-line"></i>
+              <span>Power BI</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../pbi/formules-dax.html">Formules DAX</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- DevOps & Tools -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-tools"></i>
+            <span>DevOps & Tools</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-docker"></i>
+              <span>Docker</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../docker/docker-swarm.html">Docker Swarm</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-git-alt"></i>
+              <span>Git</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../git/bashrc-git.html">Configuration .bashrc Git</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Best Practices -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-star"></i>
+            <span>Best Practices</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-check-circle"></i>
+              <span>Bonnes Pratiques</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../bp/bubble-up-try-catch.html">Bubble Up Try/Catch</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="app-content">
+      <div class="content-wrapper">
+        <div class="course-header">
+          <h1 class="course-title">Validation de données avec Pydantic</h1>
+          <p class="course-description">
+            Guide complet sur la validation et la sérialisation de données avec Pydantic : BaseModel, Field, 
+            validators personnalisés, ConfigDict, dataclasses et gestion des erreurs de validation
+          </p>
+          <div class="last-update">
+            <i class="far fa-clock"></i>
+            <span>Dernière mise à jour : <strong>12.01.2026</strong></span>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Introduction à Pydantic</h2>
+          <div class="course-content">
+            <p>Pydantic est une bibliothèque Python de validation de données utilisant les annotations de type. Elle permet de définir des modèles de données avec une validation automatique, une sérialisation et une gestion des erreurs robuste.</p>
+
+            <h3>Installation</h3>
+            <pre><code class="language-bash">pip install pydantic</code></pre>
+
+            <h3>Import de base</h3>
+            <pre><code class="language-python">from pydantic import BaseModel, Field, field_validator, ValidationError
+from pydantic.dataclasses import dataclass
+from typing import Optional, List
+from datetime import datetime</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">BaseModel - Les fondamentaux</h2>
+          <div class="course-content">
+            <p>BaseModel est la classe de base de Pydantic pour créer des modèles de données avec validation automatique.</p>
+
+            <h3>Modèle simple</h3>
+            <pre><code class="language-python">from pydantic import BaseModel
+
+class User(BaseModel):
+    id: int
+    name: str
+    email: str
+    age: int
+    is_active: bool = True
+
+# Création d'une instance
+user = User(
+    id=1,
+    name="Alice",
+    email="alice@example.com",
+    age=25
+)
+
+print(user.name)  # Alice
+print(user.model_dump())  # Convertir en dictionnaire</code></pre>
+
+            <h3>Validation automatique des types</h3>
+            <pre><code class="language-python"># Conversion automatique des types
+user = User(
+    id="123",  # Sera converti en int
+    name="Bob",
+    email="bob@example.com",
+    age="30"   # Sera converti en int
+)
+
+print(user.id)   # 123 (int)
+print(user.age)  # 30 (int)</code></pre>
+
+            <h3>Gestion des erreurs avec ValidationError</h3>
+            <pre><code class="language-python">from pydantic import ValidationError
+
+try:
+    user = User(
+        id="invalid",  # Ne peut pas être converti en int
+        name="Charlie",
+        email="charlie@example.com",
+        age=35
+    )
+except ValidationError as e:
+    print(e.json())
+    # Affiche les erreurs de validation au format JSON
+    # avec le champ, le type d'erreur et le message</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Field - Paramètres avancés</h2>
+          <div class="course-content">
+            <p>Field permet d'ajouter des contraintes et de la métadonnée aux champs d'un modèle.</p>
+
+            <h3>Contraintes de validation</h3>
+            <pre><code class="language-python">from pydantic import BaseModel, Field
+
+class Product(BaseModel):
+    name: str = Field(min_length=3, max_length=50)
+    description: Optional[str] = Field(None, max_length=500)
+    price: float = Field(gt=0, le=10000)  # gt = greater than, le = less than or equal
+    quantity: int = Field(default=0, ge=0)  # ge = greater than or equal
+    tags: List[str] = Field(default_factory=list, max_length=10)
+    
+# Exemple d'utilisation
+product = Product(
+    name="Laptop",
+    description="Powerful laptop for developers",
+    price=1299.99,
+    quantity=5,
+    tags=["electronics", "computers"]
+)</code></pre>
+
+            <h3>Valeurs par défaut et alias</h3>
+            <pre><code class="language-python">from pydantic import BaseModel, Field
+
+class Article(BaseModel):
+    title: str = Field(..., description="Titre de l'article")
+    content: str = Field(..., min_length=10)
+    author_name: str = Field(alias="authorName")  # Accepte les deux formats
+    views: int = Field(default=0, ge=0)
+    published_at: Optional[datetime] = None
+
+# Utilisation avec alias
+article = Article(
+    title="Introduction à Pydantic",
+    content="Contenu de l'article...",
+    authorName="Alice"  # Utilise l'alias
+)
+
+print(article.author_name)  # Alice</code></pre>
+
+            <h3>Métadonnées et documentation</h3>
+            <pre><code class="language-python">class User(BaseModel):
+    username: str = Field(
+        ...,
+        min_length=3,
+        max_length=20,
+        pattern=r"^[a-zA-Z0-9_]+$",
+        description="Nom d'utilisateur unique",
+        examples=["alice123", "bob_user"]
+    )
+    email: str = Field(
+        ...,
+        pattern=r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$",
+        description="Email valide"
+    )
+    age: int = Field(ge=18, le=120, description="Âge de l'utilisateur")</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">ConfigDict - Configuration du modèle</h2>
+          <div class="course-content">
+            <p>ConfigDict permet de configurer le comportement global d'un modèle Pydantic.</p>
+
+            <h3>Configuration de base</h3>
+            <pre><code class="language-python">from pydantic import BaseModel, ConfigDict, Field
+
+class Person(BaseModel):
+    model_config = ConfigDict(
+        str_strip_whitespace=True,  # Supprime les espaces en début/fin
+        validate_assignment=True,    # Valide lors de l'assignation
+        use_enum_values=True,        # Utilise les valeurs d'enum
+        strict=False                 # Mode strict désactivé (permet conversion)
+    )
+    
+    name: str
+    email: str
+
+# str_strip_whitespace en action
+person = Person(name="  Alice  ", email="  alice@example.com  ")
+print(person.name)  # "Alice" (espaces supprimés)</code></pre>
+
+            <h3>validate_assignment</h3>
+            <pre><code class="language-python">class User(BaseModel):
+    model_config = ConfigDict(validate_assignment=True)
+    
+    username: str = Field(min_length=3)
+    age: int = Field(ge=0, le=150)
+
+user = User(username="alice", age=25)
+
+# Validation lors de l'assignation
+try:
+    user.username = "ab"  # Trop court
+except ValidationError as e:
+    print("Erreur:", e)
+
+# Sans validate_assignment=True, cette assignation
+# passerait sans validation</code></pre>
+
+            <h3>Mode strict</h3>
+            <pre><code class="language-python">class StrictModel(BaseModel):
+    model_config = ConfigDict(strict=True)
+    
+    id: int
+    name: str
+    is_active: bool
+
+# En mode strict, pas de conversion automatique
+try:
+    model = StrictModel(id="123", name="Test", is_active=True)
+    # Erreur: id doit être un int, pas une string
+except ValidationError as e:
+    print("Strict mode error:", e)</code></pre>
+
+            <h3>json_schema_extra</h3>
+            <pre><code class="language-python">class APIResponse(BaseModel):
+    model_config = ConfigDict(
+        json_schema_extra={
+            "examples": [
+                {
+                    "status": "success",
+                    "data": {"id": 1, "name": "Test"},
+                    "message": "Operation completed"
+                }
+            ]
+        }
+    )
+    
+    status: str
+    data: dict
+    message: str
+
+# Récupérer le schéma JSON avec les exemples
+print(APIResponse.model_json_schema())</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Validators personnalisés</h2>
+          <div class="course-content">
+            <p>Pydantic permet de créer des validators personnalisés avec le décorateur @field_validator.</p>
+
+            <h3>field_validator de base</h3>
+            <pre><code class="language-python">from pydantic import BaseModel, field_validator
+
+class User(BaseModel):
+    username: str
+    email: str
+    age: int
+    
+    @field_validator('username')
+    @classmethod
+    def username_alphanumeric(cls, v):
+        if not v.isalnum():
+            raise ValueError('Le username doit être alphanumérique')
+        return v
+    
+    @field_validator('email')
+    @classmethod
+    def email_must_contain_at(cls, v):
+        if '@' not in v:
+            raise ValueError('Email invalide')
+        return v.lower()  # Normalise l'email en minuscules
+    
+    @field_validator('age')
+    @classmethod
+    def age_must_be_valid(cls, v):
+        if v < 18:
+            raise ValueError('Doit avoir au moins 18 ans')
+        if v > 120:
+            raise ValueError('Âge invalide')
+        return v
+
+# Utilisation
+user = User(username="alice123", email="ALICE@example.com", age=25)
+print(user.email)  # alice@example.com (converti en minuscules)</code></pre>
+
+            <h3>Validators avec plusieurs champs</h3>
+            <pre><code class="language-python">from pydantic import BaseModel, field_validator, model_validator
+
+class DateRange(BaseModel):
+    start_date: datetime
+    end_date: datetime
+    
+    @model_validator(mode='after')
+    def check_dates_order(self):
+        if self.start_date >= self.end_date:
+            raise ValueError('start_date doit être avant end_date')
+        return self
+
+# Utilisation
+date_range = DateRange(
+    start_date=datetime(2024, 1, 1),
+    end_date=datetime(2024, 12, 31)
+)</code></pre>
+
+            <h3>Modes de validation : before vs after</h3>
+            <p>Les validators peuvent s'exécuter à différents moments avec le paramètre <code>mode</code>.</p>
+            
+            <h4>Mode 'before' - Avant la validation de type</h4>
+            <p>Le validator s'exécute <strong>avant</strong> la conversion de type Pydantic. Utile pour transformer les données brutes avant validation.</p>
+            <pre><code class="language-python">from pydantic import BaseModel, field_validator
+
+class DataProcessor(BaseModel):
+    raw_data: str
+    
+    @field_validator('raw_data', mode='before')
+    @classmethod
+    def preprocess_data(cls, v):
+        # Exécuté AVANT la validation str
+        # Reçoit les données brutes (peut être bytes, int, etc.)
+        
+        if isinstance(v, bytes):
+            return v.decode('utf-8')  # Convertir bytes en str
+        if isinstance(v, int):
+            return str(v)  # Convertir int en str
+        return v
+
+# Exemples
+processor1 = DataProcessor(raw_data=b"hello")  # bytes converti
+processor2 = DataProcessor(raw_data=123)       # int converti
+processor3 = DataProcessor(raw_data="text")    # str accepté
+print(processor1.raw_data)  # "hello"</code></pre>
+
+            <h4>Mode 'after' - Après la validation de type</h4>
+            <p>Le validator s'exécute <strong>après</strong> la conversion de type. Les données ont déjà le bon type Python.</p>
+            <pre><code class="language-python">class DataProcessor(BaseModel):
+    raw_data: str
+    
+    @field_validator('raw_data', mode='after')
+    @classmethod
+    def postprocess_data(cls, v):
+        # Exécuté APRÈS la validation str
+        # v est garanti être un str à ce stade
+        return v.strip().upper()  # Nettoyer et mettre en majuscules
+
+processor = DataProcessor(raw_data="  hello world  ")
+print(processor.raw_data)  # "HELLO WORLD"</code></pre>
+
+            <h4>Combinaison before et after</h4>
+            <pre><code class="language-python">class EmailProcessor(BaseModel):
+    email: str
+    
+    @field_validator('email', mode='before')
+    @classmethod
+    def convert_to_string(cls, v):
+        """Convertir en string si nécessaire"""
+        if not isinstance(v, str):
+            return str(v)
+        return v
+    
+    @field_validator('email', mode='after')
+    @classmethod
+    def normalize_email(cls, v):
+        """Normaliser l'email (après conversion en str)"""
+        v = v.strip().lower()
+        if '@' not in v:
+            raise ValueError('Email invalide')
+        return v
+
+# Les deux validators s'exécutent dans l'ordre
+email = EmailProcessor(email="  USER@EXAMPLE.COM  ")
+print(email.email)  # "user@example.com"</code></pre>
+
+            <h3>Comparaison des modes</h3>
+            <pre><code class="language-python">from typing import Any
+
+class ComparisonExample(BaseModel):
+    value: int
+    
+    @field_validator('value', mode='before')
+    @classmethod
+    def before_validator(cls, v: Any):
+        print(f"BEFORE - Type reçu: {type(v).__name__}, Valeur: {v}")
+        # Peut recevoir n'importe quel type
+        return v
+    
+    @field_validator('value', mode='after')
+    @classmethod
+    def after_validator(cls, v: int):
+        print(f"AFTER - Type reçu: {type(v).__name__}, Valeur: {v}")
+        # Reçoit toujours un int
+        return v
+
+# Test
+example = ComparisonExample(value="42")
+# Output:
+# BEFORE - Type reçu: str, Valeur: 42
+# AFTER - Type reçu: int, Valeur: 42</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">model_validator - Validation au niveau du modèle</h2>
+          <div class="course-content">
+            <p>Le décorateur <code>@model_validator</code> permet de valider l'ensemble du modèle, pas seulement un champ. Il a 3 modes : before, after et wrap.</p>
+
+            <h3>Mode 'before' - Validation avant création</h3>
+            <p>S'exécute avant la validation de tous les champs. Reçoit les données brutes sous forme de dictionnaire.</p>
+            <pre><code class="language-python">from pydantic import BaseModel, model_validator
+from typing import Dict, Any
+
+class User(BaseModel):
+    username: str
+    email: str
+    password: str
+    
+    @model_validator(mode='before')
+    @classmethod
+    def check_raw_data(cls, data: Dict[str, Any]) -> Dict[str, Any]:
+        """Valide et transforme les données brutes"""
+        print(f"Mode 'before' - données reçues: {type(data)}")
+        
+        # Vérifier que les champs requis sont présents
+        if 'username' not in data and 'email' in data:
+            # Générer username depuis email
+            data['username'] = data['email'].split('@')[0]
+        
+        # Transformer les données
+        if 'email' in data:
+            data['email'] = data['email'].lower()
+        
+        # Ajouter des valeurs par défaut
+        if 'password' not in data:
+            data['password'] = 'default_password'
+        
+        return data
+
+# Username généré automatiquement
+user = User(email="Alice@Example.com", password="secret123")
+print(user.username)  # "alice"
+print(user.email)     # "alice@example.com"</code></pre>
+
+            <h3>Mode 'after' - Validation après création</h3>
+            <p>S'exécute après la validation de tous les champs. Reçoit l'instance du modèle complète.</p>
+            <pre><code class="language-python">from pydantic import BaseModel, model_validator
+from datetime import datetime
+
+class DateRange(BaseModel):
+    start_date: datetime
+    end_date: datetime
+    description: str = ""
+    
+    @model_validator(mode='after')
+    def check_dates_consistency(self):
+        """Valide la cohérence entre plusieurs champs"""
+        print(f"Mode 'after' - données reçues: {type(self)}")
+        
+        # Accès direct aux attributs validés
+        if self.start_date >= self.end_date:
+            raise ValueError(
+                f"start_date ({self.start_date}) doit être avant end_date ({self.end_date})"
+            )
+        
+        # Calculer la durée
+        duration = (self.end_date - self.start_date).days
+        if duration > 365:
+            raise ValueError(f"La période ne peut pas dépasser 1 an (actuellement {duration} jours)")
+        
+        # Peut modifier les attributs
+        if not self.description:
+            self.description = f"Période de {duration} jours"
+        
+        return self
+
+# Validation réussie
+date_range = DateRange(
+    start_date=datetime(2026, 1, 1),
+    end_date=datetime(2026, 12, 31)
+)
+print(date_range.description)  # "Période de 364 jours"</code></pre>
+
+            <h3>Mode 'wrap' - Contrôle total de la validation</h3>
+            <p>Le mode le plus puissant : permet de contrôler entièrement le processus de validation.</p>
+            <pre><code class="language-python">from pydantic import BaseModel, model_validator, ValidationError
+from pydantic_core import ValidationInfo
+from typing import Any
+import logging
+
+logger = logging.getLogger(__name__)
+
+class SecureData(BaseModel):
+    username: str
+    password: str
+    api_key: str
+    
+    @model_validator(mode='wrap')
+    @classmethod
+    def validate_with_logging(cls, data: Any, handler, info: ValidationInfo):
+        """
+        Mode 'wrap' - Enveloppe la validation standard
+        - data: données brutes
+        - handler: fonction de validation Pydantic
+        - info: informations de contexte
+        """
+        print(f"Mode 'wrap' - Type données: {type(data)}")
+        
+        # AVANT la validation standard
+        logger.info(f"Tentative de validation pour: {info.field_name}")
+        
+        try:
+            # Appeler la validation standard de Pydantic
+            validated = handler(data)
+            
+            # APRÈS la validation standard (si succès)
+            logger.info("Validation réussie")
+            
+            # Masquer les données sensibles dans les logs
+            logger.info(f"User créé: {validated.username}")
+            
+            return validated
+            
+        except ValidationError as e:
+            # Gérer les erreurs de validation
+            logger.error(f"Erreur de validation: {e}")
+            # Peut modifier l'erreur ou tenter une récupération
+            raise
+        except Exception as e:
+            # Gérer d'autres erreurs
+            logger.error(f"Erreur inattendue: {e}")
+            raise
+
+# Utilisation
+secure = SecureData(
+    username="alice",
+    password="secret123",
+    api_key="key_abc123"
+)</code></pre>
+
+            <h3>Cas d'usage avancé : Validation conditionnelle</h3>
+            <pre><code class="language-python">from pydantic import BaseModel, model_validator, Field
+from typing import Optional
+
+class Product(BaseModel):
+    name: str
+    price: float = Field(gt=0)
+    discount_percentage: Optional[float] = Field(None, ge=0, le=100)
+    final_price: Optional[float] = None
+    is_available: bool = True
+    stock: int = Field(ge=0)
+    
+    @model_validator(mode='after')
+    def calculate_and_validate(self):
+        """Validation et calculs complexes"""
+        
+        # Calculer le prix final si discount présent
+        if self.discount_percentage:
+            discount_amount = self.price * (self.discount_percentage / 100)
+            self.final_price = self.price - discount_amount
+        else:
+            self.final_price = self.price
+        
+        # Validation conditionnelle
+        if not self.is_available and self.stock > 0:
+            raise ValueError("Un produit avec du stock ne peut pas être indisponible")
+        
+        if self.is_available and self.stock == 0:
+            # Auto-correction
+            self.is_available = False
+        
+        # Prix minimum
+        if self.final_price < 0.01:
+            raise ValueError(f"Prix final trop bas: {self.final_price}")
+        
+        return self
+
+# Exemple avec discount
+product1 = Product(
+    name="Laptop",
+    price=1000,
+    discount_percentage=20,
+    stock=5
+)
+print(f"Prix final: {product1.final_price}")  # 800.0
+
+# Auto-correction du stock
+product2 = Product(
+    name="Mouse",
+    price=25,
+    is_available=True,
+    stock=0  # Stock vide, is_available sera mis à False
+)
+print(f"Disponible: {product2.is_available}")  # False</code></pre>
+
+            <h3>Combinaison de model_validator et field_validator</h3>
+            <pre><code class="language-python">class Order(BaseModel):
+    order_id: str
+    customer_email: str
+    items: list[str]
+    total_amount: float
+    tax_amount: Optional[float] = None
+    final_amount: Optional[float] = None
+    
+    # Field validator s'exécute en premier
+    @field_validator('customer_email')
+    @classmethod
+    def validate_email(cls, v):
+        if '@' not in v:
+            raise ValueError('Email invalide')
+        return v.lower()
+    
+    @field_validator('items')
+    @classmethod
+    def validate_items(cls, v):
+        if len(v) == 0:
+            raise ValueError('La commande doit contenir au moins un article')
+        return v
+    
+    # Model validator (before) s'exécute avant les field validators
+    @model_validator(mode='before')
+    @classmethod
+    def preprocess(cls, data):
+        # Générer order_id si absent
+        if 'order_id' not in data:
+            import uuid
+            data['order_id'] = f"ORD-{uuid.uuid4().hex[:8]}"
+        return data
+    
+    # Model validator (after) s'exécute après tous les field validators
+    @model_validator(mode='after')
+    def calculate_totals(self):
+        # Calculer la taxe (20%)
+        self.tax_amount = self.total_amount * 0.20
+        self.final_amount = self.total_amount + self.tax_amount
+        return self
+
+# Ordre d'exécution:
+# 1. model_validator(mode='before')
+# 2. field_validator pour chaque champ
+# 3. model_validator(mode='after')
+
+order = Order(
+    customer_email="ALICE@EXAMPLE.COM",
+    items=["item1", "item2"],
+    total_amount=100
+)
+print(f"Order ID: {order.order_id}")        # Généré automatiquement
+print(f"Email: {order.customer_email}")     # "alice@example.com" (normalisé)
+print(f"Final: {order.final_amount}")       # 120.0 (avec taxe)</code></pre>
+
+            <h3>Tableau récapitulatif des modes</h3>
+            <pre><code class="language-python"># ┌─────────────────────────────────────────────────────────────┐
+# │ Ordre d'exécution de la validation                           │
+# ├─────────────────────────────────────────────────────────────┤
+# │ 1. @model_validator(mode='before')                           │
+# │    - Reçoit: Dict[str, Any] (données brutes)                 │
+# │    - Utilité: Prétraitement, ajout de valeurs par défaut     │
+# │                                                               │
+# │ 2. @field_validator(mode='before') pour chaque champ         │
+# │    - Reçoit: Any (valeur brute du champ)                     │
+# │    - Utilité: Conversion de type personnalisée               │
+# │                                                               │
+# │ 3. Validation de type Pydantic (automatique)                 │
+# │                                                               │
+# │ 4. @field_validator(mode='after') pour chaque champ          │
+# │    - Reçoit: Type validé du champ                            │
+# │    - Utilité: Validation métier du champ                     │
+# │                                                               │
+# │ 5. @model_validator(mode='after')                            │
+# │    - Reçoit: Instance du modèle complet                      │
+# │    - Utilité: Validation inter-champs, calculs               │
+# │                                                               │
+# │ 6. @model_validator(mode='wrap')                             │
+# │    - Contrôle complet du processus                           │
+# │    - Utilité: Logging, retry, gestion d'erreurs custom       │
+# └─────────────────────────────────────────────────────────────┘
+
+# Exemple illustrant l'ordre d'exécution
+class ValidationOrderDemo(BaseModel):
+    value: str
+    
+    @model_validator(mode='before')
+    @classmethod
+    def step1(cls, data):
+        print("1. model_validator(before)")
+        return data
+    
+    @field_validator('value', mode='before')
+    @classmethod
+    def step2(cls, v):
+        print("2. field_validator(before)")
+        return v
+    
+    @field_validator('value', mode='after')
+    @classmethod
+    def step4(cls, v):
+        print("4. field_validator(after)")
+        return v
+    
+    @model_validator(mode='after')
+    def step5(self):
+        print("5. model_validator(after)")
+        return self
+
+demo = ValidationOrderDemo(value="test")
+# Output:
+# 1. model_validator(before)
+# 2. field_validator(before)
+# 4. field_validator(after)
+# 5. model_validator(after)</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">@classmethod et @staticmethod</h2>
+          <div class="course-content">
+            <p>Utilisation de méthodes de classe et statiques avec Pydantic pour des fonctionnalités avancées.</p>
+
+            <h3>@classmethod pour les constructeurs alternatifs</h3>
+            <pre><code class="language-python">from pydantic import BaseModel
+from datetime import datetime
+
+class Event(BaseModel):
+    title: str
+    description: str
+    event_date: datetime
+    created_at: datetime
+    
+    @classmethod
+    def create_now(cls, title: str, description: str, days_ahead: int = 0):
+        """Constructeur alternatif pour créer un événement"""
+        from datetime import timedelta
+        now = datetime.now()
+        event_date = now + timedelta(days=days_ahead)
+        
+        return cls(
+            title=title,
+            description=description,
+            event_date=event_date,
+            created_at=now
+        )
+    
+    @classmethod
+    def from_dict(cls, data: dict):
+        """Créer un événement depuis un dictionnaire avec transformation"""
+        return cls(
+            title=data.get('title', 'Sans titre'),
+            description=data.get('desc', ''),
+            event_date=datetime.fromisoformat(data['date']),
+            created_at=datetime.now()
+        )
+
+# Utilisation
+event1 = Event.create_now("Réunion", "Réunion hebdomadaire", days_ahead=7)
+event2 = Event.from_dict({
+    'title': 'Conference',
+    'desc': 'Tech conference',
+    'date': '2026-06-15T10:00:00'
+})</code></pre>
+
+            <h3>@staticmethod pour les utilitaires</h3>
+            <pre><code class="language-python">class Coordinates(BaseModel):
+    latitude: float = Field(ge=-90, le=90)
+    longitude: float = Field(ge=-180, le=180)
+    
+    @staticmethod
+    def is_valid_latitude(lat: float) -> bool:
+        """Vérifie si une latitude est valide"""
+        return -90 <= lat <= 90
+    
+    @staticmethod
+    def is_valid_longitude(lon: float) -> bool:
+        """Vérifie si une longitude est valide"""
+        return -180 <= lon <= 180
+    
+    @staticmethod
+    def calculate_distance(coord1: 'Coordinates', coord2: 'Coordinates') -> float:
+        """Calcule la distance entre deux points (formule simplifiée)"""
+        import math
+        lat1, lon1 = math.radians(coord1.latitude), math.radians(coord1.longitude)
+        lat2, lon2 = math.radians(coord2.latitude), math.radians(coord2.longitude)
+        
+        dlat = lat2 - lat1
+        dlon = lon2 - lon1
+        
+        a = math.sin(dlat/2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon/2)**2
+        c = 2 * math.asin(math.sqrt(a))
+        
+        # Rayon de la Terre en km
+        r = 6371
+        return c * r
+
+# Utilisation
+if Coordinates.is_valid_latitude(48.8566):
+    paris = Coordinates(latitude=48.8566, longitude=2.3522)
+
+london = Coordinates(latitude=51.5074, longitude=-0.1278)
+distance = Coordinates.calculate_distance(paris, london)
+print(f"Distance: {distance:.2f} km")</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Pydantic Dataclasses</h2>
+          <div class="course-content">
+            <p>Pydantic propose un décorateur @dataclass qui combine les dataclasses Python avec la validation Pydantic.</p>
+
+            <h3>Dataclass de base</h3>
+            <pre><code class="language-python">from pydantic.dataclasses import dataclass
+from pydantic import Field
+
+@dataclass
+class Point:
+    x: float
+    y: float
+    label: str = "Origin"
+
+# Utilisation identique aux dataclasses
+point = Point(x=10.5, y=20.3, label="A")
+print(point)  # Point(x=10.5, y=20.3, label='A')</code></pre>
+
+            <h3>Dataclass avec validation</h3>
+            <pre><code class="language-python">from pydantic.dataclasses import dataclass
+from pydantic import Field, field_validator
+from typing import List
+
+@dataclass
+class Rectangle:
+    width: float = Field(gt=0)
+    height: float = Field(gt=0)
+    color: str = "white"
+    
+    @field_validator('color')
+    @classmethod
+    def validate_color(cls, v):
+        allowed = ['white', 'black', 'red', 'green', 'blue']
+        if v not in allowed:
+            raise ValueError(f'Couleur doit être parmi {allowed}')
+        return v
+    
+    @property
+    def area(self) -> float:
+        return self.width * self.height
+    
+    @property
+    def perimeter(self) -> float:
+        return 2 * (self.width + self.height)
+
+# Utilisation
+rect = Rectangle(width=10, height=5, color="blue")
+print(f"Area: {rect.area}")  # Area: 50.0
+print(f"Perimeter: {rect.perimeter}")  # Perimeter: 30.0</code></pre>
+
+            <h3>Configuration des dataclasses</h3>
+            <pre><code class="language-python">from pydantic import ConfigDict
+from pydantic.dataclasses import dataclass
+
+@dataclass(config=ConfigDict(
+    str_strip_whitespace=True,
+    validate_assignment=True,
+    frozen=False  # True pour rendre immutable
+))
+class Config:
+    name: str
+    value: int
+    
+config = Config(name="  test  ", value=42)
+print(config.name)  # "test" (espaces supprimés)</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Exemple pratique : API OpenMeteo</h2>
+          <div class="course-content">
+            <p>Exemple complet d'utilisation de Pydantic pour valider les données d'une API météo.</p>
+
+            <h3>Modèles de données OpenMeteo</h3>
+            <pre><code class="language-python">from pydantic import BaseModel, Field, field_validator, ConfigDict
+from typing import List, Optional
+from datetime import datetime
+
+class CurrentWeather(BaseModel):
+    """Données météo actuelles"""
+    model_config = ConfigDict(str_strip_whitespace=True)
+    
+    temperature: float = Field(alias="temperature_2m")
+    windspeed: float = Field(alias="wind_speed_10m", ge=0)
+    winddirection: int = Field(alias="wind_direction_10m", ge=0, le=360)
+    weathercode: int = Field(alias="weather_code")
+    time: datetime
+    
+    @field_validator('temperature')
+    @classmethod
+    def check_temperature_range(cls, v):
+        if v < -100 or v > 60:
+            raise ValueError('Température invalide (doit être entre -100 et 60°C)')
+        return v
+    
+    @classmethod
+    def get_weather_description(cls, code: int) -> str:
+        """Retourne la description météo selon le code"""
+        weather_codes = {
+            0: "Ciel dégagé",
+            1: "Principalement dégagé",
+            2: "Partiellement nuageux",
+            3: "Couvert",
+            45: "Brouillard",
+            48: "Brouillard givrant",
+            51: "Bruine légère",
+            61: "Pluie légère",
+            63: "Pluie modérée",
+            65: "Pluie forte",
+            71: "Neige légère",
+            95: "Orage"
+        }
+        return weather_codes.get(code, "Inconnu")
+
+class HourlyData(BaseModel):
+    """Données horaires"""
+    time: List[datetime]
+    temperature_2m: List[float]
+    precipitation_probability: List[int] = Field(alias="precipitation_probability")
+    
+    @field_validator('precipitation_probability')
+    @classmethod
+    def validate_probabilities(cls, v):
+        for prob in v:
+            if not 0 <= prob <= 100:
+                raise ValueError('La probabilité doit être entre 0 et 100')
+        return v
+    
+    @staticmethod
+    def get_avg_temperature(temperatures: List[float]) -> float:
+        """Calcule la température moyenne"""
+        return sum(temperatures) / len(temperatures) if temperatures else 0.0
+
+class DailyData(BaseModel):
+    """Données journalières"""
+    time: List[datetime]
+    temperature_2m_max: List[float] = Field(alias="temperature_2m_max")
+    temperature_2m_min: List[float] = Field(alias="temperature_2m_min")
+    sunrise: List[datetime]
+    sunset: List[datetime]
+    
+    @model_validator(mode='after')
+    def validate_min_max(self):
+        for tmin, tmax in zip(self.temperature_2m_min, self.temperature_2m_max):
+            if tmin > tmax:
+                raise ValueError('Température min ne peut être > température max')
+        return self
+
+class OpenMeteoResponse(BaseModel):
+    """Réponse complète de l'API OpenMeteo"""
+    model_config = ConfigDict(
+        str_strip_whitespace=True,
+        json_schema_extra={
+            "examples": [{
+                "latitude": 48.8566,
+                "longitude": 2.3522,
+                "timezone": "Europe/Paris",
+                "current": {
+                    "temperature_2m": 15.5,
+                    "wind_speed_10m": 10.2,
+                    "wind_direction_10m": 180,
+                    "weather_code": 1,
+                    "time": "2026-01-12T14:30:00"
+                }
+            }]
+        }
+    )
+    
+    latitude: float = Field(ge=-90, le=90)
+    longitude: float = Field(ge=-180, le=180)
+    timezone: str
+    timezone_abbreviation: str
+    elevation: float
+    current: Optional[CurrentWeather] = None
+    hourly: Optional[HourlyData] = None
+    daily: Optional[DailyData] = None
+    
+    @field_validator('timezone')
+    @classmethod
+    def validate_timezone(cls, v):
+        # Validation simple du format timezone
+        if '/' not in v:
+            raise ValueError('Format timezone invalide (attendu: Continent/Ville)')
+        return v
+    
+    @classmethod
+    def from_api(cls, data: dict):
+        """Constructeur depuis les données brutes de l'API"""
+        return cls(**data)
+    
+    def get_current_temp_celsius(self) -> Optional[float]:
+        """Retourne la température actuelle en Celsius"""
+        return self.current.temperature if self.current else None
+    
+    def get_weather_summary(self) -> str:
+        """Retourne un résumé météo"""
+        if not self.current:
+            return "Pas de données actuelles"
+        
+        desc = CurrentWeather.get_weather_description(self.current.weathercode)
+        temp = self.current.temperature
+        wind = self.current.windspeed
+        
+        return f"{desc}, {temp}°C, vent {wind} km/h"</code></pre>
+
+            <h3>Utilisation avec gestion d'erreurs</h3>
+            <pre><code class="language-python">import requests
+from pydantic import ValidationError
+
+def fetch_weather(latitude: float, longitude: float):
+    """Récupère et valide les données météo"""
+    
+    url = "https://api.open-meteo.com/v1/forecast"
+    params = {
+        "latitude": latitude,
+        "longitude": longitude,
+        "current": ["temperature_2m", "wind_speed_10m", "wind_direction_10m", "weather_code"],
+        "hourly": ["temperature_2m", "precipitation_probability"],
+        "daily": ["temperature_2m_max", "temperature_2m_min", "sunrise", "sunset"],
+        "timezone": "auto"
+    }
+    
+    try:
+        # Requête API
+        response = requests.get(url, params=params)
+        response.raise_for_status()
+        data = response.json()
+        
+        # Validation avec Pydantic
+        weather = OpenMeteoResponse.from_api(data)
+        
+        print(f"📍 Position: {weather.latitude}, {weather.longitude}")
+        print(f"🌍 Timezone: {weather.timezone}")
+        print(f"📊 Altitude: {weather.elevation}m")
+        
+        if weather.current:
+            print(f"\n🌤️  Météo actuelle:")
+            print(f"   {weather.get_weather_summary()}")
+            print(f"   Direction du vent: {weather.current.winddirection}°")
+        
+        if weather.hourly:
+            avg_temp = HourlyData.get_avg_temperature(weather.hourly.temperature_2m[:24])
+            print(f"\n📈 Température moyenne (24h): {avg_temp:.1f}°C")
+        
+        if weather.daily:
+            print(f"\n📅 Prévisions journalières:")
+            for i, date in enumerate(weather.daily.time[:3]):
+                tmin = weather.daily.temperature_2m_min[i]
+                tmax = weather.daily.temperature_2m_max[i]
+                print(f"   {date.strftime('%d/%m')}: {tmin}°C - {tmax}°C")
+        
+        return weather
+        
+    except requests.RequestException as e:
+        print(f"❌ Erreur API: {e}")
+        return None
+        
+    except ValidationError as e:
+        print(f"❌ Erreur de validation:")
+        for error in e.errors():
+            field = " -> ".join(str(loc) for loc in error['loc'])
+            print(f"   • {field}: {error['msg']}")
+        return None
+        
+    except Exception as e:
+        print(f"❌ Erreur inattendue: {e}")
+        return None
+
+# Utilisation
+# Paris
+weather_paris = fetch_weather(48.8566, 2.3522)
+
+# Londres
+weather_london = fetch_weather(51.5074, -0.1278)
+
+# Test avec coordonnées invalides
+weather_invalid = fetch_weather(999, 999)  # Erreur de validation</code></pre>
+
+            <h3>Tests de validation</h3>
+            <pre><code class="language-python">def test_weather_validation():
+    """Tests de validation des modèles météo"""
+    
+    # Test 1: Température invalide
+    print("Test 1: Température invalide")
+    try:
+        current = CurrentWeather(
+            temperature_2m=150,  # Trop élevé
+            wind_speed_10m=10,
+            wind_direction_10m=180,
+            weather_code=1,
+            time=datetime.now()
+        )
+    except ValidationError as e:
+        print("✓ Erreur capturée:", e.errors()[0]['msg'])
+    
+    # Test 2: Coordonnées invalides
+    print("\nTest 2: Coordonnées invalides")
+    try:
+        response = OpenMeteoResponse(
+            latitude=100,  # Invalide (> 90)
+            longitude=200,  # Invalide (> 180)
+            timezone="Europe/Paris",
+            timezone_abbreviation="CET",
+            elevation=50
+        )
+    except ValidationError as e:
+        for error in e.errors():
+            print(f"✓ {error['loc'][0]}: {error['msg']}")
+    
+    # Test 3: Format timezone invalide
+    print("\nTest 3: Format timezone invalide")
+    try:
+        response = OpenMeteoResponse(
+            latitude=48.8566,
+            longitude=2.3522,
+            timezone="Paris",  # Format invalide
+            timezone_abbreviation="CET",
+            elevation=50
+        )
+    except ValidationError as e:
+        print("✓ Erreur capturée:", e.errors()[0]['msg'])
+    
+    # Test 4: Min > Max température
+    print("\nTest 4: Température min > max")
+    try:
+        daily = DailyData(
+            time=[datetime.now()],
+            temperature_2m_max=[10],
+            temperature_2m_min=[20],  # Min > Max
+            sunrise=[datetime.now()],
+            sunset=[datetime.now()]
+        )
+    except ValidationError as e:
+        print("✓ Erreur capturée:", e.errors()[0]['msg'])
+
+# Exécuter les tests
+test_weather_validation()</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">Bonnes pratiques</h2>
+          <div class="course-content">
+            <h3>1. Utiliser ConfigDict pour la cohérence</h3>
+            <pre><code class="language-python"># Créer une configuration réutilisable
+class CommonConfig:
+    model_config = ConfigDict(
+        str_strip_whitespace=True,
+        validate_assignment=True,
+        use_enum_values=True,
+        arbitrary_types_allowed=False
+    )
+
+class User(BaseModel, CommonConfig):
+    name: str
+    email: str
+
+class Product(BaseModel, CommonConfig):
+    name: str
+    price: float</code></pre>
+
+            <h3>2. Séparer les validators complexes</h3>
+            <pre><code class="language-python"># Créer des fonctions de validation réutilisables
+def validate_email_format(email: str) -> str:
+    if '@' not in email or '.' not in email:
+        raise ValueError('Format email invalide')
+    return email.lower()
+
+class User(BaseModel):
+    email: str
+    
+    @field_validator('email')
+    @classmethod
+    def check_email(cls, v):
+        return validate_email_format(v)</code></pre>
+
+            <h3>3. Utiliser les alias pour les APIs</h3>
+            <pre><code class="language-python">class APIResponse(BaseModel):
+    user_id: int = Field(alias="userId")
+    first_name: str = Field(alias="firstName")
+    last_name: str = Field(alias="lastName")
+    
+    model_config = ConfigDict(populate_by_name=True)  # Accepte les deux formats</code></pre>
+
+            <h3>4. Documentation avec json_schema_extra</h3>
+            <pre><code class="language-python">class User(BaseModel):
+    model_config = ConfigDict(
+        json_schema_extra={
+            "examples": [
+                {
+                    "name": "Alice",
+                    "email": "alice@example.com",
+                    "age": 25
+                }
+            ],
+            "description": "Modèle utilisateur pour l'API"
+        }
+    )
+    
+    name: str
+    email: str
+    age: int</code></pre>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="../../js/main.js"></script>
+</body>
+</html>
