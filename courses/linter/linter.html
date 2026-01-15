@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les Linters — Automatisation avec Husky | Documentation</title>
+  <link rel="stylesheet" href="../../css/themes.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <style>
+    .course-header .course-title code { font-size: 0.95em; }
+    pre code { font-family: var(--font-code); font-size: 0.9rem; }
+  </style>
+</head>
+<body class="theme-light">
+  <header class="app-header">
+    <a href="../../index.html" class="app-title">
+      <i class="fas fa-home"></i>
+      <span>Ludoc</span>
+    </a>
+    <div class="app-header-actions">
+      <div class="theme-selector">
+        <button class="theme-button">
+          <i class="fas fa-palette"></i>
+          <span>Thème</span>
+        </button>
+        <div class="theme-dropdown">
+          <div class="theme-option" data-theme="light">
+            <div class="theme-color light"></div>
+            <span>Clair</span>
+          </div>
+          <div class="theme-option" data-theme="dark">
+            <div class="theme-color dark"></div>
+            <span>Sombre</span>
+          </div>
+          <div class="theme-option" data-theme="blue">
+            <div class="theme-color blue"></div>
+            <span>Bleu</span>
+          </div>
+          <div class="theme-option" data-theme="green">
+            <div class="theme-color green"></div>
+            <span>Vert</span>
+          </div>
+          <div class="theme-option" data-theme="purple">
+            <div class="theme-color purple"></div>
+            <span>Violet</span>
+          </div>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <aside class="app-sidebar">
+      <div class="sidebar-content">
+        <!-- Navigation -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-home"></i>
+            <span>Navigation</span>
+          </div>
+          <div class="sidebar-category">
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../../index.html"><span>Accueil</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Frontend Development -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-code"></i>
+            <span>Frontend Development</span>
+          </div>
+          
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-angular"></i>
+              <span>Angular</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../angular/svg-icon-service.html">Service SVG Icons</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-sass"></i>
+              <span>SCSS</span>
+              <span class="category-count">2</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../scss/preprocesseur-css.html">Préprocesseur CSS</a>
+              </li>
+              <li class="sidebar-item">
+                <a href="../scss/directives-scss.html">Directives SCSS</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Backend Development -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-server"></i>
+            <span>Backend Development</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-node"></i>
+              <span>NestJS</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../nestjs/endpoint-securise.html">Endpoint Sécurisé</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-python"></i>
+              <span>Python</span>
+              <span class="category-count">2</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../python/dataframes-pandas.html">DataFrames Pandas</a>
+              </li>
+              <li class="sidebar-item">
+                <a href="../python/validation-pydantic.html">Validation Pydantic</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-js-square"></i>
+              <span>JavaScript</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../js/async-await.html">Async/Await</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Data & Analytics -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-chart-bar"></i>
+            <span>Data & Analytics</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-database"></i>
+              <span>SQL</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../sql/requetes-sql.html">Requêtes SQL</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-chart-line"></i>
+              <span>Power BI</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../pbi/formules-dax.html">Formules DAX</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- DevOps & Tools -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-tools"></i>
+            <span>DevOps & Tools</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-docker"></i>
+              <span>Docker</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../docker/docker-swarm.html">Docker Swarm</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-git-alt"></i>
+              <span>Git</span>
+              <span class="category-count">2</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../git/bashrc-git.html">Configuration .bashrc Git</a>
+              </li>
+              <li class="sidebar-item">
+                <a href="../husky/husky.html">Husky — Hooks Git</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-broom"></i>
+              <span>Linters</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item active">
+                <a href="linter.html">Les Linters</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-cubes"></i>
+              <span>Monorepos</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../lerna/lerna.html">Lerna</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Best Practices -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-star"></i>
+            <span>Best Practices</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-check-circle"></i>
+              <span>Bonnes Pratiques</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../bp/bubble-up-try-catch.html">Bubble Up Try/Catch</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="app-content">
+      <div class="content-wrapper">
+        <div class="course-header">
+          <h1 class="course-title">Les Linters — Automatisation de la qualité du code</h1>
+          <p class="course-description">Comprendre les linters, leur rôle dans la qualité du code, et comment les intégrer dans un processus d'automatisation avec Husky pour améliorer votre workflow de développement.</p>
+          <div class="last-update">
+            <i class="far fa-clock"></i>
+            <span>Dernière mise à jour : <strong>15.01.2026</strong></span>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">1. Qu'est-ce qu'un Linter ?</h2>
+          <div class="course-content">
+            <p>Un <strong>linter</strong> est un outil d'analyse statique de code qui détecte automatiquement les erreurs de programmation, les bugs potentiels, les violations de style et les constructions suspectes. Le terme provient de "lint", un programme Unix original créé en 1978.</p>
+            
+            <h3>Objectifs principaux d'un linter :</h3>
+            <ul>
+              <li><strong>Détecter les erreurs</strong> : identifier les bugs potentiels avant l'exécution du code</li>
+              <li><strong>Uniformiser le style</strong> : garantir une cohérence dans le code (indentation, espaces, guillemets, etc.)</li>
+              <li><strong>Appliquer les bonnes pratiques</strong> : signaler les anti-patterns et suggérer des alternatives</li>
+              <li><strong>Améliorer la maintenabilité</strong> : rendre le code plus lisible et compréhensible</li>
+              <li><strong>Prévenir les vulnérabilités</strong> : détecter certaines failles de sécurité courantes</li>
+            </ul>
+
+            <div class="info-box">
+              <i class="fas fa-info-circle"></i>
+              <p><strong>Différence avec les tests :</strong> Un linter analyse le code sans l'exécuter (analyse statique), tandis que les tests vérifient le comportement du code en l'exécutant (analyse dynamique).</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">2. Linters populaires par langage</h2>
+          <div class="course-content">
+            <h3>JavaScript / TypeScript</h3>
+            <ul>
+              <li><strong>ESLint</strong> : le standard actuel, hautement configurable avec plugins</li>
+              <li><strong>TSLint</strong> : deprecated, remplacé par ESLint avec support TypeScript</li>
+              <li><strong>Prettier</strong> : formateur de code (souvent utilisé avec ESLint)</li>
+            </ul>
+
+            <h3>Python</h3>
+            <ul>
+              <li><strong>Pylint</strong> : très complet, peut être strict</li>
+              <li><strong>Flake8</strong> : combine plusieurs outils (pyflakes, pycodestyle, mccabe)</li>
+              <li><strong>Black</strong> : formateur de code opinionated</li>
+              <li><strong>Ruff</strong> : linter ultra-rapide écrit en Rust</li>
+            </ul>
+
+            <h3>CSS / SCSS</h3>
+            <ul>
+              <li><strong>Stylelint</strong> : pour CSS, SCSS, Less</li>
+            </ul>
+
+            <h3>Autres langages</h3>
+            <ul>
+              <li><strong>RuboCop</strong> (Ruby)</li>
+              <li><strong>Clippy</strong> (Rust)</li>
+              <li><strong>golangci-lint</strong> (Go)</li>
+              <li><strong>Checkstyle</strong> (Java)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">3. Configuration d'ESLint (exemple concret)</h2>
+          <div class="course-content">
+            <h3>Installation</h3>
+            <pre><code class="language-bash"># Installation d'ESLint
+npm install eslint --save-dev
+
+# Initialisation interactive (crée .eslintrc)
+npx eslint --init
+
+# Ou installation avec configuration TypeScript
+npm install @typescript-eslint/parser @typescript-eslint/eslint-plugin --save-dev
+</code></pre>
+
+            <h3>Exemple de fichier <code>.eslintrc.json</code></h3>
+            <pre><code class="language-json">{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "semi": ["error", "always"],
+    "quotes": ["error", "single"],
+    "no-console": "warn",
+    "@typescript-eslint/no-unused-vars": "error"
+  }
+}
+</code></pre>
+
+            <h3>Commandes utiles</h3>
+            <pre><code class="language-bash"># Analyser tous les fichiers
+npx eslint .
+
+# Analyser avec correction automatique
+npx eslint . --fix
+
+# Analyser un fichier spécifique
+npx eslint src/app.ts
+
+# Ignorer certains fichiers (créer .eslintignore)
+echo "node_modules/" > .eslintignore
+echo "dist/" >> .eslintignore
+</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">4. Automatisation avec Husky</h2>
+          <div class="course-content">
+            <p><strong>Husky</strong> est un outil qui permet d'exécuter automatiquement des scripts (dont des linters) lors d'événements Git comme <code>pre-commit</code>, <code>pre-push</code>, etc.</p>
+
+            <h3>Pourquoi automatiser avec Husky ?</h3>
+            <ul>
+              <li><strong>Prévention proactive</strong> : empêcher le commit de code non conforme</li>
+              <li><strong>Gain de temps</strong> : détecter les problèmes immédiatement, pas en CI/CD</li>
+              <li><strong>Cohérence d'équipe</strong> : garantir que tous les développeurs appliquent les mêmes règles</li>
+              <li><strong>Réduction du bruit en PR</strong> : moins de va-et-vient pour des corrections de style</li>
+            </ul>
+
+            <h3>Installation de Husky</h3>
+            <pre><code class="language-bash"># Installation de Husky et lint-staged
+npm install husky lint-staged --save-dev
+
+# Activer husky (crée le dossier .husky/)
+npx husky install
+
+# Ajouter le script 'prepare' pour auto-installation
+npm pkg set scripts.prepare="husky install"
+</code></pre>
+
+            <h3>Configuration avec lint-staged</h3>
+            <p><code>lint-staged</code> permet de linter uniquement les fichiers en staging, ce qui est beaucoup plus rapide.</p>
+
+            <pre><code class="language-json">// package.json
+{
+  "scripts": {
+    "prepare": "husky install",
+    "lint": "eslint . --ext .js,.ts,.tsx",
+    "format": "prettier --write ."
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,scss}": [
+      "stylelint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
+  }
+}
+</code></pre>
+
+            <h3>Créer un hook pre-commit</h3>
+            <pre><code class="language-bash"># Créer le hook qui lance lint-staged
+npx husky add .husky/pre-commit "npx --no -- lint-staged"
+</code></pre>
+
+            <p>Contenu du fichier <code>.husky/pre-commit</code> :</p>
+            <pre><code class="language-bash">#!/usr/bin/env sh
+. "$(dirname "$0")/_/husky.sh"
+
+npx --no -- lint-staged
+</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">5. Workflow complet avec automatisation</h2>
+          <div class="course-content">
+            <h3>Scénario typique</h3>
+            <ol>
+              <li><strong>Développement</strong> : Le développeur modifie des fichiers</li>
+              <li><strong>Staging</strong> : <code>git add .</code></li>
+              <li><strong>Pre-commit</strong> : Husky déclenche <code>lint-staged</code></li>
+              <li><strong>Linting</strong> : ESLint analyse et corrige automatiquement (<code>--fix</code>)</li>
+              <li><strong>Formatting</strong> : Prettier formate le code</li>
+              <li><strong>Validation</strong> : Si erreurs non auto-corrigibles → commit bloqué</li>
+              <li><strong>Commit</strong> : Si tout est OK → commit effectué</li>
+            </ol>
+
+            <h3>Hooks supplémentaires utiles</h3>
+            <pre><code class="language-bash"># Hook pre-push pour lancer les tests
+npx husky add .husky/pre-push "npm test"
+
+# Hook commit-msg pour valider le format du message
+npx husky add .husky/commit-msg 'npx --no -- commitlint --edit "$1"'
+</code></pre>
+
+            <h3>Configuration complète dans package.json</h3>
+            <pre><code class="language-json">{
+  "scripts": {
+    "prepare": "husky install",
+    "lint": "eslint . --ext .js,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.ts,.tsx --fix",
+    "format": "prettier --write .",
+    "test": "jest",
+    "test:staged": "jest --findRelatedTests"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write",
+      "jest --bail --findRelatedTests"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm test"
+    }
+  }
+}
+</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">6. Commandes essentielles — Récapitulatif</h2>
+          <div class="course-content">
+            <pre><code class="language-bash"># Installation complète
+npm install eslint prettier husky lint-staged --save-dev
+
+# Initialisation
+npx eslint --init
+npx husky install
+npm pkg set scripts.prepare="husky install"
+
+# Création des hooks
+npx husky add .husky/pre-commit "npx --no -- lint-staged"
+npx husky add .husky/pre-push "npm test"
+
+# Utilisation manuelle
+npx eslint .                    # Analyser tout
+npx eslint . --fix              # Corriger automatiquement
+npx eslint src/app.ts           # Analyser un fichier
+npx prettier --write .          # Formater tout
+
+# Contourner les hooks (déconseillé)
+git commit --no-verify -m "..."  # Skip pre-commit
+git push --no-verify             # Skip pre-push
+</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">7. Intégration en CI/CD</h2>
+          <div class="course-content">
+            <p>Les hooks locaux ne suffisent pas (peuvent être contournés avec <code>--no-verify</code>). Il est crucial de valider également en CI/CD.</p>
+
+            <h3>Exemple avec GitHub Actions</h3>
+            <pre><code class="language-yaml"># .github/workflows/lint.yml
+name: Lint
+
+on: [push, pull_request]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run format -- --check
+</code></pre>
+
+            <h3>Exemple avec GitLab CI</h3>
+            <pre><code class="language-yaml"># .gitlab-ci.yml
+lint:
+  stage: test
+  image: node:18
+  script:
+    - npm ci
+    - npm run lint
+    - npm run format -- --check
+  only:
+    - merge_requests
+    - main
+</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">8. Bonnes pratiques</h2>
+          <div class="course-content">
+            <ul>
+              <li><strong>Commencer tôt</strong> : intégrer les linters dès le début du projet</li>
+              <li><strong>Équipe alignée</strong> : s'accorder sur les règles avec l'équipe</li>
+              <li><strong>Configuration partagée</strong> : utiliser des configs partagées (<code>eslint-config-airbnb</code>, <code>eslint-config-standard</code>)</li>
+              <li><strong>Corrections auto</strong> : privilégier <code>--fix</code> pour réduire les frictions</li>
+              <li><strong>Progressivité</strong> : activer les règles graduellement pour projets existants</li>
+              <li><strong>Documentation</strong> : expliquer pourquoi certaines règles sont activées</li>
+              <li><strong>Performances</strong> : limiter le scope avec <code>lint-staged</code> pour hooks rapides</li>
+              <li><strong>CI/CD obligatoire</strong> : ne jamais se fier uniquement aux hooks locaux</li>
+              <li><strong>Messages clairs</strong> : configurer des messages d'erreur explicites</li>
+              <li><strong>Mise à jour régulière</strong> : maintenir les dépendances à jour</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">9. Erreurs courantes à éviter</h2>
+          <div class="course-content">
+            <ul>
+              <li><strong>Trop de règles d'un coup</strong> : peut bloquer l'équipe et créer de la frustration</li>
+              <li><strong>Hooks trop lents</strong> : éviter de linter tout le projet à chaque commit</li>
+              <li><strong>Ignorer les warnings</strong> : les warnings deviennent du bruit s'ils ne sont jamais corrigés</li>
+              <li><strong>Pas de CI/CD</strong> : les hooks peuvent être contournés</li>
+              <li><strong>Configurations divergentes</strong> : local ≠ CI = problèmes d'intégration</li>
+              <li><strong>Négliger .eslintignore</strong> : peut analyser des fichiers générés inutilement</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">10. Outils complémentaires</h2>
+          <div class="course-content">
+            <h3>Prettier (formateur de code)</h3>
+            <pre><code class="language-bash"># Installation
+npm install prettier --save-dev
+
+# Configuration .prettierrc.json
+{
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "tabWidth": 2,
+  "printWidth": 80
+}
+
+# Utilisation
+npx prettier --write .
+</code></pre>
+
+            <h3>EditorConfig</h3>
+            <pre><code class="language-ini"># .editorconfig
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 2
+</code></pre>
+
+            <h3>Commitlint (validation des messages de commit)</h3>
+            <pre><code class="language-bash"># Installation
+npm install @commitlint/cli @commitlint/config-conventional --save-dev
+
+# Configuration commitlint.config.js
+module.exports = {
+  extends: ['@commitlint/config-conventional']
+};
+
+# Hook commit-msg
+npx husky add .husky/commit-msg 'npx --no -- commitlint --edit "$1"'
+</code></pre>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <h2 class="section-title">11. Ressources et documentation</h2>
+          <div class="course-content">
+            <ul>
+              <li><a href="https://eslint.org/" target="_blank" rel="noopener noreferrer">Documentation ESLint</a></li>
+              <li><a href="https://prettier.io/" target="_blank" rel="noopener noreferrer">Documentation Prettier</a></li>
+              <li><a href="https://typicode.github.io/husky/" target="_blank" rel="noopener noreferrer">Documentation Husky</a></li>
+              <li><a href="https://github.com/okonet/lint-staged" target="_blank" rel="noopener noreferrer">lint-staged sur GitHub</a></li>
+              <li><a href="https://stylelint.io/" target="_blank" rel="noopener noreferrer">Stylelint</a></li>
+              <li><a href="https://docs.astral.sh/ruff/" target="_blank" rel="noopener noreferrer">Ruff (Python)</a></li>
+              <li><a href="https://commitlint.js.org/" target="_blank" rel="noopener noreferrer">Commitlint</a></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <footer class="app-footer">
+    <p>© 2026 Ludoc — Site pédagogique | Créé par <a href="https://animyfolio.netlify.app/" target="_blank" rel="noopener noreferrer">Adrien Niceto</a></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+  <script src="../../js/main.js"></script>
+</body>
+</html>
