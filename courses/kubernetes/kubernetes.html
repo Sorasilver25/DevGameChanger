@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kubernetes - Guide Complet | Documentation Web</title>
+  <link rel="stylesheet" href="../../css/themes.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body class="theme-light">
+  <!-- Header -->
+  <header class="app-header">
+    <a href="../../index.html" class="app-title">
+      <i class="fas fa-home"></i>
+      <span>Ludoc</span>
+    </a>
+    <div class="app-header-actions">
+      <div class="theme-selector">
+        <button class="theme-button">
+          <i class="fas fa-palette"></i>
+          <span>Thème</span>
+        </button>
+        <div class="theme-dropdown">
+          <div class="theme-option" data-theme="light">
+            <div class="theme-color light"></div>
+            <span>Clair</span>
+          </div>
+          <div class="theme-option" data-theme="dark">
+            <div class="theme-color dark"></div>
+            <span>Sombre</span>
+          </div>
+          <div class="theme-option" data-theme="blue">
+            <div class="theme-color blue"></div>
+            <span>Bleu</span>
+          </div>
+          <div class="theme-option" data-theme="green">
+            <div class="theme-color green"></div>
+            <span>Vert</span>
+          </div>
+          <div class="theme-option" data-theme="purple">
+            <div class="theme-color purple"></div>
+            <span>Violet</span>
+          </div>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-content">
+        <!-- Navigation -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-home"></i>
+            <span>Navigation</span>
+          </div>
+          <div class="sidebar-category">
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../../index.html"><span>Accueil</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Frontend Development -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-code"></i>
+            <span>Frontend Development</span>
+          </div>
+          
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-angular"></i>
+              <span>Angular</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../angular/svg-icon-service.html">Service SVG Icons</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-sass"></i>
+              <span>SCSS</span>
+              <span class="category-count">2</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../scss/preprocesseur-css.html">Préprocesseur CSS</a>
+              </li>
+              <li class="sidebar-item">
+                <a href="../scss/directives-scss.html">Directives SCSS</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Backend Development -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-server"></i>
+            <span>Backend Development</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-node"></i>
+              <span>NestJS</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../nestjs/endpoint-securise.html">Endpoint Sécurisé</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-python"></i>
+              <span>Python</span>
+              <span class="category-count">2</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../python/dataframes-pandas.html">DataFrames Pandas</a>
+              </li>
+              <li class="sidebar-item">
+                <a href="../python/validation-pydantic.html">Validation Pydantic</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-js-square"></i>
+              <span>JavaScript</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../js/async-await.html">Async/Await</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Data & Analytics -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-chart-bar"></i>
+            <span>Data & Analytics</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-database"></i>
+              <span>SQL</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../sql/requetes-sql.html">Requêtes SQL</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-chart-line"></i>
+              <span>Power BI</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../pbi/formules-dax.html">Formules DAX</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- DevOps & Tools -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-tools"></i>
+            <span>DevOps & Tools</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-docker"></i>
+              <span>Docker</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../docker/docker-swarm.html">Docker Swarm</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-dharmachakra"></i>
+              <span>Kubernetes</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item active">
+                <a href="kubernetes.html">Guide Complet Kubernetes</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-git-alt"></i>
+              <span>Git</span>
+              <span class="category-count">2</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../git/bashrc-git.html">Configuration .bashrc Git</a>
+              </li>
+              <li class="sidebar-item">
+                <a href="../husky/husky.html">Husky — Hooks Git</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-broom"></i>
+              <span>Linters</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../linter/linter.html">Les Linters</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-cubes"></i>
+              <span>Monorepos</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../lerna/lerna.html">Lerna</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Best Practices -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-star"></i>
+            <span>Best Practices</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-check-circle"></i>
+              <span>Bonnes Pratiques</span>
+              <span class="category-count">1</span>
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../bp/bubble-up-try-catch.html">Bubble Up Try/Catch</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="app-content">
+      <div class="content-wrapper">
+        <div class="course-header">
+          <h1 class="course-title">Kubernetes - Guide Complet</h1>
+          <p class="course-description">
+            Guide complet pour configurer et gérer un cluster Kubernetes sur Debian 12 avec containerd. 
+            Apprenez à déployer un nœud Master, ajouter des Workers et connecter Lens pour une gestion visuelle de votre cluster.
+          </p>
+          <div class="last-update">
+            <i class="far fa-clock"></i>
+            <span>Dernière mise à jour : <strong>18.02.2026</strong></span>
+          </div>
+        </div>
+
+        <div class="course-content">
+          <!-- Table des matières -->
+          <section class="course-section">
+            <h2 class="section-title">Table des matières</h2>
+            <ul>
+              <li><a href="#master-node">Configuration d'un nœud Master Kubernetes</a></li>
+              <li><a href="#worker-node">Configuration d'un nœud Worker Kubernetes</a></li>
+              <li><a href="#lens-connection">Connexion avec Lens IDE</a></li>
+            </ul>
+          </section>
+
+          <!-- PARTIE 1 : Configuration du Master Node -->
+          <section class="course-section" id="master-node">
+            <h2 class="section-title">Configuration d'un nœud Master Kubernetes sur Debian 12 avec containerd</h2>
+            <p>
+              Ce guide vous explique comment configurer un nœud Master Kubernetes sur Debian 12 en utilisant containerd 
+              comme runtime de conteneurs. Le nœud Master est le cerveau du cluster, responsable de la gestion, 
+              de l'orchestration et du contrôle de tous les nœuds Workers.
+            </p>
+
+            <h3>Prérequis</h3>
+            <ul>
+              <li>Debian 12 installé</li>
+              <li>Accès root ou sudo</li>
+              <li>Connexion Internet</li>
+              <li>Au moins 2 CPU et 2 Go de RAM</li>
+            </ul>
+
+            <h3>Mise à jour du système</h3>
+            <p>Commencez par mettre à jour votre système :</p>
+            <pre><code class="language-bash">sudo apt update && sudo apt upgrade -y
+sudo apt install -y curl gnupg2 apt-transport-https ca-certificates software-properties-common</code></pre>
+
+            <h3>Configuration réseau recommandée (avant installation)</h3>
+            <div class="info-box">
+              <i class="fas fa-lightbulb"></i>
+              <p><strong>Recommandation importante :</strong> Avant de continuer, il est fortement conseillé de configurer une adresse IP statique et un hostname unique pour chaque nœud du cluster.</p>
+            </div>
+
+            <h4>1. Définir un hostname unique</h4>
+            <p>Changez le hostname de votre machine pour identifier facilement le nœud Master :</p>
+            <pre><code class="language-bash"># Définir le hostname (exemple : k8s-master)
+sudo hostnamectl set-hostname k8s-master
+
+# Mettre à jour le fichier /etc/hosts
+sudo nano /etc/hosts</code></pre>
+            <p>Ajoutez ou modifiez la ligne correspondant à votre IP locale :</p>
+            <pre><code class="language-text">127.0.0.1       localhost
+192.168.1.100   k8s-master</code></pre>
+            <p>Vérifiez le changement :</p>
+            <pre><code class="language-bash">hostnamectl
+hostname -f</code></pre>
+
+            <h4>2. Configurer une adresse IP statique</h4>
+            <p>Configurez une IP statique pour éviter que l'adresse du nœud ne change :</p>
+            <pre><code class="language-bash"># Éditer le fichier de configuration réseau
+sudo nano /etc/network/interfaces</code></pre>
+            <p>Ajoutez ou modifiez la configuration de votre interface réseau (par exemple eth0 ou ens18) :</p>
+            <pre><code class="language-text"># Configuration IP statique
+auto eth0
+iface eth0 inet static
+    address 192.168.1.100
+    netmask 255.255.255.0
+    gateway 192.168.1.1
+    #optional #dns-nameservers 8.8.8.8 8.8.4.4</code></pre>
+            <p>Redémarrez le service réseau :</p>
+            <pre><code class="language-bash"># Redémarrer le réseau
+sudo systemctl restart networking
+
+# Ou redémarrer la machine
+sudo reboot</code></pre>
+            <div class="info-box">
+              <i class="fas fa-info-circle"></i>
+              <p><strong>Note :</strong> Adaptez l'adresse IP, le masque et la passerelle selon votre réseau local. Assurez-vous que l'IP choisie n'est pas déjà utilisée.</p>
+            </div>
+
+            <h3>Installation de containerd</h3>
+            <p>
+              Containerd est le runtime de conteneurs recommandé pour Kubernetes. Il est léger, performant 
+              et maintenu par la Cloud Native Computing Foundation (CNCF).
+            </p>
+            <pre><code class="language-bash">sudo apt install -y containerd
+sudo mkdir -p /etc/containerd
+sudo containerd config default | sudo tee /etc/containerd/config.toml
+sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.toml
+sudo systemctl restart containerd
+sudo systemctl enable containerd
+sudo systemctl status containerd</code></pre>
+
+            <h3>Désactivation du swap (obligatoire pour Kubernetes)</h3>
+            <p>Kubernetes nécessite que le swap soit désactivé pour fonctionner correctement :</p>
+            <pre><code class="language-bash">sudo swapoff -a
+sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab</code></pre>
+
+            <h3>Configuration des modules du noyau et paramètres réseau</h3>
+            <p>Configurez les modules nécessaires pour le réseau Kubernetes :</p>
+            <pre><code class="language-bash">cat &lt;&lt;EOF | sudo tee /etc/modules-load.d/k8s.conf
+overlay
+br_netfilter
+EOF
+
+sudo modprobe overlay
+sudo modprobe br_netfilter
+
+cat &lt;&lt;EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-iptables  = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.ipv4.ip_forward                 = 1
+EOF
+
+sudo sysctl --system</code></pre>
+
+            <h3>Ajouter le dépôt Kubernetes et la clé GPG</h3>
+            <p>Ajoutez le dépôt officiel de Kubernetes (version 1.30) :</p>
+            <pre><code class="language-bash">sudo mkdir -p /etc/apt/keyrings
+
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | \
+  sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] \
+https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /" | \
+sudo tee /etc/apt/sources.list.d/kubernetes.list</code></pre>
+
+            <h3>Installer kubelet, kubeadm et kubectl</h3>
+            <p>Installez les composants principaux de Kubernetes :</p>
+            <pre><code class="language-bash">sudo apt update
+sudo apt install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl</code></pre>
+            <p>La commande <code>apt-mark hold</code> empêche les mises à jour automatiques de ces packages.</p>
+
+            <h3>Initialiser le cluster Kubernetes</h3>
+            <p>Initialisez le nœud Master avec kubeadm :</p>
+            <pre><code class="language-bash">sudo kubeadm init --pod-network-cidr=10.244.0.0/16</code></pre>
+            <div class="info-box">
+              <i class="fas fa-info-circle"></i>
+              <p>Le CIDR <code>10.244.0.0/16</code> est recommandé pour le plugin réseau Flannel.</p>
+            </div>
+
+            <h3>Configurer kubectl pour l'utilisateur courant</h3>
+            <p>Après l'initialisation, configurez kubectl pour votre utilisateur :</p>
+            <pre><code class="language-bash">mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config</code></pre>
+
+            <h3>Installer le plugin réseau Flannel</h3>
+            <p>
+              Flannel est un plugin réseau simple et efficace pour Kubernetes. 
+              Il permet la communication entre les pods sur différents nœuds.
+            </p>
+            <pre><code class="language-bash">kubectl apply -f https://raw.githubusercontent.com/flannel-io/flannel/master/Documentation/kube-flannel.yml</code></pre>
+
+            <h3>Vérifier l'état du nœud Master</h3>
+            <p>Vérifiez que votre nœud Master est opérationnel :</p>
+            <pre><code class="language-bash">kubectl get nodes</code></pre>
+            <p>Résultat attendu :</p>
+            <pre><code class="language-text">NAME     STATUS   ROLES           AGE   VERSION
+master   Ready    control-plane   5m    v1.30.0</code></pre>
+
+            <div class="success-box">
+              <i class="fas fa-check-circle"></i>
+              <p>
+                Votre nœud Master est maintenant configuré et prêt ! Vous pouvez maintenant ajouter des nœuds Workers 
+                à votre cluster. Conservez la commande <code>kubeadm join</code> affichée lors de l'initialisation, 
+                elle sera nécessaire pour connecter les Workers.
+              </p>
+            </div>
+          </section>
+
+          <!-- PARTIE 2 : Configuration du Worker Node -->
+          <section class="course-section" id="worker-node">
+            <h2 class="section-title">Configuration d'un nœud Worker Kubernetes avec containerd sur Debian 12</h2>
+            <p>
+              Ce guide vous explique comment configurer un nœud Worker et le connecter à votre cluster Kubernetes. 
+              Les nœuds Workers exécutent les applications conteneurisées sous forme de pods.
+            </p>
+
+            <h3>Prérequis</h3>
+            <ul>
+              <li>Debian 12 installé</li>
+              <li>Accès root ou sudo</li>
+              <li>Connexion Internet</li>
+              <li>Un cluster Kubernetes Master fonctionnel</li>
+              <li>Au moins 1 CPU et 1 Go de RAM (2 Go recommandés)</li>
+            </ul>
+
+            <h3>Mise à jour du système</h3>
+            <p>Commencez par mettre à jour votre système :</p>
+            <pre><code class="language-bash">sudo apt update && sudo apt upgrade -y
+sudo apt install -y curl gnupg2 apt-transport-https ca-certificates software-properties-common</code></pre>
+
+            <h3>Configuration réseau recommandée (avant installation)</h3>
+            <div class="info-box">
+              <i class="fas fa-lightbulb"></i>
+              <p><strong>Recommandation importante :</strong> Avant de continuer, configurez une adresse IP statique et un hostname unique pour ce nœud Worker.</p>
+            </div>
+
+            <h4>1. Définir un hostname unique</h4>
+            <p>Changez le hostname de votre machine pour identifier facilement ce Worker :</p>
+            <pre><code class="language-bash"># Définir le hostname (exemple : k8s-worker-1, k8s-worker-2, etc.)
+sudo hostnamectl set-hostname k8s-worker-1
+
+# Mettre à jour le fichier /etc/hosts
+sudo nano /etc/hosts</code></pre>
+            <p>Ajoutez ou modifiez la ligne correspondant à votre IP locale :</p>
+            <pre><code class="language-text">127.0.0.1       localhost
+192.168.1.101   k8s-worker-1</code></pre>
+            <p>Vérifiez le changement :</p>
+            <pre><code class="language-bash">hostnamectl
+hostname -f</code></pre>
+            <div class="info-box">
+              <i class="fas fa-info-circle"></i>
+              <p><strong>Astuce :</strong> Utilisez une convention de nommage cohérente : k8s-worker-1, k8s-worker-2, etc. Cela facilitera la gestion du cluster.</p>
+            </div>
+
+            <h4>2. Configurer une adresse IP statique</h4>
+            <p>Configurez une IP statique unique pour ce Worker :</p>
+            <pre><code class="language-bash"># Éditer le fichier de configuration réseau
+sudo nano /etc/network/interfaces</code></pre>
+            <p>Ajoutez ou modifiez la configuration (utilisez une IP différente pour chaque Worker) :</p>
+            <pre><code class="language-text"># Configuration IP statique
+auto eth0
+iface eth0 inet static
+    address 192.168.1.101
+    netmask 255.255.255.0
+    gateway 192.168.1.1
+    dns-nameservers 8.8.8.8 8.8.4.4</code></pre>
+            <p>Redémarrez le service réseau :</p>
+            <pre><code class="language-bash"># Redémarrer le réseau
+sudo systemctl restart networking
+
+# Ou redémarrer la machine
+sudo reboot</code></pre>
+            <div class="info-box">
+              <i class="fas fa-exclamation-triangle"></i>
+              <p><strong>Important :</strong> Chaque Worker doit avoir une IP unique ! Par exemple : 192.168.1.101, 192.168.1.102, 192.168.1.103, etc.</p>
+            </div>
+
+            <h3>Installation de containerd</h3>
+            <p>Installez et configurez containerd de la même manière que sur le Master :</p>
+            <pre><code class="language-bash">sudo apt install -y containerd
+sudo mkdir -p /etc/containerd
+sudo containerd config default | sudo tee /etc/containerd/config.toml
+sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.toml
+sudo systemctl restart containerd
+sudo systemctl enable containerd
+sudo systemctl status containerd</code></pre>
+
+            <h3>Désactivation du swap</h3>
+            <pre><code class="language-bash">sudo swapoff -a
+sudo sed -i '/ swap / s/^\(.*\)$/#\1/g' /etc/fstab</code></pre>
+
+            <h3>Configuration des modules du noyau et paramètres réseau</h3>
+            <pre><code class="language-bash">cat &lt;&lt;EOF | sudo tee /etc/modules-load.d/k8s.conf
+overlay
+br_netfilter
+EOF
+
+sudo modprobe overlay
+sudo modprobe br_netfilter
+
+cat &lt;&lt;EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-iptables  = 1
+net.bridge.bridge-nf-call-ip6tables = 1
+net.ipv4.ip_forward                 = 1
+EOF
+
+sudo sysctl --system</code></pre>
+
+            <h3>Ajouter le dépôt Kubernetes et la clé GPG</h3>
+            <pre><code class="language-bash">sudo mkdir -p /etc/apt/keyrings
+
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | \
+  sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] \
+https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /" | \
+sudo tee /etc/apt/sources.list.d/kubernetes.list</code></pre>
+
+            <h3>Installer kubelet, kubeadm et kubectl</h3>
+            <pre><code class="language-bash">sudo apt update
+sudo apt install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl</code></pre>
+
+            <h3>Rejoindre le cluster Kubernetes</h3>
+            <p>
+              Sur le <strong>nœud Master</strong>, exécutez la commande suivante pour générer la commande de jointure :
+            </p>
+            <pre><code class="language-bash">kubeadm token create --print-join-command</code></pre>
+            <p>Cela renverra une commande du type :</p>
+            <pre><code class="language-bash">kubeadm join 192.168.1.100:6443 --token abcdef.0123456789abcdef \
+    --discovery-token-ca-cert-hash sha256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code></pre>
+            <p>Sur <strong>chaque nœud Worker</strong>, exécutez cette commande avec <code>sudo</code> :</p>
+            <pre><code class="language-bash">sudo kubeadm join 192.168.1.100:6443 --token abcdef.0123456789abcdef \
+    --discovery-token-ca-cert-hash sha256:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code></pre>
+
+            <h3>Vérification du cluster (depuis le Master)</h3>
+            <p>Retournez sur le nœud Master et vérifiez que le Worker a bien rejoint le cluster :</p>
+            <pre><code class="language-bash">kubectl get nodes</code></pre>
+            <p>Vous devriez voir une sortie similaire :</p>
+            <pre><code class="language-text">NAME       STATUS   ROLES           AGE     VERSION
+master     Ready    control-plane   5m      v1.30.0
+worker-1   Ready    &lt;none&gt;          2m      v1.30.0
+worker-2   Ready    &lt;none&gt;          2m      v1.30.0</code></pre>
+
+            <div class="success-box">
+              <i class="fas fa-check-circle"></i>
+              <p>
+                Votre nœud Worker est maintenant connecté au cluster Kubernetes et prêt à exécuter des workloads. 
+                Vous pouvez répéter cette procédure pour chaque machine à ajouter en tant que nœud Worker.
+              </p>
+            </div>
+          </section>
+
+          <!-- PARTIE 3 : Connexion avec Lens -->
+          <section class="course-section" id="lens-connection">
+            <h2 class="section-title">Connecter Lens à un Cluster Kubernetes</h2>
+            <p>
+              Lens est un IDE puissant pour Kubernetes qui offre une interface graphique intuitive pour gérer vos clusters. 
+              Ce guide vous montrera comment connecter Lens à votre cluster Kubernetes existant.
+            </p>
+
+            <h3>Prérequis</h3>
+            <ul>
+              <li>Lens IDE installé sur votre machine locale</li>
+              <li>Un cluster Kubernetes opérationnel</li>
+              <li>Accès au nœud master du cluster</li>
+            </ul>
+
+            <h3>Récupération du fichier kubeconfig</h3>
+            <p>Sur le nœud master de votre cluster, exécutez la commande suivante pour afficher le contenu du fichier kubeconfig :</p>
+            <pre><code class="language-bash">sudo cat ~/.kube/config</code></pre>
+            <p>Copiez l'intégralité du contenu affiché.</p>
+
+            <h3>Configuration dans Lens</h3>
+            <ol>
+              <li>Ouvrez Lens</li>
+              <li>Cliquez sur le bouton "+" à côté de "Local Kubeconfigs"</li>
+              <li>Sélectionnez "Add Kubeconfig by pasting"</li>
+              <li>Collez le contenu du fichier kubeconfig que vous avez copié</li>
+              <li>Cliquez sur "Add Cluster"</li>
+            </ol>
+
+            <h3>Vérification de la connexion</h3>
+            <p>Une fois connecté, vous devriez voir dans Lens :</p>
+            <ul>
+              <li>La liste de vos nœuds (Master et Workers)</li>
+              <li>Les namespaces</li>
+              <li>Les pods en cours d'exécution</li>
+              <li>Les services</li>
+              <li>Les déploiements</li>
+            </ul>
+
+            <h3>Fonctionnalités principales de Lens</h3>
+            <ul>
+              <li><strong>Tableau de bord</strong> : Vue d'ensemble de l'état du cluster avec métriques en temps réel</li>
+              <li><strong>Gestion des ressources</strong> : Création, modification et suppression de ressources Kubernetes via l'interface graphique</li>
+              <li><strong>Logs</strong> : Visualisation des logs des pods avec filtrage et recherche avancée</li>
+              <li><strong>Shell</strong> : Accès direct au shell des conteneurs sans ligne de commande</li>
+              <li><strong>Métriques</strong> : Visualisation des métriques de performance (CPU, mémoire, réseau)</li>
+              <li><strong>Helm Charts</strong> : Installation et gestion de packages Helm directement depuis l'interface</li>
+            </ul>
+
+            <div class="success-box">
+              <i class="fas fa-check-circle"></i>
+              <p>
+                Lens est maintenant connecté à votre cluster Kubernetes ! Vous disposez d'une interface graphique 
+                complète pour gérer, surveiller et déboguer vos applications containerisées.
+              </p>
+            </div>
+          </section>
+
+          <!-- Résumé et bonnes pratiques -->
+          <section class="course-section">
+            <h2 class="section-title">Résumé et Bonnes Pratiques</h2>
+            
+            <h3>Ce que vous avez appris</h3>
+            <ul>
+              <li>Configuration complète d'un nœud Master Kubernetes sur Debian 12</li>
+              <li>Ajout de nœuds Workers au cluster</li>
+              <li>Configuration du réseau avec Flannel</li>
+              <li>Connexion et gestion du cluster avec Lens IDE</li>
+            </ul>
+
+            <h3>Bonnes pratiques</h3>
+            <ul>
+              <li><strong>Haute disponibilité</strong> : Configurez au moins 3 nœuds Master pour la production</li>
+              <li><strong>Sauvegardes</strong> : Sauvegardez régulièrement le fichier kubeconfig et l'état etcd</li>
+              <li><strong>Sécurité</strong> : Utilisez des secrets Kubernetes pour les données sensibles</li>
+              <li><strong>Monitoring</strong> : Déployez Prometheus et Grafana pour la surveillance du cluster</li>
+              <li><strong>Mises à jour</strong> : Planifiez les mises à jour de Kubernetes et testez-les d'abord en staging</li>
+              <li><strong>RBAC</strong> : Configurez le contrôle d'accès basé sur les rôles pour la sécurité</li>
+              <li><strong>Namespaces</strong> : Utilisez des namespaces pour isoler les environnements (dev, staging, prod)</li>
+              <li><strong>Resource Limits</strong> : Définissez des limites de ressources pour tous les pods</li>
+            </ul>
+
+            <h3>Prochaines étapes</h3>
+            <ul>
+              <li>Déployez votre première application avec <code>kubectl create deployment</code></li>
+              <li>Apprenez à créer des manifestes YAML pour vos déploiements</li>
+              <li>Explorez les Services, Ingress et Volumes persistants</li>
+              <li>Configurez un registry Docker privé</li>
+              <li>Mettez en place CI/CD avec GitLab ou Jenkins</li>
+            </ul>
+          </section>
+
+          <!-- Commandes utiles -->
+          <section class="course-section">
+            <h2 class="section-title">Commandes Utiles</h2>
+            
+            <h3>Gestion du cluster</h3>
+            <pre><code class="language-bash"># Voir l'état des nœuds
+kubectl get nodes
+
+# Informations détaillées sur un nœud
+kubectl describe node nom-du-noeud
+
+# Voir tous les pods de tous les namespaces
+kubectl get pods --all-namespaces
+
+# Voir les services
+kubectl get services
+
+# Voir les déploiements
+kubectl get deployments</code></pre>
+
+            <h3>Gestion des pods</h3>
+            <pre><code class="language-bash"># Créer un déploiement
+kubectl create deployment nginx --image=nginx
+
+# Exposer un déploiement
+kubectl expose deployment nginx --port=80 --type=NodePort
+
+# Voir les logs d'un pod
+kubectl logs nom-du-pod
+
+# Exécuter une commande dans un pod
+kubectl exec -it nom-du-pod -- /bin/bash
+
+# Supprimer un pod
+kubectl delete pod nom-du-pod</code></pre>
+
+            <h3>Débogage</h3>
+            <pre><code class="language-bash"># Vérifier l'état du cluster
+kubectl cluster-info
+
+# Voir les événements
+kubectl get events
+
+# Diagnostiquer un pod qui ne démarre pas
+kubectl describe pod nom-du-pod
+
+# Vérifier les composants du système
+kubectl get componentstatuses</code></pre>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>© 2025 Ludoc — Site pédagogique | Créé par <a href="https://animyfolio.netlify.app/" target="_blank" rel="noopener noreferrer">Adrien Niceto</a></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+  <script src="../../js/main.js"></script>
+</body>
+</html>
