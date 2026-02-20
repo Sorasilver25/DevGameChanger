@@ -464,6 +464,34 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config</code></pre>
             <pre><code class="language-text">NAME     STATUS   ROLES           AGE   VERSION
 master   Ready    control-plane   5m    v1.30.0</code></pre>
 
+            <h3>Dépannage : Vérification des plugins CNI (en cas de problème avec Flannel)</h3>
+            <div class="info-box">
+              <i class="fas fa-wrench"></i>
+              <p>
+                Si Flannel ne fonctionne pas correctement ou si vos pods restent en état "Pending", 
+                il se peut que certains plugins CNI soient manquants, notamment le plugin <code>loopback</code>.
+              </p>
+            </div>
+
+            <h4>1. Vérifier les plugins CNI installés</h4>
+            <p>Listez les plugins CNI présents dans le répertoire :</p>
+            <pre><code class="language-bash">ls /opt/cni/bin</code></pre>
+            <p>Vous devriez voir tous ces plugins :</p>
+            <pre><code class="language-text">bandwidth  dhcp   firewall  host-device  ipvlan    macvlan  ptp  static  tuning  vrf
+bridge     dummy  flannel   host-local   loopback  portmap  sbr  tap     vlan</code></pre>
+
+            <h4>2. Installer les plugins manquants</h4>
+            <p>Si des plugins sont manquants (notamment <code>loopback</code>), installez-les avec cette commande :</p>
+            <pre><code class="language-bash">sudo curl -L https://github.com/containernetworking/plugins/releases/download/v1.3.0/cni-plugins-linux-amd64-v1.3.0.tgz | sudo tar -C /opt/cni/bin -xz</code></pre>
+
+            <h4>3. Revérifier après installation</h4>
+            <p>Vérifiez à nouveau la présence de tous les plugins :</p>
+            <pre><code class="language-bash">ls /opt/cni/bin</code></pre>
+            <div class="info-box">
+              <i class="fas fa-info-circle"></i>
+              <p><strong>Note :</strong> Après l'installation des plugins, vous pouvez redémarrer les pods Flannel directement depuis l'interface Lens pour prendre en compte les changements.</p>
+            </div>
+
             <div class="success-box">
               <i class="fas fa-check-circle"></i>
               <p>
@@ -609,6 +637,36 @@ sudo apt-mark hold kubelet kubeadm kubectl</code></pre>
 master     Ready    control-plane   5m      v1.30.0
 worker-1   Ready    &lt;none&gt;          2m      v1.30.0
 worker-2   Ready    &lt;none&gt;          2m      v1.30.0</code></pre>
+
+            <h3>Dépannage : Vérification des plugins CNI sur le Worker</h3>
+            <div class="info-box">
+              <i class="fas fa-wrench"></i>
+              <p>
+                Si le Worker reste en état "NotReady" ou si les pods ne démarrent pas correctement, 
+                vérifiez que tous les plugins CNI sont installés sur ce nœud Worker.
+              </p>
+            </div>
+
+            <h4>1. Vérifier les plugins CNI installés</h4>
+            <p>Sur le nœud Worker, listez les plugins CNI présents :</p>
+            <pre><code class="language-bash">ls /opt/cni/bin</code></pre>
+            <p>Vous devriez voir tous ces plugins :</p>
+            <pre><code class="language-text">bandwidth  dhcp   firewall  host-device  ipvlan    macvlan  ptp  static  tuning  vrf
+bridge     dummy  flannel   host-local   loopback  portmap  sbr  tap     vlan</code></pre>
+
+            <h4>2. Installer les plugins manquants</h4>
+            <p>Si des plugins sont manquants, installez-les avec cette commande :</p>
+            <pre><code class="language-bash">sudo curl -L https://github.com/containernetworking/plugins/releases/download/v1.3.0/cni-plugins-linux-amd64-v1.3.0.tgz | sudo tar -C /opt/cni/bin -xz</code></pre>
+
+            <h4>3. Revérifier et redémarrer kubelet</h4>
+            <p>Après l'installation, vérifiez à nouveau :</p>
+            <pre><code class="language-bash">ls /opt/cni/bin
+
+# Redémarrer kubelet pour prendre en compte les changements
+sudo systemctl restart kubelet
+
+# Vérifier l'état de kubelet
+sudo systemctl status kubelet</code></pre>
 
             <div class="success-box">
               <i class="fas fa-check-circle"></i>
