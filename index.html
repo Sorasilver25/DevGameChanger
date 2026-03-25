@@ -17,6 +17,17 @@
       <i class="fas fa-home"></i>
       <span>Ludoc</span>
     </a>
+    <div class="header-search" role="search" aria-label="Recherche de blogs">
+      <div class="search-input-wrap">
+        <i class="fas fa-search" aria-hidden="true"></i>
+        <input type="search" id="course-search" placeholder="Ex: docker, pydantic, sql, async..." autocomplete="off">
+        <button type="button" id="course-search-clear" class="search-clear" aria-label="Effacer la recherche">Effacer</button>
+      </div>
+      <div id="search-suggestions" class="search-suggestions" hidden>
+        <p class="search-suggestions-title">Blogs suggerés</p>
+        <ul id="search-suggestions-list" class="search-suggestions-list"></ul>
+      </div>
+    </div>
     <div class="app-header-actions">
       <div class="theme-selector">
         <button class="theme-button">
@@ -84,7 +95,7 @@
             <div class="category-title">
               <i class="fab fa-angular"></i>
               <span>Angular</span>
-              <span class="category-count">1</span>
+
             </div>
             <ul class="category-items">
               <li class="sidebar-item">
@@ -97,7 +108,7 @@
             <div class="category-title">
               <i class="fab fa-sass"></i>
               <span>SCSS</span>
-              <span class="category-count">2</span>
+
             </div>
             <ul class="category-items">
               <li class="sidebar-item">
@@ -121,7 +132,7 @@
             <div class="category-title">
               <i class="fas fa-node"></i>
               <span>NestJS</span>
-              <span class="category-count">1</span>
+
             </div>
             <ul class="category-items">
               <li class="sidebar-item">
@@ -134,7 +145,7 @@
             <div class="category-title">
               <i class="fab fa-python"></i>
               <span>Python</span>
-              <span class="category-count">2</span>
+
             </div>
             <ul class="category-items">
               <li class="sidebar-item">
@@ -150,7 +161,7 @@
             <div class="category-title">
               <i class="fab fa-js-square"></i>
               <span>JavaScript</span>
-              <span class="category-count">1</span>
+
             </div>
             <ul class="category-items">
               <li class="sidebar-item">
@@ -171,7 +182,7 @@
             <div class="category-title">
               <i class="fas fa-database"></i>
               <span>SQL</span>
-              <span class="category-count">1</span>
+
             </div>
             <ul class="category-items">
               <li class="sidebar-item">
@@ -184,7 +195,7 @@
             <div class="category-title">
               <i class="fas fa-chart-line"></i>
               <span>Power BI</span>
-              <span class="category-count">1</span>
+
             </div>
             <ul class="category-items">
               <li class="sidebar-item">
@@ -205,7 +216,7 @@
             <div class="category-title">
               <i class="fab fa-docker"></i>
               <span>Docker</span>
-              <span class="category-count">1</span>
+
             </div>
             <ul class="category-items">
               <li class="sidebar-item">
@@ -218,7 +229,7 @@
             <div class="category-title">
               <i class="fas fa-dharmachakra"></i>
               <span>Kubernetes</span>
-              <span class="category-count">1</span>
+
             </div>
             <ul class="category-items">
               <li class="sidebar-item">
@@ -231,7 +242,7 @@
             <div class="category-title">
                 <i class="fab fa-git-alt"></i>
                 <span>Git</span>
-                <span class="category-count">2</span>
+
               </div>
               <ul class="category-items">
                 <li class="sidebar-item">
@@ -247,7 +258,7 @@
             <div class="category-title">
               <i class="fas fa-broom"></i>
               <span>Linters</span>
-              <span class="category-count">1</span>
+
             </div>
             <ul class="category-items">
               <li class="sidebar-item">
@@ -260,7 +271,7 @@
             <div class="category-title">
               <i class="fas fa-cubes"></i>
               <span>Monorepos</span>
-              <span class="category-count">1</span>
+
             </div>
             <ul class="category-items">
               <li class="sidebar-item">
@@ -281,7 +292,7 @@
             <div class="category-title">
               <i class="fas fa-check-circle"></i>
               <span>Bonnes Pratiques</span>
-              <span class="category-count">1</span>
+
             </div>
             <ul class="category-items">
               <li class="sidebar-item">
@@ -565,7 +576,7 @@
 
   <!-- Footer -->
   <footer class="app-footer">
-    <p>© 2025 Ludoc — Site pédagogique | Créé par <a href="https://animyfolio.netlify.app/" target="_blank" rel="noopener noreferrer">Adrien Niceto</a></p>
+    <p>© 2026 Ludoc — Site pédagogique | Créé par <a href="https://animyfolio.netlify.app/" target="_blank" rel="noopener noreferrer">Adrien Niceto</a></p>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
