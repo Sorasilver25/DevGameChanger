@@ -3,11 +3,32 @@ document.addEventListener('DOMContentLoaded', function() {
   if (!localStorage.getItem('theme')) {
     localStorage.setItem('theme', 'light');
   }
+
+  if (!localStorage.getItem('nav-style')) {
+    localStorage.setItem('nav-style', 'authentique');
+  }
+
+  const applyTheme = function(themeName) {
+    const existingThemeClasses = Array.from(document.body.classList)
+      .filter(className => className.startsWith('theme-'));
+    existingThemeClasses.forEach(className => document.body.classList.remove(className));
+    document.body.classList.add('theme-' + themeName);
+  };
+
+  const applyNavStyle = function(styleName) {
+    document.body.classList.remove('nav-mode-authentique', 'nav-mode-fluide', 'nav-mode-paradoxe');
+    document.body.classList.add('nav-mode-' + styleName);
+  };
   
   // Apply saved theme
   const savedTheme = localStorage.getItem('theme');
-  document.body.className = ''; // Clear all classes first
-  document.body.classList.add('theme-' + savedTheme);
+  const savedNavStyleRaw = localStorage.getItem('nav-style');
+  const savedNavStyle = savedNavStyleRaw === 'paradoxe' ? 'paradoxe' : 'authentique';
+  if (savedNavStyleRaw !== savedNavStyle) {
+    localStorage.setItem('nav-style', savedNavStyle);
+  }
+  applyTheme(savedTheme);
+  applyNavStyle(savedNavStyle);
   
   // Mobile menu toggle
   const menuToggle = document.querySelector('.mobile-menu-toggle');
@@ -57,12 +78,10 @@ document.addEventListener('DOMContentLoaded', function() {
       option.addEventListener('click', function(e) {
         e.preventDefault();
         const selectedTheme = this.getAttribute('data-theme');
-        
-        // Remove all theme classes
-        document.body.className = '';
-        
-        // Add selected theme class
-        document.body.classList.add('theme-' + selectedTheme);
+
+        // Apply selected theme while keeping nav-style classes
+        applyTheme(selectedTheme);
+        applyNavStyle(localStorage.getItem('nav-style') || 'authentique');
         
         // Save theme preference
         localStorage.setItem('theme', selectedTheme);
@@ -79,6 +98,45 @@ document.addEventListener('DOMContentLoaded', function() {
       if (option.getAttribute('data-theme') === localStorage.getItem('theme')) {
         option.classList.add('active');
       }
+    });
+  }
+
+  const appHeaderActions = document.querySelector('.app-header-actions');
+  let navModeToggle = document.querySelector('.nav-mode-toggle');
+  let syncParadoxUiState = function() {};
+
+  const updateNavToggleButton = function() {
+    if (!navModeToggle) {
+      return;
+    }
+
+    const currentStyle = localStorage.getItem('nav-style') === 'paradoxe' ? 'paradoxe' : 'authentique';
+    const isAuthentique = currentStyle === 'authentique';
+
+    navModeToggle.setAttribute('aria-pressed', String(!isAuthentique));
+    navModeToggle.setAttribute('title', isAuthentique ? 'Passer en mode navigation paradoxe' : 'Revenir en mode navigation authentique');
+    navModeToggle.innerHTML =
+      '<i class="fas ' + (isAuthentique ? 'fa-shuffle' : 'fa-compass') + '"></i>' +
+      '<span>' + (isAuthentique ? 'Mode paradoxe' : 'Mode authentique') + '</span>';
+  };
+
+  if (!navModeToggle && appHeaderActions) {
+    navModeToggle = document.createElement('button');
+    navModeToggle.type = 'button';
+    navModeToggle.className = 'nav-mode-toggle';
+    navModeToggle.setAttribute('aria-label', 'Changer le style de navigation');
+    appHeaderActions.insertBefore(navModeToggle, appHeaderActions.firstChild);
+  }
+
+  if (navModeToggle) {
+    updateNavToggleButton();
+    navModeToggle.addEventListener('click', function() {
+      const currentStyle = localStorage.getItem('nav-style') === 'paradoxe' ? 'paradoxe' : 'authentique';
+      const nextStyle = currentStyle === 'authentique' ? 'paradoxe' : 'authentique';
+      localStorage.setItem('nav-style', nextStyle);
+      applyNavStyle(nextStyle);
+      updateNavToggleButton();
+      syncParadoxUiState();
     });
   }
 
@@ -114,6 +172,258 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   });
+
+  const buildParadoxNavigation = function() {
+    const sections = Array.from(document.querySelectorAll('.app-sidebar .sidebar-section'));
+    if (!sections.length) {
+      return;
+    }
+
+    let trigger = document.querySelector('.paradox-nav-trigger');
+    let overlay = document.querySelector('.paradox-nav-overlay');
+
+    if (!trigger) {
+      trigger = document.createElement('button');
+      trigger.type = 'button';
+      trigger.className = 'paradox-nav-trigger';
+      trigger.setAttribute('aria-label', 'Ouvrir la navigation paradoxe');
+      trigger.innerHTML = '<i class="fas fa-compass-drafting"></i><span>Explorer</span>';
+      document.body.appendChild(trigger);
+    }
+
+    if (!overlay) {
+      overlay = document.createElement('section');
+      overlay.className = 'paradox-nav-overlay';
+      overlay.setAttribute('aria-hidden', 'true');
+      overlay.innerHTML =
+        '<div class="paradox-nav-panel">' +
+        '<div class="paradox-nav-head">' +
+        '<p class="paradox-nav-kicker">Navigation alternative</p>' +
+        '<h2>Carte de tes blogs</h2>' +
+        '<button type="button" class="paradox-nav-close" aria-label="Fermer la navigation"><i class="fas fa-xmark"></i></button>' +
+        '</div>' +
+        '<div class="paradox-nav-tools">' +
+        '<div class="paradox-nav-stats">' +
+        '<span id="paradox-total-topics" class="paradox-pill"></span>' +
+        '<span id="paradox-total-posts" class="paradox-pill"></span>' +
+        '<span id="paradox-visible-posts" class="paradox-pill paradox-pill-strong"></span>' +
+        '</div>' +
+        '<div class="paradox-nav-actions">' +
+        '<input type="search" id="paradox-nav-search" class="paradox-nav-search" placeholder="Filtrer un sujet, techno, mot-clé..." autocomplete="off">' +
+        '<button type="button" id="paradox-random-link" class="paradox-random-link">Surprends-moi</button>' +
+        '</div>' +
+        '</div>' +
+        '<div id="paradox-nav-shortcuts" class="paradox-nav-shortcuts"></div>' +
+        '<div class="paradox-nav-grid"></div>' +
+        '</div>';
+      document.body.appendChild(overlay);
+    }
+
+    const grid = overlay.querySelector('.paradox-nav-grid');
+    const shortcuts = overlay.querySelector('#paradox-nav-shortcuts');
+    const totalTopics = overlay.querySelector('#paradox-total-topics');
+    const totalPosts = overlay.querySelector('#paradox-total-posts');
+    const visiblePosts = overlay.querySelector('#paradox-visible-posts');
+    const localNormalize = function(text) {
+      return (text || '')
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '');
+    };
+
+    let totalLinkCount = 0;
+    let cardCount = 0;
+
+    if (grid) {
+      grid.innerHTML = '';
+      if (shortcuts) {
+        shortcuts.innerHTML = '';
+      }
+
+      sections.forEach(section => {
+        const sectionTitle = section.querySelector('.section-header span')?.textContent?.trim() || 'Navigation';
+        const sectionIconClass = section.querySelector('.section-header i')?.className || 'fas fa-layer-group';
+        const links = Array.from(section.querySelectorAll('.sidebar-item a'));
+
+        if (!links.length) {
+          return;
+        }
+
+        const card = document.createElement('article');
+        card.className = 'paradox-nav-card';
+        card.id = 'paradox-section-' + cardCount;
+        cardCount += 1;
+
+        const heading = document.createElement('h3');
+        heading.className = 'paradox-nav-card-title';
+        heading.innerHTML = '<i class="' + sectionIconClass + '"></i><span>' + sectionTitle + '</span>';
+
+        const list = document.createElement('ul');
+        list.className = 'paradox-nav-links';
+
+        links.forEach(linkNode => {
+          const href = linkNode.getAttribute('href');
+          if (!href) {
+            return;
+          }
+
+          const item = document.createElement('li');
+          const link = document.createElement('a');
+          const parentCategory = linkNode.closest('.sidebar-category');
+          const categoryName = parentCategory?.querySelector('.category-title span:last-child')?.textContent?.trim() || '';
+          const searchableText = localNormalize([linkNode.textContent.trim(), categoryName, sectionTitle].join(' '));
+
+          link.href = href;
+          link.textContent = linkNode.textContent.trim();
+          link.className = 'paradox-nav-link';
+          link.setAttribute('data-search', searchableText);
+          if (categoryName) {
+            link.setAttribute('data-category', categoryName);
+          }
+
+          if (linkNode.closest('.sidebar-item')?.classList.contains('active')) {
+            link.classList.add('is-current');
+          }
+
+          item.appendChild(link);
+          list.appendChild(item);
+          totalLinkCount += 1;
+        });
+
+        card.appendChild(heading);
+        card.appendChild(list);
+        grid.appendChild(card);
+
+        if (shortcuts) {
+          const sectionShortcut = document.createElement('button');
+          sectionShortcut.type = 'button';
+          sectionShortcut.className = 'paradox-shortcut';
+          sectionShortcut.textContent = sectionTitle + ' (' + links.length + ')';
+          sectionShortcut.setAttribute('data-target', card.id);
+          sectionShortcut.addEventListener('click', function() {
+            const target = document.getElementById(card.id);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          });
+          shortcuts.appendChild(sectionShortcut);
+        }
+      });
+
+      if (totalTopics) {
+        totalTopics.textContent = cardCount + ' espaces';
+      }
+      if (totalPosts) {
+        totalPosts.textContent = totalLinkCount + ' articles';
+      }
+      if (visiblePosts) {
+        visiblePosts.textContent = totalLinkCount + ' visibles';
+      }
+    }
+
+    const searchInput = overlay.querySelector('#paradox-nav-search');
+    if (searchInput) {
+      searchInput.value = '';
+      searchInput.addEventListener('input', function() {
+        const query = localNormalize(searchInput.value.trim());
+        const allCards = Array.from(overlay.querySelectorAll('.paradox-nav-card'));
+        const allLinks = Array.from(overlay.querySelectorAll('.paradox-nav-link'));
+        let visibleCount = 0;
+
+        allLinks.forEach(link => {
+          const matches = !query || (link.getAttribute('data-search') || '').includes(query);
+          const listItem = link.closest('li');
+          if (listItem) {
+            listItem.style.display = matches ? '' : 'none';
+          }
+          if (matches) {
+            visibleCount += 1;
+          }
+        });
+
+        allCards.forEach(card => {
+          const hasVisibleItem = !!card.querySelector('li:not([style*="display: none"])');
+          card.style.display = hasVisibleItem ? '' : 'none';
+        });
+
+        if (visiblePosts) {
+          visiblePosts.textContent = visibleCount + ' visibles';
+        }
+      });
+    }
+
+    const randomButton = overlay.querySelector('#paradox-random-link');
+    if (randomButton) {
+      randomButton.addEventListener('click', function() {
+        const visibleLinks = Array.from(overlay.querySelectorAll('.paradox-nav-link')).filter(link => {
+          const li = link.closest('li');
+          const card = link.closest('.paradox-nav-card');
+          return (!li || li.style.display !== 'none') && (!card || card.style.display !== 'none');
+        });
+
+        if (!visibleLinks.length) {
+          return;
+        }
+
+        const pick = visibleLinks[Math.floor(Math.random() * visibleLinks.length)];
+        const targetHref = pick.getAttribute('href');
+        if (targetHref) {
+          window.location.href = targetHref;
+        }
+      });
+    }
+
+    const closeOverlay = function() {
+      overlay.classList.remove('show');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('paradox-nav-open');
+    };
+
+    const openOverlay = function() {
+      overlay.classList.add('show');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('paradox-nav-open');
+    };
+
+    trigger.addEventListener('click', function() {
+      if (overlay.classList.contains('show')) {
+        closeOverlay();
+      } else {
+        openOverlay();
+      }
+    });
+
+    overlay.addEventListener('click', function(event) {
+      if (event.target === overlay) {
+        closeOverlay();
+      }
+    });
+
+    overlay.querySelector('.paradox-nav-close')?.addEventListener('click', closeOverlay);
+
+    overlay.querySelectorAll('.paradox-nav-link').forEach(link => {
+      link.addEventListener('click', closeOverlay);
+    });
+
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape' && overlay.classList.contains('show')) {
+        closeOverlay();
+      }
+    });
+
+    syncParadoxUiState = function() {
+      const isParadox = localStorage.getItem('nav-style') === 'paradoxe';
+      trigger.hidden = !isParadox;
+
+      if (!isParadox) {
+        closeOverlay();
+      }
+    };
+
+    syncParadoxUiState();
+  };
+
+  buildParadoxNavigation();
 
   // Global header search (all pages) + advanced keyword matching
   const appHeader = document.querySelector('.app-header');
