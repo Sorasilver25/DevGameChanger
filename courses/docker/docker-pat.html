@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Comprendre le principe du Bubble Up avec try...catch en JavaScript</title>
+  <title>Docker - Personal Access Tokens (PAT) | Documentation Web</title>
   <link rel="stylesheet" href="../../css/themes.css">
   <link rel="stylesheet" href="../../css/main.css">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
@@ -77,7 +77,7 @@
             <i class="fas fa-code"></i>
             <span>Frontend Development</span>
           </div>
-          
+
           <div class="sidebar-category">
             <div class="category-title">
               <i class="fab fa-angular"></i>
@@ -207,10 +207,10 @@
             </div>
             <ul class="category-items">
               <li class="sidebar-item">
-                <a href="../docker/docker-swarm.html">Docker Swarm</a>
+                <a href="docker-swarm.html">Docker Swarm</a>
               </li>
-              <li class="sidebar-item">
-                <a href="../docker/docker-pat.html">Docker PAT (Personal Access Token)</a>
+              <li class="sidebar-item active">
+                <a href="docker-pat.html">Docker PAT (Personal Access Token)</a>
               </li>
             </ul>
           </div>
@@ -285,8 +285,8 @@
 
             </div>
             <ul class="category-items">
-              <li class="sidebar-item active">
-                <a href="bubble-up-try-catch.html">Bubble Up Try/Catch</a>
+              <li class="sidebar-item">
+                <a href="../bp/bubble-up-try-catch.html">Bubble Up Try/Catch</a>
               </li>
             </ul>
           </div>
@@ -298,141 +298,175 @@
     <main class="app-content">
       <div class="content-wrapper">
         <div class="course-header">
-          <h1 class="course-title">Bubble Up avec Try/Catch</h1>
+          <h1 class="course-title">Docker PAT - Authentification sécurisée et automatisation CI/CD</h1>
           <p class="course-description">
-            Comprendre le principe du Bubble Up avec try...catch en JavaScript
-          </p>
-          <p class="course-description">
-            Dans le développement d'applications JavaScript, la gestion des erreurs est un aspect essentiel pour garantir une expérience utilisateur fluide et une application stable. Ce cours se concentre sur un comportement fondamental lié au bloc try...catch : le bubble up (ou remontée des erreurs).
+            Ce cours explique comment utiliser les <strong>Personal Access Tokens (PAT)</strong> avec Docker Hub pour
+            sécuriser l'authentification, remplacer les mots de passe dans les scripts et fiabiliser vos pipelines.
+            L'objectif : publier, tirer et automatiser des images Docker proprement en environnement de dev et de production.
           </p>
           <div class="last-update">
             <i class="far fa-clock"></i>
-            <span>Dernière mise à jour : <strong>20.09.2025</strong></span>
+            <span>Dernière mise à jour : <strong>09.04.2026</strong></span>
           </div>
         </div>
 
-        <div class="course-section">
-          <h2 class="section-title">Introduction</h2>
-          <div class="course-content">
-            <p>Comprendre cette notion permet de mieux structurer ses applications, éviter les erreurs silencieuses et centraliser la gestion des exceptions.</p>
-          </div>
-        </div>
-
-        <div class="course-section">
-          <h2 class="section-title">Objectifs pédagogiques</h2>
-          <div class="course-content">
+        <div class="course-content">
+          <section class="course-section">
+            <h2 class="section-title">PAT : c'est quoi ?</h2>
+            <p>
+              Un <strong>Personal Access Token</strong> est un jeton d'accès personnel lié à votre compte,
+              utilisé comme identifiant machine-à-machine.
+              Contrairement à un mot de passe global, un PAT peut être :
+            </p>
             <ul>
-              <li>Comprendre le comportement d’une erreur non capturée immédiatement.</li>
-              <li>Décrire le mécanisme de "remontée" (bubble up) d’une erreur dans la pile d’appels.</li>
-              <li>Implémenter une stratégie efficace de gestion d’erreurs dans une application JavaScript.</li>
+              <li><strong>scopé</strong> sur des permissions ciblées</li>
+              <li><strong>révocable</strong> individuellement sans casser tout votre compte</li>
+              <li><strong>rotatif</strong> avec une stratégie de renouvellement</li>
+              <li><strong>auditable</strong> avec un usage par contexte (CI, local, serveur)</li>
             </ul>
-          </div>
-        </div>
+          </section>
 
-        <div class="course-section">
-          <h2 class="section-title">Définitions clés</h2>
-          <div class="course-content">
+          <section class="course-section">
+            <h2 class="section-title">Pourquoi utiliser un PAT avec Docker Hub ?</h2>
+            <p>Le cas Docker est très concret :</p>
             <ul>
-              <li><strong>Erreur (Error)</strong> : Objet généré lorsqu’une situation inattendue ou bloquante survient pendant l’exécution du code.</li>
-              <li><strong>try...catch</strong> : Bloc permettant d’essayer un morceau de code (try) et de capturer toute erreur générée (catch).</li>
-              <li><strong>Bubble up</strong> : Mécanisme naturel par lequel une erreur "remonte" la pile d’exécution jusqu’à ce qu’elle soit interceptée par un bloc catch.</li>
+              <li>Push d'images depuis CI/CD</li>
+              <li>Pull d'images privées sur serveur</li>
+              <li>Authentification sur plusieurs machines sans partager le mot de passe principal</li>
             </ul>
-          </div>
-        </div>
+            <p>
+              Avec Docker, la bonne pratique consiste à utiliser <code>docker login --password-stdin</code>
+              avec un PAT stocké dans un secret manager (GitHub Secrets, GitLab Variables, Vault, etc.).
+            </p>
+          </section>
 
-        <div class="course-section">
-          <h2 class="section-title">Exemple illustratif</h2>
-          <div class="course-content">
-            <pre><code class="language-javascript">function lireFichier() {
-  throw new Error("Impossible de lire le fichier !");
-}
+          <section class="course-section">
+            <h2 class="section-title">Créer un PAT Docker Hub</h2>
+            <ol>
+              <li>Connectez-vous à Docker Hub.</li>
+              <li>Ouvrez <strong>Account Settings</strong> puis <strong>Personal access tokens</strong>.</li>
+              <li>Cliquez sur <strong>Create token</strong>.</li>
+              <li>Donnez un nom explicite : <code>ci-main-2026q2</code>.</li>
+              <li>Choisissez les droits minimaux nécessaires.</li>
+              <li>Copiez le token immédiatement et stockez-le de façon sécurisée.</li>
+            </ol>
+            <p>
+              Évitez les noms génériques comme <code>token1</code>. Un nom clair facilite la rotation et l'audit.
+            </p>
+          </section>
 
-function traiterFichier() {
-  lireFichier(); // pas de try...catch ici
-}
+          <section class="course-section">
+            <h2 class="section-title">Connexion Docker en local (sans fuite)</h2>
+            <p>Exemple recommandé :</p>
+            <pre><code class="language-bash"># Linux/macOS
+export DOCKERHUB_USERNAME="mon-user"
+export DOCKERHUB_PAT="dckr_pat_xxx"
 
-function lancerTraitement() {
-  try {
-    traiterFichier();
-  } catch (e) {
-    console.log("Erreur interceptée :", e.message);
-  }
-}
+echo "$DOCKERHUB_PAT" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin</code></pre>
+            <p>
+              Cette approche évite d'exposer le token dans l'historique shell (contrairement à
+              <code>docker login -p ...</code> qui est déconseillé).
+            </p>
+          </section>
 
-lancerTraitement();</code></pre>
-            <p>Ce qui se passe :</p>
+          <section class="course-section">
+            <h2 class="section-title">Exemple CI/CD GitHub Actions</h2>
+            <p>
+              Dans ce workflow, le PAT est stocké dans <code>DOCKERHUB_TOKEN</code> et injecté au runtime :
+            </p>
+            <pre><code class="language-yaml">name: Docker Publish
+
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Login Docker Hub
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+      - name: Build image
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/ludoc:latest .
+
+      - name: Push image
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/ludoc:latest</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">PAT et Docker Compose</h2>
+            <p>
+              Si votre <code>docker-compose.yml</code> tire des images privées, authentifiez d'abord l'hôte
+              (ou l'agent CI) avec le PAT, puis lancez la stack :
+            </p>
+            <pre><code class="language-bash">echo "$DOCKERHUB_PAT" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+docker compose pull
+docker compose up -d</code></pre>
+            <p>
+              L'auth est gérée par le client Docker, vous n'avez pas besoin d'écrire le token dans le fichier Compose.
+            </p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Rotation et révocation</h2>
+            <p>Stratégie simple et efficace :</p>
+            <ol>
+              <li>Créer un nouveau PAT.</li>
+              <li>Mettre à jour les secrets CI/CD.</li>
+              <li>Vérifier les pipelines et déploiements.</li>
+              <li>Révoquer l'ancien PAT.</li>
+            </ol>
+            <p>
+              Faites cette rotation régulièrement (par exemple tous les 60 à 90 jours) selon votre niveau de risque.
+            </p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Anti-patterns à éviter</h2>
             <ul>
-              <li><code>lancerTraitement()</code> appelle <code>traiterFichier()</code>.</li>
-              <li><code>traiterFichier()</code> appelle <code>lireFichier()</code>.</li>
-              <li><code>lireFichier()</code> provoque une erreur avec <code>throw</code>.</li>
-              <li>Aucune des fonctions intermédiaires n’intercepte cette erreur.</li>
-              <li>L’erreur "bulle" jusqu’à la fonction <code>lancerTraitement()</code>, qui la capture.</li>
+              <li>Commiter un token dans le code, même en privé</li>
+              <li>Utiliser le même PAT pour tous les environnements</li>
+              <li>Donner des droits trop larges par confort</li>
+              <li>Mettre un PAT en clair dans <code>.env</code> versionné</li>
+              <li>Partager un PAT entre plusieurs personnes</li>
             </ul>
-          </div>
-        </div>
+          </section>
 
-        <div class="course-section">
-          <h2 class="section-title">Bonnes pratiques</h2>
-          <div class="course-content">
+          <section class="course-section">
+            <h2 class="section-title">Checklist de mise en production</h2>
             <ul>
-              <li>Éviter de multiplier les blocs try...catch à tous les niveaux : cela rend le code verbeux et difficile à maintenir.</li>
-              <li>Préférer capturer les erreurs au plus haut niveau logique (ex: dans un contrôleur ou une fonction principale).</li>
-              <li>Toujours afficher ou enregistrer l’erreur pour faciliter le débogage (console.error, logs, etc).</li>
-              <li>Utiliser <code>finally</code> pour exécuter du code quel que soit le résultat (try ou catch).</li>
+              <li>PAT dédié au contexte (CI, serveur, local)</li>
+              <li>Droits minimaux appliqués</li>
+              <li>Stockage dans un coffre/secret manager</li>
+              <li>Rotation planifiée</li>
+              <li>Révocation testée</li>
+              <li>Aucune fuite dans logs et historiques shell</li>
             </ul>
-          </div>
-        </div>
+          </section>
 
-        <div class="course-section">
-          <h2 class="section-title">Variante avec async/await</h2>
-          <div class="course-content">
-            <pre><code class="language-javascript">async function chargerRessource() {
-  throw new Error("Erreur de chargement");
-}
+          <section class="course-section">
+            <h2 class="section-title">Navigation inter-blog : aller plus loin</h2>
+            <p>Pour consolider vos bases autour des PAT et de l'authentification:</p>
+            <ul>
+              <li><a href="docker-swarm.html">Docker Swarm</a> pour la partie orchestration et déploiement de services</li>
+              <li><a href="../git/bashrc-git.html">Configuration .bashrc Git</a> pour industrialiser vos commandes locales</li>
+              <li><a href="../husky/husky.html">Husky — Hooks Git</a> pour bloquer les erreurs avant push</li>
+              <li><a href="../kubernetes/kubernetes.html">Guide Complet Kubernetes</a> pour comparer les usages Docker/K8s</li>
+            </ul>
+          </section>
 
-async function main() {
-  try {
-    await chargerRessource();
-  } catch (e) {
-    console.error("Erreur asynchrone :", e.message);
-  }
-}
-
-main();</code></pre>
-            <p>Même en asynchrone, le principe de bubble up reste le même : si tu ne catch pas une erreur awaitée, elle remonte jusqu'à un bloc supérieur.</p>
-          </div>
-        </div>
-
-        <div class="course-section">
-          <h2 class="section-title">Résumé</h2>
-          <div class="course-content">
-            <table class="command-table">
-              <thead>
-                <tr>
-                  <th>Élément</th>
-                  <th>Rôle</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><code>throw</code></td>
-                  <td>Déclenche une erreur</td>
-                </tr>
-                <tr>
-                  <td><code>try</code></td>
-                  <td>Contient le code "à risque"</td>
-                </tr>
-                <tr>
-                  <td><code>catch</code></td>
-                  <td>Capture et gère l’erreur</td>
-                </tr>
-                <tr>
-                  <td>Bubble up</td>
-                  <td>Laisse l’erreur remonter jusqu’à un bloc catch approprié</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <section class="course-section">
+            <h2 class="section-title">Résumé</h2>
+            <p>
+              Les PAT sont la base d'une authentification Docker moderne : plus sécurisée, plus contrôlable,
+              et mieux adaptée à l'automatisation. En combinant un PAT par contexte, des permissions minimales,
+              et une rotation régulière, vous réduisez fortement le risque de compromission.
+            </p>
+          </section>
         </div>
       </div>
     </main>
@@ -444,7 +478,8 @@ main();</code></pre>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
   <script src="../../js/main.js"></script>
 </body>
 </html>

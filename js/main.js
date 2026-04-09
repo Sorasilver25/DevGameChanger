@@ -444,7 +444,7 @@ document.addEventListener('DOMContentLoaded', function() {
       '<button type="button" id="course-search-clear" class="search-clear" aria-label="Effacer la recherche">Effacer</button>' +
       '</div>' +
       '<div id="search-suggestions" class="search-suggestions" hidden>' +
-      '<p class="search-suggestions-title">Blogs suggerés</p>' +
+      '<p class="search-suggestions-title">Blogs suggérés</p>' +
       '<ul id="search-suggestions-list" class="search-suggestions-list"></ul>' +
       '</div>';
 
@@ -569,7 +569,7 @@ document.addEventListener('DOMContentLoaded', function() {
     resultsNode.id = 'search-results-view';
     resultsNode.className = 'search-results-view';
     resultsNode.innerHTML =
-      '<h2 class="search-results-title">Resultats de recherche</h2>' +
+      '<h2 class="search-results-title">Résultats de recherche</h2>' +
       '<p id="search-results-subtitle" class="search-results-subtitle"></p>' +
       '<ul id="search-results-list" class="search-results-list"></ul>';
 
@@ -669,7 +669,7 @@ document.addEventListener('DOMContentLoaded', function() {
       document.body.classList.add('search-mode');
 
       if (matches.length === 0) {
-        searchResultsSubtitle.textContent = 'Aucun blog trouve pour "' + query + '".';
+        searchResultsSubtitle.textContent = 'Aucun blog trouvé pour "' + query + '".';
         return;
       }
 
@@ -685,7 +685,7 @@ document.addEventListener('DOMContentLoaded', function() {
         link.textContent = match.title;
 
         meta.className = 'search-results-meta';
-        meta.textContent = match.category ? 'Categorie: ' + match.category : 'Blog';
+        meta.textContent = match.category ? 'Catégorie : ' + match.category : 'Blog';
 
         item.appendChild(link);
         item.appendChild(meta);
