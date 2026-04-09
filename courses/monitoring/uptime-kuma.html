@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monitoring - Uptime Kuma | Documentation Web</title>
+  <link rel="stylesheet" href="../../css/themes.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body class="theme-light">
+  <!-- Header -->
+  <header class="app-header">
+    <a href="../../index.html" class="app-title">
+      <i class="fas fa-home"></i>
+      <span>Ludoc</span>
+    </a>
+    <div class="app-header-actions">
+      <div class="theme-selector">
+        <button class="theme-button">
+          <i class="fas fa-palette"></i>
+          <span>Thème</span>
+        </button>
+        <div class="theme-dropdown">
+          <div class="theme-option" data-theme="light">
+            <div class="theme-color light"></div>
+            <span>Clair</span>
+          </div>
+          <div class="theme-option" data-theme="dark">
+            <div class="theme-color dark"></div>
+            <span>Sombre</span>
+          </div>
+          <div class="theme-option" data-theme="blue">
+            <div class="theme-color blue"></div>
+            <span>Bleu</span>
+          </div>
+          <div class="theme-option" data-theme="green">
+            <div class="theme-color green"></div>
+            <span>Vert</span>
+          </div>
+          <div class="theme-option" data-theme="purple">
+            <div class="theme-color purple"></div>
+            <span>Violet</span>
+          </div>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <div class="sidebar-content">
+        <!-- Navigation -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-home"></i>
+            <span>Navigation</span>
+          </div>
+          <div class="sidebar-category">
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../../index.html"><span>Accueil</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Frontend Development -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-code"></i>
+            <span>Frontend Development</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-angular"></i>
+              <span>Angular</span>
+
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../angular/svg-icon-service.html">Service SVG Icons</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-sass"></i>
+              <span>SCSS</span>
+
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../scss/preprocesseur-css.html">Préprocesseur CSS</a>
+              </li>
+              <li class="sidebar-item">
+                <a href="../scss/directives-scss.html">Directives SCSS</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Backend Development -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-server"></i>
+            <span>Backend Development</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-node"></i>
+              <span>NestJS</span>
+
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../nestjs/endpoint-securise.html">Endpoint Sécurisé</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-python"></i>
+              <span>Python</span>
+
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../python/dataframes-pandas.html">DataFrames Pandas</a>
+              </li>
+              <li class="sidebar-item">
+                <a href="../python/validation-pydantic.html">Validation Pydantic</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-js-square"></i>
+              <span>JavaScript</span>
+
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../js/async-await.html">Async/Await</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Data & Analytics -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-chart-bar"></i>
+            <span>Data & Analytics</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-database"></i>
+              <span>SQL</span>
+
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../sql/requetes-sql.html">Requêtes SQL</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-chart-line"></i>
+              <span>Power BI</span>
+
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../pbi/formules-dax.html">Formules DAX</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- DevOps & Tools -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-tools"></i>
+            <span>DevOps & Tools</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-docker"></i>
+              <span>Docker</span>
+
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../docker/docker-swarm.html">Docker Swarm</a>
+              </li>
+              <li class="sidebar-item">
+                <a href="../docker/docker-pat.html">Docker PAT (Personal Access Token)</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-dharmachakra"></i>
+              <span>Kubernetes</span>
+
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../kubernetes/kubernetes.html">Guide Complet Kubernetes</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fab fa-git-alt"></i>
+              <span>Git</span>
+
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../git/bashrc-git.html">Configuration .bashrc Git</a>
+              </li>
+              <li class="sidebar-item">
+                <a href="../husky/husky.html">Husky — Hooks Git</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-broom"></i>
+              <span>Linters</span>
+
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../linter/linter.html">Les Linters</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-cubes"></i>
+              <span>Monorepos</span>
+
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../lerna/lerna.html">Lerna</a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-heartbeat"></i>
+              <span>Monitoring</span>
+
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item active">
+                <a href="uptime-kuma.html">Uptime Kuma</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Best Practices -->
+        <div class="sidebar-section">
+          <div class="section-header">
+            <i class="fas fa-star"></i>
+            <span>Best Practices</span>
+          </div>
+
+          <div class="sidebar-category">
+            <div class="category-title">
+              <i class="fas fa-check-circle"></i>
+              <span>Bonnes Pratiques</span>
+
+            </div>
+            <ul class="category-items">
+              <li class="sidebar-item">
+                <a href="../bp/bubble-up-try-catch.html">Bubble Up Try/Catch</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="app-content">
+      <div class="content-wrapper">
+        <div class="course-header">
+          <h1 class="course-title">Uptime Kuma - Surveillance de disponibilité moderne et accessible</h1>
+          <p class="course-description">
+            Uptime Kuma est un outil de monitoring léger, moderne et open-source qui vous permet de surveiller 
+            la disponibilité de vos services en temps réel. Découvrez comment le déployer, le configurer et l'intégrer 
+            dans votre infrastructure pour garantir une visibilité complète sur l'état de vos applications.
+          </p>
+          <div class="last-update">
+            <i class="far fa-clock"></i>
+            <span>Dernière mise à jour : <strong>09.04.2026</strong></span>
+          </div>
+        </div>
+
+        <div class="course-content">
+          <section class="course-section">
+            <h2 class="section-title">Qu'est-ce qu'Uptime Kuma ?</h2>
+            <p>
+              <strong>Uptime Kuma</strong> est un outil de surveillance (monitoring) open-source qui monitore 
+              la disponibilité (uptime) de vos services, applications et serveurs. Contrairement aux solutions 
+              lourdes et complexes, Uptime Kuma propose :
+            </p>
+            <ul>
+              <li><strong>Interface web simple et intuitive</strong> accessible depuis n'importe où</li>
+              <li><strong>Monitoring multi-protocoles</strong> : HTTP, TCP, ICMP (ping), DNS, etc.</li>
+              <li><strong>Alertes en temps réel</strong> via email, Slack, Discord, Telegram, etc.</li>
+              <li><strong>Tableaux de bord publics (status pages)</strong> pour communiquer avec les utilisateurs</li>
+              <li><strong>Historique et statistiques</strong> pour analyser les tendances</li>
+              <li><strong>Déploiement facile</strong> en Docker, Kubernetes, ou standalone</li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Rôles et utilité</h2>
+            <p>Uptime Kuma joue plusieurs rôles importants dans une infrastructure :</p>
+            <ul>
+              <li>
+                <strong>Surveillance pro-active</strong> : détectez les pannes avant vos utilisateurs
+              </li>
+              <li>
+                <strong>Gestion d'incidents</strong> : réagissez rapidement avec les alertes automatisées
+              </li>
+              <li>
+                <strong>Communication de crise</strong> : affichez l'état réel via des status pages publiques
+              </li>
+              <li>
+                <strong>Analyse de performance</strong> : suivez les métriques (temps de réponse, disponibilité %)
+              </li>
+              <li>
+                <strong>Conformité et reporting</strong> : gardez des traces pour les audits SLA
+              </li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Installation autonome (recommandée pour démarrer)</h2>
+            <p>
+              La façon la plus simple de commencer : installer Uptime Kuma en tant que service Node.js sur votre machine.
+            </p>
+            <ol>
+              <li>
+                <strong>Prérequis</strong> : Node.js 14+ et npm installés
+              </li>
+              <li>
+                <strong>Clone et installation</strong> :
+              </li>
+            </ol>
+            <pre><code class="language-bash">git clone https://github.com/louislam/uptime-kuma.git
+cd uptime-kuma
+npm ci --production
+npm run build
+npm start</code></pre>
+            <p>
+              Uptime Kuma sera accessible sur <code>http://localhost:3001</code>. Lors de la première visite, 
+              vous serez invité à créer un compte administrateur.
+            </p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Déploiement Docker (approche moderne et reproductible)</h2>
+            <p>
+              Pour un déploiement en production ou en environnement multi-nœuds, Docker est l'approche idéale. 
+              Voici un fichier compose complet et moderne :
+            </p>
+            <pre><code class="language-yaml">version: '3.8'
+
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:latest
+    container_name: uptime-kuma
+    restart: always
+    volumes:
+      - uptime-kuma-data:/app/data
+    ports:
+      - "3001:3001"
+    environment:
+      - PUID=1000
+      - PGID=1000
+    networks:
+      - uptime-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3001/ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Exemple : monitorer une application locale
+  sample-api:
+    image: nginx:latest
+    container_name: sample-api
+    restart: always
+    expose:
+      - "80"
+    networks:
+      - uptime-network
+
+volumes:
+  uptime-kuma-data:
+    driver: local
+
+networks:
+  uptime-network:
+    driver: bridge</code></pre>
+            <p>
+              Vous pouvez alors lancer avec :
+            </p>
+            <pre><code class="language-bash">docker compose up -d</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Configuration d'un premier monitor : HTTP simple</h2>
+            <p>
+              Une fois Uptime Kuma démarré, voici comment configurer votre premier monitor :
+            </p>
+            <ol>
+              <li>Connectez-vous à l'interface (http://localhost:3001)</li>
+              <li>Cliquez sur "<strong>Add New Monitor</strong>"</li>
+              <li>Remplissez :
+                <ul>
+                  <li><strong>Monitor Type</strong> : HTTP(s)</li>
+                  <li><strong>Name</strong> : "API Ludoc" (exemple)</li>
+                  <li><strong>URL</strong> : https://api.ludoc.example.com</li>
+                  <li><strong>Method</strong> : GET</li>
+                  <li><strong>Interval</strong> : 60 (vérifie toutes les 60 secondes)</li>
+                  <li><strong>Timeout</strong> : 10 (secondes)</li>
+                  <li><strong>Retries</strong> : 3 (avant de déclarer "down")</li>
+                </ul>
+              </li>
+              <li>Cliquez sur "<strong>Save</strong>"</li>
+            </ol>
+            <p>
+              Vous verrez immédiatement un graphique montrant la disponibilité en temps réel.
+            </p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Types de monitors avancés</h2>
+            <p>Uptime Kuma supporte bien plus que HTTP :</p>
+            <ul>
+              <li>
+                <strong>TCP</strong> : vérifier qu'un port est ouvert (ex: port 5432 pour PostgreSQL)
+              </li>
+              <li>
+                <strong>ICMP (Ping)</strong> : tester la connectivité réseau brute
+              </li>
+              <li>
+                <strong>DNS</strong> : vérifier qu'un nom de domaine résout correctement
+              </li>
+              <li>
+                <strong>Keyword</strong> : HTTP + vérification qu'un mot-clé spécifique est présent en réponse
+              </li>
+              <li>
+                <strong>JSON Query</strong> : monitorer une API JSON et vérifier une condition
+              </li>
+              <li>
+                <strong>MQTT</strong> : pour l'IoT et les systèmes temps réel
+              </li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Configuration des alertes (notifications)</h2>
+            <p>
+              Les alertes vous permettent de réagir immédiatement quand quelque chose tombe en panne. 
+              Uptime Kuma supporte de nombreux canaux :
+            </p>
+            <pre><code class="language-bash">Canaux supportés :
+- Email (SMTP)
+- Slack
+- Discord
+- Telegram
+- Webhook personnalisé
+- Pushover
+- Matrix
+- Microsoft Teams
+- et bien d'autres...</code></pre>
+            <p>
+              Pour configurer une notification Slack par exemple :
+            </p>
+            <ol>
+              <li>Allez dans "<strong>Settings</strong>" → "<strong>Notifications</strong>"</li>
+              <li>Cliquez "<strong>+ New Notification</strong>"</li>
+              <li>Sélectionnez "<strong>Slack</strong>"</li>
+              <li>Collez votre Webhook URL Slack</li>
+              <li>Testez en cliquant "<strong>Test</strong>"</li>
+              <li>Sauvegardez</li>
+            </ol>
+            <p>
+              Puis, dans la configuration de chaque monitor, attachez cette notification 
+              pour être alerté en cas de panne.
+            </p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Status Page publique : communiquer avec l'équipe</h2>
+            <p>
+              Une des forces d'Uptime Kuma : générer des status pages publiques pour informer vos utilisateurs 
+              ou votre équipe de la disponibilité réelle.
+            </p>
+            <ol>
+              <li>Allez dans "<strong>Status Page</strong>"</li>
+              <li>Cliquez "<strong>+ New Status Page</strong>"</li>
+              <li>Donnez un nom : ex "Ludoc Status"</li>
+              <li>Sélectionnez les monitors à afficher</li>
+              <li>Configurez l'apparence (titre, logo, couleurs)</li>
+              <li>Publiez</li>
+            </ol>
+            <p>
+              Vous obtiendrez une URL publique du type <code>http://uptime.example.com:3001/status/ludoc</code> 
+              que vous pouvez partager avec votre équipe ou vos clients.
+            </p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Exemple complet : monitorer une stack application</h2>
+            <p>
+              Voici une configuration réaliste avec plusieurs monitors :
+            </p>
+            <pre><code class="language-bash">Monitor 1 : API Backend
+- Type: HTTP
+- URL: https://api.ludoc.example.com/health
+- Expected Keyword: "ok"
+- Interval: 30s
+
+Monitor 2 : Base de données
+- Type: TCP
+- Host: db.ludoc.example.com
+- Port: 5432
+- Interval: 60s
+
+Monitor 3 : Frontend
+- Type: HTTP
+- URL: https://ludoc.example.com
+- Method: GET
+- Interval: 60s
+
+Monitor 4 : Service tiers (Stripe API)
+- Type: HTTP
+- URL: https://status.stripe.com/
+- Interval: 300s (5 minutes)
+
+Notifications configurées :
+- Slack pour l'équipe dev (critique)
+- Email pour les ops (warning)
+- Webhook custom pour le logging centralisé</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Bonnes pratiques de configuration</h2>
+            <ul>
+              <li>
+                <strong>Alias descriptifs</strong> : nommez vos monitors clairement pour éviter la confusion
+              </li>
+              <li>
+                <strong>Intervalles adaptés</strong> : pas besoin de checker toutes les secondes (charge inutile), 
+                60s est généralement bon
+              </li>
+              <li>
+                <strong>Health checks robustes</strong> : utilisez des endpoints dédiés <code>/health</code> 
+                plutôt que la racine
+              </li>
+              <li>
+                <strong>Multiples notifications</strong> : alertez sur plusieurs canaux pour les incidents critiques
+              </li>
+              <li>
+                <strong>Sauvegarde régulière</strong> : le volume Docker <code>uptime-kuma-data</code> contient 
+                tout, assurez-vous qu'il est sauvegardé
+              </li>
+              <li>
+                <strong>Évitez les faux positifs</strong> : configurez correctement les retries et timeouts
+              </li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Intégration avec votre infrastructure</h2>
+            <p>
+              Uptime Kuma s'intègre bien avec le reste de votre stack :
+            </p>
+            <ul>
+              <li>
+                <strong>Avec Docker Swarm</strong> : déployez Uptime Kuma en tant que service Swarm 
+                et monitrez vos stacks
+              </li>
+              <li>
+                <strong>Avec Kubernetes</strong> : utilisez l'Helm chart officiel pour un déploiement K8s natif
+              </li>
+              <li>
+                <strong>Avec des webhooks</strong> : connectez les alertes à votre système de ticketing (Jira, etc.)
+              </li>
+              <li>
+                <strong>Avec des PAT Docker</strong> : monitrez vos registres privés et pipelines CI/CD
+              </li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Navigation inter-blog : aller plus loin</h2>
+            <p>
+              Pour approfondir vos compétences en infrastructure et monitoring :
+            </p>
+            <ul>
+              <li>
+                <a href="../docker/docker-swarm.html">Docker Swarm</a> pour orchestrer vos services à l'échelle
+              </li>
+              <li>
+                <a href="../docker/docker-pat.html">Docker PAT</a> pour authentifier vos services de monitoring
+              </li>
+              <li>
+                <a href="../kubernetes/kubernetes.html">Kubernetes</a> pour une orchestration avancée
+              </li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Résumé</h2>
+            <p>
+              Uptime Kuma est un outil puissant et accessible pour surveiller votre infrastructure. 
+              Qu'il soit déployé en autonome, en Docker, ou en Kubernetes, il vous permet de gagner en visibilité 
+              et de réagir plus rapidement aux incidents. Commencez par quelques monitors critiques, et expandez 
+              progressivement avec des alertes et des status pages pour maximiser votre couverture de monitoring.
+            </p>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>© 2026 Ludoc — Site pédagogique | Créé par <a href="https://animyfolio.netlify.app/" target="_blank" rel="noopener noreferrer">Adrien Niceto</a></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+  <script src="../../js/main.js"></script>
+</body>
+</html>
