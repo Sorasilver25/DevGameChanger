@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messaging - RabbitMQ | Documentation Web</title>
+  <link rel="stylesheet" href="../../css/themes.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body class="theme-light">
+  <header class="app-header">
+    <a href="../../index.html" class="app-title">
+      <i class="fas fa-home"></i>
+      <span>Ludoc</span>
+    </a>
+    <div class="app-header-actions">
+      <div class="theme-selector">
+        <button class="theme-button">
+          <i class="fas fa-palette"></i>
+          <span>Thème</span>
+        </button>
+        <div class="theme-dropdown">
+          <div class="theme-option" data-theme="light"><div class="theme-color light"></div><span>Clair</span></div>
+          <div class="theme-option" data-theme="dark"><div class="theme-color dark"></div><span>Sombre</span></div>
+          <div class="theme-option" data-theme="blue"><div class="theme-color blue"></div><span>Bleu</span></div>
+          <div class="theme-option" data-theme="green"><div class="theme-color green"></div><span>Vert</span></div>
+          <div class="theme-option" data-theme="purple"><div class="theme-color purple"></div><span>Violet</span></div>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <aside class="app-sidebar">
+      <div class="sidebar-content">
+        <div class="sidebar-section">
+          <div class="section-header"><i class="fas fa-home"></i><span>Navigation</span></div>
+          <div class="sidebar-category"><ul class="category-items"><li class="sidebar-item"><a href="../../index.html"><span>Accueil</span></a></li></ul></div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="section-header"><i class="fas fa-code"></i><span>Frontend Development</span></div>
+          <div class="sidebar-category">
+            <div class="category-title"><i class="fab fa-angular"></i><span>Angular</span></div>
+            <ul class="category-items"><li class="sidebar-item"><a href="../angular/svg-icon-service.html">Service SVG Icons</a></li></ul>
+          </div>
+          <div class="sidebar-category">
+            <div class="category-title"><i class="fab fa-sass"></i><span>SCSS</span></div>
+            <ul class="category-items"><li class="sidebar-item"><a href="../scss/preprocesseur-css.html">Préprocesseur CSS</a></li><li class="sidebar-item"><a href="../scss/directives-scss.html">Directives SCSS</a></li></ul>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="section-header"><i class="fas fa-server"></i><span>Backend Development</span></div>
+          <div class="sidebar-category"><div class="category-title"><i class="fas fa-node"></i><span>NestJS</span></div><ul class="category-items"><li class="sidebar-item"><a href="../nestjs/endpoint-securise.html">Endpoint Sécurisé</a></li></ul></div>
+          <div class="sidebar-category"><div class="category-title"><i class="fab fa-python"></i><span>Python</span></div><ul class="category-items"><li class="sidebar-item"><a href="../python/dataframes-pandas.html">DataFrames Pandas</a></li><li class="sidebar-item"><a href="../python/validation-pydantic.html">Validation Pydantic</a></li><li class="sidebar-item"><a href="../python/openfaas-ghcr.html">OpenFaaS & GHCR</a></li></ul></div>
+          <div class="sidebar-category active"><div class="category-title"><i class="fas fa-message"></i><span>Messaging & Events</span></div><ul class="category-items"><li class="sidebar-item active"><a href="rabbitmq.html">RabbitMQ</a></li></ul></div>
+          <div class="sidebar-category"><div class="category-title"><i class="fab fa-js-square"></i><span>JavaScript</span></div><ul class="category-items"><li class="sidebar-item"><a href="../js/async-await.html">Async/Await</a></li></ul></div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="section-header"><i class="fas fa-chart-bar"></i><span>Data & Analytics</span></div>
+          <div class="sidebar-category"><div class="category-title"><i class="fas fa-database"></i><span>SQL</span></div><ul class="category-items"><li class="sidebar-item"><a href="../sql/requetes-sql.html">Requêtes SQL</a></li></ul></div>
+          <div class="sidebar-category"><div class="category-title"><i class="fas fa-chart-line"></i><span>Power BI</span></div><ul class="category-items"><li class="sidebar-item"><a href="../pbi/formules-dax.html">Formules DAX</a></li></ul></div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="section-header"><i class="fas fa-tools"></i><span>DevOps & Tools</span></div>
+          <div class="sidebar-category"><div class="category-title"><i class="fab fa-docker"></i><span>Docker</span></div><ul class="category-items"><li class="sidebar-item"><a href="../docker/docker-swarm.html">Docker Swarm</a></li><li class="sidebar-item"><a href="../docker/docker-pat.html">Docker PAT (Personal Access Token)</a></li></ul></div>
+          <div class="sidebar-category"><div class="category-title"><i class="fas fa-dharmachakra"></i><span>Kubernetes</span></div><ul class="category-items"><li class="sidebar-item"><a href="../kubernetes/kubernetes.html">Guide Complet Kubernetes</a></li></ul></div>
+          <div class="sidebar-category"><div class="category-title"><i class="fab fa-git-alt"></i><span>Git</span></div><ul class="category-items"><li class="sidebar-item"><a href="../git/bashrc-git.html">Configuration .bashrc Git</a></li><li class="sidebar-item"><a href="../husky/husky.html">Husky — Hooks Git</a></li></ul></div>
+          <div class="sidebar-category"><div class="category-title"><i class="fas fa-broom"></i><span>Linters</span></div><ul class="category-items"><li class="sidebar-item"><a href="../linter/linter.html">Les Linters</a></li></ul></div>
+          <div class="sidebar-category"><div class="category-title"><i class="fas fa-cubes"></i><span>Monorepos</span></div><ul class="category-items"><li class="sidebar-item"><a href="../lerna/lerna.html">Lerna</a></li></ul></div>
+          <div class="sidebar-category"><div class="category-title"><i class="fas fa-heartbeat"></i><span>Monitoring</span></div><ul class="category-items"><li class="sidebar-item"><a href="../monitoring/uptime-kuma.html">Uptime Kuma</a></li></ul></div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="section-header"><i class="fas fa-star"></i><span>Best Practices</span></div>
+          <div class="sidebar-category"><div class="category-title"><i class="fas fa-check-circle"></i><span>Bonnes Pratiques</span></div><ul class="category-items"><li class="sidebar-item"><a href="../bp/bubble-up-try-catch.html">Bubble Up Try/Catch</a></li></ul></div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="app-content">
+      <div class="content-wrapper">
+        <div class="course-header">
+          <h1 class="course-title">RabbitMQ - Message broker, queues et consommateurs</h1>
+          <p class="course-description">
+            RabbitMQ est un message broker robuste pour découpler les producteurs et les consommateurs.
+            Ce cours explique le rôle d'un broker, l'intérêt concret de RabbitMQ, la notion de queue, de listener et de subscriber,
+            puis montre comment gérer l'environnement et les messages de manière propre.
+          </p>
+          <div class="last-update"><i class="far fa-clock"></i><span>Dernière mise à jour : <strong>09.04.2026</strong></span></div>
+        </div>
+
+        <div class="course-content">
+          <section class="course-section">
+            <h2 class="section-title">Qu'est-ce qu'un message broker ?</h2>
+            <p>
+              Un <strong>message broker</strong> est un intermédiaire entre un producteur et un consommateur.
+              Le producteur envoie un message au broker, puis le broker le route vers une queue, un topic ou un destinataire.
+              Ce modèle évite de coupler directement les services entre eux.
+            </p>
+            <ul>
+              <li><strong>Découplage</strong> entre émission et traitement</li>
+              <li><strong>Résilience</strong> si le consommateur est temporairement indisponible</li>
+              <li><strong>Absorption de charge</strong> grâce aux queues</li>
+              <li><strong>Traitements asynchrones</strong> et gestion des retries</li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Pourquoi RabbitMQ ?</h2>
+            <p>
+              RabbitMQ est intéressant quand vous avez besoin d'une messagerie fiable avec des files d'attente, des ack,
+              des dead-letter queues, du routage et plusieurs consommateurs. Il est très utilisé pour :
+            </p>
+            <ul>
+              <li>Les jobs en arrière-plan</li>
+              <li>La synchronisation entre microservices</li>
+              <li>Les pipelines d'événements</li>
+              <li>Les traitements batch déclenchés par message</li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">RabbitMQ ou MQTT ?</h2>
+            <p>
+              <strong>MQTT</strong> est une alternative légère, souvent choisie pour l'IoT, les capteurs et les réseaux contraints.
+              RabbitMQ reste préférable lorsque vous avez besoin d'une vraie logique de broker orientée queues, consommateurs,
+              ack, retry et routage plus riche.
+            </p>
+            <ul>
+              <li><strong>MQTT</strong> : léger, pub/sub simple, parfait pour les objets connectés</li>
+              <li><strong>RabbitMQ</strong> : plus complet pour l'architecture applicative et les workflows d'entreprise</li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Démarrer RabbitMQ avec Docker</h2>
+            <p>
+              Le plus simple pour tester est d'exécuter RabbitMQ avec le plugin de management. Cela vous donne l'interface web,
+              la visibilité sur les queues et les consommateurs, et un environnement reproductible.
+            </p>
+            <pre><code class="language-bash">docker run -d \
+  --name rabbitmq \
+  -p 5672:5672 \
+  -p 15672:15672 \
+  -e RABBITMQ_DEFAULT_USER=admin \
+  -e RABBITMQ_DEFAULT_PASS=admin123 \
+  rabbitmq:3-management</code></pre>
+            <p>
+              Interface d'administration : <code>http://localhost:15672</code>
+            </p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Environnement et configuration</h2>
+            <p>
+              En pratique, on externalise les paramètres via des variables d'environnement. Cela permet de garder le code identique
+              entre dev, staging et production.
+            </p>
+            <pre><code class="language-bash">export RABBITMQ_HOST=localhost
+export RABBITMQ_PORT=5672
+export RABBITMQ_USER=admin
+export RABBITMQ_PASSWORD=admin123
+export RABBITMQ_QUEUE=jobs.pretty-print</code></pre>
+            <p>
+              Votre application lit ensuite ces variables pour se connecter au broker, publier ou consommer les messages.
+            </p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Publisher Python</h2>
+            <p>
+              Le publisher envoie des messages dans une queue. Ici, on publie un payload JSON simple vers RabbitMQ.
+            </p>
+            <pre><code class="language-python">import json
+import os
+
+import pika
+
+
+connection = pika.BlockingConnection(
+    pika.ConnectionParameters(
+        host=os.environ["RABBITMQ_HOST"],
+        port=int(os.getenv("RABBITMQ_PORT", "5672")),
+        credentials=pika.PlainCredentials(
+            os.environ["RABBITMQ_USER"],
+            os.environ["RABBITMQ_PASSWORD"],
+        ),
+    )
+)
+
+channel = connection.channel()
+queue_name = os.getenv("RABBITMQ_QUEUE", "jobs.pretty-print")
+channel.queue_declare(queue=queue_name, durable=True)
+
+payload = {"message": "bonjour", "type": "pretty-print"}
+channel.basic_publish(
+    exchange="",
+    routing_key=queue_name,
+    body=json.dumps(payload, ensure_ascii=False),
+    properties=pika.BasicProperties(delivery_mode=2),
+)
+
+connection.close()</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Listener / Subscriber Python</h2>
+            <p>
+              Le listener, aussi appelé subscriber, consomme les messages d'une queue et les traite un par un.
+              L'ack explicite permet de ne valider un message qu'après traitement réussi.
+            </p>
+            <pre><code class="language-python">import json
+import os
+
+import pika
+
+
+def on_message(ch, method, properties, body):
+    payload = json.loads(body.decode("utf-8"))
+    pretty = json.dumps(payload, indent=2, ensure_ascii=False, sort_keys=True)
+    print(pretty)
+    ch.basic_ack(delivery_tag=method.delivery_tag)
+
+
+connection = pika.BlockingConnection(
+    pika.ConnectionParameters(
+        host=os.environ["RABBITMQ_HOST"],
+        port=int(os.getenv("RABBITMQ_PORT", "5672")),
+        credentials=pika.PlainCredentials(
+            os.environ["RABBITMQ_USER"],
+            os.environ["RABBITMQ_PASSWORD"],
+        ),
+    )
+)
+
+channel = connection.channel()
+queue_name = os.getenv("RABBITMQ_QUEUE", "jobs.pretty-print")
+channel.queue_declare(queue=queue_name, durable=True)
+channel.basic_qos(prefetch_count=1)
+channel.basic_consume(queue=queue_name, on_message_callback=on_message)
+channel.start_consuming()</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Queues, ack et dead-letter</h2>
+            <p>
+              Les queues permettent de lisser la charge. Un message peut être traité immédiatement ou mis en attente.
+              Si le traitement échoue, vous pouvez configurer des retries ou une dead-letter queue pour les messages non traités.
+            </p>
+            <ul>
+              <li><strong>Queue durable</strong> : le message survit au redémarrage du broker</li>
+              <li><strong>Ack manuel</strong> : le consommateur confirme après traitement</li>
+              <li><strong>Dead-letter queue</strong> : les messages en échec sont isolés</li>
+              <li><strong>Prefetch</strong> : contrôle du nombre de messages en cours par consommateur</li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Exemple d'architecture</h2>
+            <p>
+              Un cas d'usage classique : une API publie un job dans RabbitMQ, puis un worker Python le récupère et exécute
+              un traitement asynchrone. Cela est idéal pour les tâches longues, les emails, les exports ou les notifications.
+            </p>
+            <pre><code class="language-text">API REST -> RabbitMQ queue -> Worker Python -> Base de données / stockage / API tierce</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Bonnes pratiques</h2>
+            <ul>
+              <li>Nommer les queues selon le domaine métier</li>
+              <li>Utiliser des variables d'environnement pour les connexions</li>
+              <li>Rendre les messages idempotents si possible</li>
+              <li>Activer les queues durables et les messages persistants</li>
+              <li>Surveiller la longueur des queues et les consumers actifs</li>
+              <li>Prévoir une dead-letter queue pour les erreurs récurrentes</li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Navigation inter-blog : aller plus loin</h2>
+            <p>
+              RabbitMQ se combine bien avec plusieurs sujets du blog :
+            </p>
+            <ul>
+              <li><a href="validation-pydantic.html">Validation Pydantic</a> pour valider les messages entrants</li>
+              <li><a href="openfaas-ghcr.html">OpenFaaS & GHCR</a> pour exposer des fonctions consommatrices</li>
+              <li><a href="../monitoring/uptime-kuma.html">Uptime Kuma</a> pour surveiller la disponibilité de vos workers</li>
+              <li><a href="../docker/docker-pat.html">Docker PAT</a> pour sécuriser vos accès aux registres et pipelines</li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Résumé</h2>
+            <p>
+              RabbitMQ apporte une vraie couche de messagerie entre vos services : plus de découplage, plus de contrôle,
+              et une gestion plus propre des traitements asynchrones. Si MQTT est une bonne alternative pour l'IoT,
+              RabbitMQ reste très pertinent dès que vous avez besoin de queues, d'ack, de retries et de consommateurs bien définis.
+            </p>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer class="app-footer">
+    <p>© 2026 Ludoc — Site pédagogique | Créé par <a href="https://animyfolio.netlify.app/" target="_blank" rel="noopener noreferrer">Adrien Niceto</a></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+  <script src="../../js/main.js"></script>
+</body>
+</html>

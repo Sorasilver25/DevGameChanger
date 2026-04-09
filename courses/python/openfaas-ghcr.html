@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python - OpenFaaS et GHCR | Documentation Web</title>
+  <link rel="stylesheet" href="../../css/themes.css">
+  <link rel="stylesheet" href="../../css/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@500;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+</head>
+<body class="theme-light">
+  <header class="app-header">
+    <a href="../../index.html" class="app-title">
+      <i class="fas fa-home"></i>
+      <span>Ludoc</span>
+    </a>
+    <div class="app-header-actions">
+      <div class="theme-selector">
+        <button class="theme-button">
+          <i class="fas fa-palette"></i>
+          <span>Thème</span>
+        </button>
+        <div class="theme-dropdown">
+          <div class="theme-option" data-theme="light"><div class="theme-color light"></div><span>Clair</span></div>
+          <div class="theme-option" data-theme="dark"><div class="theme-color dark"></div><span>Sombre</span></div>
+          <div class="theme-option" data-theme="blue"><div class="theme-color blue"></div><span>Bleu</span></div>
+          <div class="theme-option" data-theme="green"><div class="theme-color green"></div><span>Vert</span></div>
+          <div class="theme-option" data-theme="purple"><div class="theme-color purple"></div><span>Violet</span></div>
+        </div>
+      </div>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="app-container">
+    <aside class="app-sidebar">
+      <div class="sidebar-content">
+        <div class="sidebar-section">
+          <div class="section-header"><i class="fas fa-home"></i><span>Navigation</span></div>
+          <div class="sidebar-category"><ul class="category-items"><li class="sidebar-item"><a href="../../index.html"><span>Accueil</span></a></li></ul></div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="section-header"><i class="fas fa-code"></i><span>Frontend Development</span></div>
+          <div class="sidebar-category">
+            <div class="category-title"><i class="fab fa-angular"></i><span>Angular</span></div>
+            <ul class="category-items"><li class="sidebar-item"><a href="../angular/svg-icon-service.html">Service SVG Icons</a></li></ul>
+          </div>
+          <div class="sidebar-category">
+            <div class="category-title"><i class="fab fa-sass"></i><span>SCSS</span></div>
+            <ul class="category-items">
+              <li class="sidebar-item"><a href="../scss/preprocesseur-css.html">Préprocesseur CSS</a></li>
+              <li class="sidebar-item"><a href="../scss/directives-scss.html">Directives SCSS</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="section-header"><i class="fas fa-server"></i><span>Backend Development</span></div>
+          <div class="sidebar-category">
+            <div class="category-title"><i class="fas fa-node"></i><span>NestJS</span></div>
+            <ul class="category-items"><li class="sidebar-item"><a href="../nestjs/endpoint-securise.html">Endpoint Sécurisé</a></li></ul>
+          </div>
+          <div class="sidebar-category">
+            <div class="category-title"><i class="fab fa-python"></i><span>Python</span></div>
+            <ul class="category-items">
+              <li class="sidebar-item"><a href="dataframes-pandas.html">DataFrames Pandas</a></li>
+              <li class="sidebar-item"><a href="validation-pydantic.html">Validation Pydantic</a></li>
+              <li class="sidebar-item active"><a href="openfaas-ghcr.html">OpenFaaS & GHCR</a></li>
+            </ul>
+          </div>
+          <div class="sidebar-category">
+            <div class="category-title"><i class="fab fa-js-square"></i><span>JavaScript</span></div>
+            <ul class="category-items"><li class="sidebar-item"><a href="../js/async-await.html">Async/Await</a></li></ul>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="section-header"><i class="fas fa-chart-bar"></i><span>Data & Analytics</span></div>
+          <div class="sidebar-category">
+            <div class="category-title"><i class="fas fa-database"></i><span>SQL</span></div>
+            <ul class="category-items"><li class="sidebar-item"><a href="../sql/requetes-sql.html">Requêtes SQL</a></li></ul>
+          </div>
+          <div class="sidebar-category">
+            <div class="category-title"><i class="fas fa-chart-line"></i><span>Power BI</span></div>
+            <ul class="category-items"><li class="sidebar-item"><a href="../pbi/formules-dax.html">Formules DAX</a></li></ul>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="section-header"><i class="fas fa-tools"></i><span>DevOps & Tools</span></div>
+          <div class="sidebar-category"><div class="category-title"><i class="fab fa-docker"></i><span>Docker</span></div><ul class="category-items"><li class="sidebar-item"><a href="../docker/docker-swarm.html">Docker Swarm</a></li><li class="sidebar-item"><a href="../docker/docker-pat.html">Docker PAT (Personal Access Token)</a></li></ul></div>
+          <div class="sidebar-category"><div class="category-title"><i class="fas fa-dharmachakra"></i><span>Kubernetes</span></div><ul class="category-items"><li class="sidebar-item"><a href="../kubernetes/kubernetes.html">Guide Complet Kubernetes</a></li></ul></div>
+          <div class="sidebar-category"><div class="category-title"><i class="fab fa-git-alt"></i><span>Git</span></div><ul class="category-items"><li class="sidebar-item"><a href="../git/bashrc-git.html">Configuration .bashrc Git</a></li><li class="sidebar-item"><a href="../husky/husky.html">Husky — Hooks Git</a></li></ul></div>
+          <div class="sidebar-category"><div class="category-title"><i class="fas fa-broom"></i><span>Linters</span></div><ul class="category-items"><li class="sidebar-item"><a href="../linter/linter.html">Les Linters</a></li></ul></div>
+          <div class="sidebar-category"><div class="category-title"><i class="fas fa-cubes"></i><span>Monorepos</span></div><ul class="category-items"><li class="sidebar-item"><a href="../lerna/lerna.html">Lerna</a></li></ul></div>
+          <div class="sidebar-category"><div class="category-title"><i class="fas fa-heartbeat"></i><span>Monitoring</span></div><ul class="category-items"><li class="sidebar-item"><a href="../monitoring/uptime-kuma.html">Uptime Kuma</a></li></ul></div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="section-header"><i class="fas fa-star"></i><span>Best Practices</span></div>
+          <div class="sidebar-category"><div class="category-title"><i class="fas fa-check-circle"></i><span>Bonnes Pratiques</span></div><ul class="category-items"><li class="sidebar-item"><a href="../bp/bubble-up-try-catch.html">Bubble Up Try/Catch</a></li></ul></div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="app-content">
+      <div class="content-wrapper">
+        <div class="course-header">
+          <h1 class="course-title">OpenFaaS - Fonctions Python, packaging Docker et GHCR</h1>
+          <p class="course-description">
+            Ce cours présente OpenFaaS comme une couche serverless légère pour exécuter des fonctions Python,
+            puis montre comment emballer ces fonctions en image Docker, les publier dans GHCR et les déployer proprement.
+          </p>
+          <div class="last-update">
+            <i class="far fa-clock"></i>
+            <span>Dernière mise à jour : <strong>09.04.2026</strong></span>
+          </div>
+        </div>
+
+        <div class="course-content">
+          <section class="course-section">
+            <h2 class="section-title">1. Introduire OpenFaaS</h2>
+            <p>
+              <strong>OpenFaaS</strong> permet d'exposer des fonctions sous forme d'API HTTP sans gérer directement
+              l'infrastructure d'exécution. L'idée est simple : vous écrivez une fonction, vous la packez dans une image,
+              puis vous la déployez derrière le gateway OpenFaaS.
+            </p>
+            <ul>
+              <li><strong>Déploiement rapide</strong> de fonctions Python, Node.js, Go ou autre</li>
+              <li><strong>Scalabilité</strong> par fonction</li>
+              <li><strong>Isolation</strong> via conteneurs</li>
+              <li><strong>Observabilité</strong> simple grâce au gateway et aux logs</li>
+              <li><strong>Intégration GitOps / CI-CD</strong> via images versionnées</li>
+            </ul>
+            <p>
+              Le pattern à retenir : une fonction = un contrat HTTP + une image Docker + une version explicite.
+            </p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Fonction Python d'exemple : pretty print JSON</h2>
+            <p>
+              Voici une fonction simple et utile : recevoir un payload JSON et le renvoyer en version formatée.
+              C'est typiquement le genre de fonction qu'on garde comme brique réutilisable dans OpenFaaS.
+            </p>
+            <pre><code class="language-python">import json
+
+
+def handle(event, context):
+    raw_body = event.body or "{}"
+    try:
+        payload = json.loads(raw_body)
+    except json.JSONDecodeError:
+        return {
+            "statusCode": 400,
+            "body": json.dumps({"error": "Payload JSON invalide"}, ensure_ascii=False),
+            "headers": {"Content-Type": "application/json; charset=utf-8"},
+        }
+
+    pretty = json.dumps(payload, indent=2, ensure_ascii=False, sort_keys=True)
+    return {
+        "statusCode": 200,
+        "body": pretty,
+        "headers": {"Content-Type": "application/json; charset=utf-8"},
+    }</code></pre>
+            <p>
+              Cette fonction est volontairement simple : elle montre comment standardiser une logique métier sous forme de fonction packagée.
+            </p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">2. Créer son package Docker pour OpenFaaS</h2>
+            <p>
+              Dans OpenFaaS, le packaging moderne passe généralement par une image Docker. Pour Python, la voie la plus propre
+              consiste à partir d'un template OpenFaaS, puis à versionner l'image dans un registre comme GHCR.
+            </p>
+            <pre><code class="language-bash"># Installer le CLI OpenFaaS
+curl -sSL https://cli.openfaas.com | sudo sh
+
+# Récupérer le template Python
+faas-cli template store pull python3-http
+
+# Créer une nouvelle fonction
+faas-cli new pretty-json --lang python3-http</code></pre>
+            <p>
+              Ensuite, vous placez votre logique dans <code>handler.py</code> et vous gardez une version claire dans le fichier de fonction.
+            </p>
+            <pre><code class="language-yaml">version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:8080
+functions:
+  pretty-json:
+    lang: python3-http
+    handler: ./pretty-json
+    image: ghcr.io/votre-compte/openfaas-pretty-json:1.0.0</code></pre>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Publier dans GHCR</h2>
+            <p>
+              GHCR est un bon choix ici parce qu'il s'intègre naturellement à GitHub et permet de versionner les images
+              comme des packages. Vous avez deux cas d'usage : publier manuellement ou via GitHub Actions.
+            </p>
+            <p>Authentification manuelle :</p>
+            <pre><code class="language-bash">export GHCR_USER="votre-compte"
+export GHCR_TOKEN="ghp_xxx_ou_pat"
+
+printf '%s' "$GHCR_TOKEN" | docker login ghcr.io -u "$GHCR_USER" --password-stdin</code></pre>
+            <p>Construire, taguer, publier et récupérer le package :</p>
+            <pre><code class="language-bash"># Construire l'image locale
+faas-cli build -f pretty-json.yml
+
+# Publier vers GHCR
+faas-cli push -f pretty-json.yml
+
+# Récupérer le package
+docker pull ghcr.io/votre-compte/openfaas-pretty-json:1.0.0</code></pre>
+            <p>
+              Si vous automatisez avec GitHub Actions, utilisez le <code>GITHUB_TOKEN</code> ou un PAT avec les droits <code>write:packages</code> et <code>read:packages</code> selon votre contexte.
+            </p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Déployer le package dans OpenFaaS</h2>
+            <p>
+              Une fois l'image publiée, OpenFaaS déploie la fonction directement depuis GHCR. Le plus simple est de garder
+              le même tag entre le fichier de fonction et le registre.
+            </p>
+            <pre><code class="language-bash"># Déployer la fonction
+faas-cli deploy -f pretty-json.yml
+
+# Lister les fonctions
+faas-cli list --gateway http://127.0.0.1:8080
+
+# Appeler la fonction
+curl -s http://127.0.0.1:8080/function/pretty-json \
+  -H "Content-Type: application/json" \
+  -d '{"nom":"Ludoc","type":"openfaas"}'</code></pre>
+            <p>
+              En pratique, le flux propre est : code Python → image Docker → GHCR → déploiement OpenFaaS → invocation HTTP.
+            </p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Utiliser des fonctions packagées dans OpenFaaS</h2>
+            <p>
+              Le vrai intérêt du packaging apparaît quand vous réutilisez des fonctions déjà packagées. Vous pouvez ainsi :
+            </p>
+            <ul>
+              <li><strong>Épingler une version</strong> précise pour éviter les régressions</li>
+              <li><strong>Réployer rapidement</strong> une fonction dans plusieurs environnements</li>
+              <li><strong>Partager des fonctions</strong> entre plusieurs projets sans recoder</li>
+              <li><strong>Mettre à jour un service</strong> en changeant uniquement le tag de l'image</li>
+            </ul>
+            <pre><code class="language-bash"># Changer de version
+sed -i 's/:1.0.0/:1.0.1/' pretty-json.yml
+faas-cli deploy -f pretty-json.yml
+
+# Vérifier l'état
+faas-cli describe pretty-json -g http://127.0.0.1:8080</code></pre>
+            <p>
+              Ce modèle fonctionne particulièrement bien pour des fonctions utilitaires comme le pretty print JSON,
+              des validateurs, des normalisateurs ou des adaptateurs d'API.
+            </p>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Bonnes pratiques</h2>
+            <ul>
+              <li>Versionnez chaque image avec un tag explicite</li>
+              <li>Utilisez GHCR pour centraliser vos packages Docker</li>
+              <li>Gardez les fonctions courtes et spécialisées</li>
+              <li>Privilégiez des images légères basées sur Python slim</li>
+              <li>Gardez les secrets hors du code et des images</li>
+              <li>Documentez les endpoints et les payloads attendus</li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Navigation inter-blog : aller plus loin</h2>
+            <p>
+              Pour replacer OpenFaaS dans votre environnement Ludoc :
+            </p>
+            <ul>
+              <li><a href="validation-pydantic.html">Validation Pydantic</a> pour fiabiliser les payloads reçus par vos fonctions</li>
+              <li><a href="dataframes-pandas.html">DataFrames Pandas</a> pour préparer et transformer des données avant publication</li>
+              <li><a href="../docker/docker-pat.html">Docker PAT</a> pour sécuriser vos authentifications GitHub/GHCR</li>
+              <li><a href="../monitoring/uptime-kuma.html">Uptime Kuma</a> pour monitorer vos fonctions et APIs</li>
+            </ul>
+          </section>
+
+          <section class="course-section">
+            <h2 class="section-title">Résumé</h2>
+            <p>
+              OpenFaaS est une manière propre d'exposer des fonctions Python, tandis que GHCR fournit la couche de packaging
+              et de distribution. En combinant les deux, vous obtenez un flux moderne : fonction, image Docker, publication,
+              déploiement, invocation. C'est simple, versionnable et facile à automatiser.
+            </p>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer class="app-footer">
+    <p>© 2026 Ludoc — Site pédagogique | Créé par <a href="https://animyfolio.netlify.app/" target="_blank" rel="noopener noreferrer">Adrien Niceto</a></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-yaml.min.js"></script>
+  <script src="../../js/main.js"></script>
+</body>
+</html>
